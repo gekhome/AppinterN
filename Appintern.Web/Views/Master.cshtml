@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+@using ClientDependency.Core.Mvc
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="@Url.Content("~/images/favicon.ico")" type="image/x-icon" />
+
+    @{ Html.RenderPartial("SiteLayout/_MetaData"); }
+
+    @{
+        //styles
+        Html.RequiresCss("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css");
+        Html.RequiresCss("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css");
+        Html.RequiresCss("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+        Html.RequiresCss("/css/Footer-Basic.css");
+        Html.RequiresCss("/css/Navigation-Clean.css");
+        Html.RequiresCss("/css/News-Cards.css");
+        Html.RequiresCss("/css/styles.css");
+
+        //from Bold theme
+        Html.RequiresCss("/css/animate.css");
+        Html.RequiresCss("/css/icomoon.css");
+        Html.RequiresCss("/css/bootstrap.min.css");
+        Html.RequiresCss("/css/bootstrap-theme.min.css");
+        Html.RequiresCss("/css/style.css");
+        Html.RequiresCss("/css/simple-line-icons.css");
+
+        //scripts (commented out moved to "_MainNavigation" as it conflicts with Accordions js)
+        //Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js");
+        Html.RequiresJs("/scripts/bootstrap.min.js");
+        Html.RequiresJs("/scripts/navigationMenu.js"); }
+
+    @Html.RenderCssHere()
+
+</head>
+<body>
+    <div style="margin-top:70px;"></div>
+    @Html.CachedPartial("SiteLayout/_MainNavigation", Model, 3600)
+
+    @RenderBody()
+
+    @Html.CachedPartial("SiteLayout/_Footer", Model, 3600)
+
+    @Html.RenderJsHere()
+</body>
+</html>

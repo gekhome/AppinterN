@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.PageDenied>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+
+    var currentUser = System.Web.Security.Membership.GetUser();
+    string displayName = "";
+    if (currentUser == null)
+    {
+        displayName = "Guest";
+    }
+    else
+    {
+        displayName = currentUser.UserName;
+    }
+}
+
+<style>
+    h1 {
+        /*text-shadow: 2px 2px 5px red;*/        
+        text-shadow: 0 0 3px #FF0000;
+    }
+</style>
+
+<div class="contact-clean" style="background-color:white">
+    <div class="center" style="margin-top:40px;margin-bottom:40px;">
+        <h1 style="color:dimgray">@Model.Title!</h1>
+        <p style="font-size:20px">Logged in as <span><strong>@displayName</strong></span></p>
+        <p></p>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>@Model.SubTitle</strong>
+        </div>
+    </div>
+</div>

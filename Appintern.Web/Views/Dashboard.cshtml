@@ -1,0 +1,8 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Dashboard>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "Manage.cshtml";
+    ViewBag.Title = "Admin Dashboard";
+}
+
+@{ Html.RenderAction("RenderDashboard", "Backend"); }

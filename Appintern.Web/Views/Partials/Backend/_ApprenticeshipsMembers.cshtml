@@ -1,0 +1,148 @@
+﻿
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "Apprenticeships";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header" style="margin:5px 30px 5px 30px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Members and related apprenticeships</font>
+    </span>
+    <span style="margin:5px 30px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Return to Dashboard", "RenderDashboardHome", "Backend", null, new { @class = "btn btn-warning", style = "font-size:14px" })
+    </span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Refresh</button>
+</div>
+
+<div class="body-content" style="margin:20px 30px 5px 30px;">
+    @(Html.Kendo().Grid<EmployersViewModel>()
+        .Name("Master")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.MemberID).Width(20);
+            columns.Bound(c => c.TradeName).Width(50);
+            columns.Bound(c => c.Email).Width(40);
+            columns.Bound(c => c.LoginName).Width(30);
+        })
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(10))
+        .Selectable()
+        .Filterable()
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(300))
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(60)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.MemberID);
+        })
+        .Read(read => read.Action("Employers_Read", "Backend"))
+        .Events(events => events.Error("error_handler1"))
+        )
+        .Events(events => events.Change("change"))
+        )
+</div>
+
+<div class="body-content" style="margin:20px 30px 5px 30px;">
+    @(Html.Kendo().Grid<ApprenticeshipViewModel>()
+        .Name("Child")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.ApprenticeshipID).Width(15).Filterable(false);
+            columns.Bound(c => c.Title).Width(40);
+            columns.Bound(c => c.PostDate).Width(20).Format("{0:dd/MM/yyyy}");
+            columns.Bound(c => c.DurationMonths).Width(20).Title("Duration");
+            columns.Bound(c => c.Commitment).Width(20);
+            columns.Bound(c => c.Compensation).Width(25);
+            columns.Bound(c => c.JobSector).Width(30).Title("Job Sectors");
+            columns.Bound(c => c.Country).Width(20);
+        })
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .Filterable()
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(240))
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.ApprenticeshipID);
+        })
+        .Read(read => read.Action("ApprenticeshipsMembers_Read", "Backend").Data("data"))
+        .Events(events => events.Error("error_handler2"))
+        )
+        )
+</div>
+
+
+<script type="text/javascript">
+
+    function change(e) {
+        var dataItem = this.dataItem(this.select());
+        var employerID = dataItem.MemberID;
+
+        $("#Child").data("kendoGrid").dataSource.read({ employerId: employerID });
+        $("#Child").css("display", "block");
+    }
+
+    function data() {
+        var masterGrid = $("#Master").data("kendoGrid");
+        // get data item for selected row
+        var dataItem = masterGrid.dataItem(masterGrid.select());
+        if (dataItem) {
+            return { employerId: dataItem.MemberID };
+        }
+        else {
+            return { employerId: 0 };
+        }
+    }
+
+    function RefreshGrid(e) {
+        var grid = $("#Child").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler1(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+        $("#Master").data("kendoGrid").dataSource.read();
+    }
+
+    function error_handler2(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+        $("#Child").data("kendoGrid").dataSource.read();
+    }
+
+
+</script>

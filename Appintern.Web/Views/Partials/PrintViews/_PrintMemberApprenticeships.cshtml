@@ -1,0 +1,83 @@
+@using Telerik.Reporting
+@using Telerik.ReportViewer.Mvc
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Telerik MVC HTML5 Report Viewer</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" />
+
+    <!--If Kendo is used it should be added before the report viewer.-->
+    @*<script src="@Url.Content("~/api/reports/resources/js/telerikReportViewer")"></script>*@
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-13.1.19.618.js")"></script>
+
+    <style>
+        #reportViewer1 {
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            top: 5px;
+            bottom: 5px;
+            overflow: hidden;
+            font-family: Verdana, Arial;
+        }
+    </style>
+</head>
+<body>
+
+@(Html.TelerikReporting().ReportViewer()
+        // Each report viewer must have an id - it will be used by the initialization script
+        // to find the element and initialize the report viewer.
+        .Id("reportViewer1")
+        // The settings of the report server that hosts the reports - URL, username and password. 
+		// If username and password are not provided or are set to null, the server's Guest account will be used.
+        // The report server should have its Guest account enabled along with configured permissions for accessing the report.
+        // For more information see http://www.telerik.com/help/reporting/html5-report-viewer-howto-use-it-with-reportserver.html.
+		.ReportServer(new ReportServer()
+		{
+            Url = "http://gek-home:83",
+            Username = "gek",
+            Password = "171159!"
+        })
+        // The URL for the report viewer template. The template can be edited -
+        // new functionalities can be added and unneeded ones can be removed.
+        // For more information please check http://www.telerik.com/help/reporting/html5-report-viewer-templates.html.
+        //.TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate-13.1.19.618.html"))
+        // The report source value contains Category and ReportName in the following format: {Category/ReportName}.
+        .ReportSource("AppInterN/Members Apprenticeships")
+        // Specifies whether the viewer is in interactive or print preview mode.
+        // PrintPreview - Displays the paginated report as if it is printed on paper. Interactivity is not enabled.
+        // Interactive - Displays the report in its original width and height with no paging. Additionally interactivity is enabled.
+        .ViewMode(ViewMode.PrintPreview)
+        // Sets the scale mode of the viewer.
+        // Three modes exist currently:
+        // FitPage - The whole report will fit on the page (will zoom in or out), regardless of its width and height.
+        // FitPageWidth - The report will be zoomed in or out so that the width of the screen and the width of the report match.
+        // Specific - Uses the scale to zoom in and out the report.
+        .ScaleMode(ScaleMode.Specific)
+        // Zoom in and out the report using the scale
+        // 1.0 is equal to 100%, i.e. the original size of the report
+        .Scale(1.0)
+        // Sets whether the viewer’s client session to be persisted between the page’s refreshes(ex. postback).
+        // The session is stored in the browser’s sessionStorage and is available for the duration of the page session.
+        .PersistSession(false)
+        // Sets the print mode of the viewer.
+        .PrintMode(PrintMode.AutoSelect)
+		//If set to true shows the Send Mail Message toolbar button
+        .SendEmail(new SendEmail { Enabled = false })
+		//Switches accessibility mode ON or OFF.
+		.EnableAccessibility(false)
+)
+
+</body>
+</html>

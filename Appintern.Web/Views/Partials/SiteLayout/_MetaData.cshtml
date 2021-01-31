@@ -1,0 +1,8 @@
+﻿@inherits UmbracoViewPage
+
+@using Umbraco.Web.Models
+
+<title>@(Model.HasValue("metaName") ? Model.Value<string>("metaName") : Model.Name)</title>
+<meta name="Name" content="@(Model.HasValue("metaName") ? Model.Value<string>("metaName") : Model.Name)" />
+<meta name="Description" content="@(Model.Value<string>("metaDescription"))" />
+<meta name="Keywords" content="@(Model.HasValue("metaKeywords") ? string.Join(",", Model.Value<string[]>("metaKeywords")) : Model.Name)" />

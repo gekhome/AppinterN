@@ -1,0 +1,137 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var member = System.Web.Security.Membership.GetUser();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - AppinterN</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content//b4/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/SiteKendo.css")" rel="stylesheet" type="text/css" />
+
+    <script src="https://kendo.cdn.telerik.com/2019.2.619/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.2.619/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.aspnetmvc.min.js"></script>
+    <script src="@Url.Content("~/scripts/b4/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/scripts/b4/kendo.modernizr.custom.js")"></script>
+
+    <style>
+        a.mya:link {
+            color: lightgray !important;
+            text-decoration: none;
+        }
+
+        a.mya:visited {
+            color: lightgray !important;
+            text-decoration: none;
+        }
+
+        a.mya:hover {
+            color: white !important;
+            text-decoration: none;
+        }
+
+        a.mya:active {
+            color: lightgray !important;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body class="k-content">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-between p-0">
+            <h1 class="navbar-brand d-flex align-items-center">
+                <a class="mya" href='@Url.Action("RenderHome", "Content")'>
+                    <img src="~/Images/site-logo-home.png" width="36" height="36" style="margin-right:10px" />AppinternN Home >
+                </a>
+            </h1>
+            <button id="configure" class="k-rpanel-toggle k-button k-primary btn-toggle">
+                <span class="k-icon k-i-menu"></span>
+            </button>
+            @if (member != null && Umbraco.MemberIsLoggedOn())
+            {
+                <span style="float:right;margin-left:20px;margin-right:20px;color:whitesmoke;font-size:18px">
+                    <strong><i class="fa fa-user-circle-o" aria-hidden="true"></i> @member.UserName</strong>
+                </span>
+            }
+        </div>
+    </nav>
+
+    <div id="responsive-panel" class="navbar navbar-dark bg-light">
+        @(Html.Kendo().Menu()
+            .Name("Menu")
+            .HtmlAttributes(new { style="width:100%" })
+            .Items(items =>
+            {
+                items.Add().Text("Members").ImageUrl(Url.Content("~/img/menu-icons/appbar.people.multiple.png"))
+                .Items(children =>
+                {
+                    children.Add().Text("Employers").Action("EmployersMain", "BackEnd");
+                    children.Add().Text("VET Teachers").Action("TeachersMain", "BackEnd");
+                    children.Add().Text("VET Students").Action("StudentsMain", "BackEnd");
+                    children.Add().Text("VET Graduates").Action("GraduatesMain", "BackEnd");
+                    children.Add().Text("VET Providers").Action("SchoolsMain", "BackEnd");
+                    children.Add().Text("Social Partners").Action("OrganizationsMain", "BackEnd");
+                    children.Add().Text("Liaison Officers").Action("LiaisonsMain", "BackEnd");
+                    children.Add().Text("Business Ambassadors").Action("AmbassadorsMain", "BackEnd");
+                });
+                items.Add().Text("News & Events").ImageUrl(Url.Content("~/img/menu-icons/appbar.newspaper.png"))
+                .Items(children =>
+                {
+                    children.Add().Text("Browse articles").Action("ArticlesMain", "BackEnd");
+                    children.Add().Text("Member articles").Action("ArticlesMembers", "BackEnd");
+                    children.Add().Text("Print articles").Action("MembersArticlesPrint", "Backend").LinkHtmlAttributes(new { target = "_blank" });
+                    children.Add().Text("Print articles*").Action("MembersArticlesTestPrint", "Backend").LinkHtmlAttributes(new { target = "_blank" });
+                });
+                items.Add().Text("Apprenticeships").ImageUrl(Url.Content("~/img/menu-icons/appbar.home.location.pin.png"))
+                .Items(children =>
+                {
+                    children.Add().Text("Browse apprenticeships").Action("ApprenticeshipsMain", "Backend");
+                    children.Add().Text("Member apprenticeships").Action("ApprenticeshipsMembers", "BackEnd");
+                    children.Add().Text("Print apprenticeships").Action("RenderDashboardHome", "Backend").Action("MembersApprenticeshipsPrint", "Backend")
+                        .LinkHtmlAttributes(new { target = "_blank" });
+                });
+                items.Add().Text("Job Offers").ImageUrl(Url.Content("~/img/menu-icons/appbar.key.old.png")).Action("MembersArticlesReport", "Backend").LinkHtmlAttributes(new { target = "_blank" });
+                items.Add().Text("Settings").ImageUrl(Url.Content("~/img/menu-icons/appbar.cog.png"));
+                //items.Add().Text("Disabled item").Enabled(false);
+            })
+        )
+    </div>
+
+    <main>
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer text-center d-flex align-items-center">
+        <div class="container-fluid">
+            <p class="text-muted">Copyright © @DateTime.Now.Year @Umbraco.GetDictionaryValue(key: "Footer.CopyrightText") OAED.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+</body>
+</html>
+

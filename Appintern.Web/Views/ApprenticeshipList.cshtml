@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@using ClientDependency.Core.Mvc
+@{
+    Layout = "master.cshtml";
+    Html.RequiresCss("/css/Article-List.css");
+}
+
+@{ Html.RenderPartial("Partials/Content/_Apprenticeships"); }

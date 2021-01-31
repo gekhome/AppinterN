@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.SignUp>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using ClientDependency.Core.Mvc
+
+@{
+    Layout = "master.cshtml";
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    Html.RequiresJs("/scripts/jquery.validate.min.js");
+    Html.RequiresJs("/scripts/jquery.validate.unobtrusive.min.js");
+    Html.RequiresJs("/scripts/jquery.unobtrusive-ajax.min.js");
+
+    @Html.RenderCssHere()
+}
+
+<body>
+    @Html.RenderJsHere()
+
+    <div class="contact-clean">
+        @{ Html.RenderAction("RenderTitleControls", "Content"); }
+
+        @{ Html.RenderAction("RenderSignUp", "User"); }
+    </div>
+</body>

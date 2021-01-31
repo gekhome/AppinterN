@@ -1,0 +1,55 @@
+﻿@inherits UmbracoViewPage
+
+@using Umbraco.Web.Models
+
+@{ 
+    var homePage = Model.Root();
+    IEnumerable<Link> footerSocialLinks = homePage.Value<IEnumerable<Link>>("footerSocialLinks");
+    IEnumerable<Link> footerLinks = homePage.Value<IEnumerable<Link>>("footerLinks");
+    IEnumerable<IPublishedElement> sponsorItems = homePage.Value<IEnumerable<IPublishedElement>>("footerSponsorItems");
+}
+
+<!-- class="footer-basic" max-height:460px -->
+<div class="footer-basic">
+    <footer id="fh5co-footer" role="contentinfo" style="max-height:460px">
+        @if (footerSocialLinks != null && footerSocialLinks.Count() > 0)
+        {
+            <div class="social" style="color:white">
+                @foreach (Link link in footerSocialLinks)
+                {
+                    <a href="@link.Url" target="@link.Target"><i class="icon fa fa-@link.Name"></i></a>
+                }
+            </div>
+        }
+        @if (footerLinks != null && footerLinks.Count() > 0)
+        {
+            <!-- class="list-inline" -->
+            <ul class="list-inline">
+                @foreach (Link link in footerLinks)
+                {
+                    <li style="margin-right:20px;font-size:20px"><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                }
+            </ul>
+        }
+
+        @if (sponsorItems != null && sponsorItems.Count() > 0)
+        {
+            <div class="row text-center">
+                @foreach (var item in sponsorItems)
+                {
+                    string imageUrl = item.Value<IPublishedContent>("footerSponsorImage")?.GetCropUrl();
+                    Link linkUrl = item.Value<Link>("footerSponsorLink");
+
+                    <a href="@linkUrl.Url" target="@linkUrl.Target"><img src="@imageUrl" style="margin-right:5px" height="80" /></a>
+                }
+            </div>
+        }
+
+        <div class="col-md-12 fh5co-copyright text-center">
+            <p style="color:darkgrey">
+                @Umbraco.GetDictionaryValue(key: "Footer.CopyrightText")
+            <a href="@Umbraco.GetDictionaryValue("Footer.CopyrightLinkUrl")" target="_blank">@Umbraco.GetDictionaryValue("Footer.CopyrightLinkText")</a> &copy; @DateTime.Now.Year
+        </p>
+    </div>
+    </footer>
+</div>
