@@ -1,6 +1,0 @@
-{
-    "IIS-Site-Name": "appintern",
-    "App-Pool-Name": "appintern",
-    "IIS-App-Pool-Dot-Net-Version": "v4.0",
-    "bindings": ["appintern.localtest.me"]
-}

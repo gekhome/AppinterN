@@ -1333,6 +1333,9 @@ namespace Appintern.Web.Controllers
 
         #endregion
 
+
+        #region REPORTING - PRINT VIEWS
+
         public ActionResult MembersArticlesPrint()
         {
             //return View();
@@ -1357,5 +1360,6 @@ namespace Appintern.Web.Controllers
             return PartialView(GetPrintViewPath("_ReportViewerView1"));
         }
 
+        #endregion
     }
 }
