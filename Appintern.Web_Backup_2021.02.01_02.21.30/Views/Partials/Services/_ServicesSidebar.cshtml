@@ -1,0 +1,18 @@
+﻿@model ServicesSidebarModel
+
+@using Appintern.Core.Models
+
+<div class="col-md-12 side">
+    <div class="col-md-12 side">
+        <h3>@Model.SidebarTitle</h3>
+        <ul>
+            @if (Model.HasSidebarItems)
+            {
+                foreach (var item in Model.SidebarItems)
+                {
+                    <li><i class="tick-list__item"></i><a href="@item.Link"><strong>@item.Text</strong></a></li>
+                }
+            }
+        </ul>
+    </div>
+</div>

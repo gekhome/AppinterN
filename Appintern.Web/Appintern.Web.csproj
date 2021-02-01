@@ -84,8 +84,10 @@
     <Reference Include="ImageProcessor.Web, Version=4.10.0.100, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImageProcessor.Web.4.10.0.100\lib\net452\ImageProcessor.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>..\..\TelerikProject\TelerikMvcApp\TelerikMvcApp\bin\Kendo.Mvc.dll</HintPath>
+    <Reference Include="Kendo.Mvc, Version=2019.3.1023.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\KENDOUIMVC\2019.3.1023.545\Kendo.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LightInject, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LightInject.5.4.0\lib\net46\LightInject.dll</HintPath>
@@ -271,11 +273,11 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Telerik.Reporting, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-    <Reference Include="Telerik.Reporting.Services.WebApi, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Reporting.XpsRendering, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.ReportViewer.Mvc, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting, Version=13.2.19.1030, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2, Version=13.2.19.1030, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.Services.WebApi, Version=13.2.19.1030, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=13.2.19.1030, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.ReportViewer.Mvc, Version=13.2.19.1030, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
     <Reference Include="Umbraco.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.8.10.1\lib\net472\Umbraco.Core.dll</HintPath>
     </Reference>
@@ -343,9 +345,9 @@
     <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery-ui-1.12.1.custom\LICENSE.txt" />
-    <Content Include="ReportViewer\js\telerikReportViewer-13.1.19.618.js" />
-    <Content Include="ReportViewer\js\telerikReportViewer-13.1.19.618.min.js" />
-    <Content Include="ReportViewer\js\telerikReportViewer.kendo-13.1.19.618.min.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer-13.2.19.1030.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer-13.2.19.1030.min.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer.kendo-13.2.19.1030.min.js" />
     <Content Include="ReportViewer\styles\blueopal\loading.gif" />
     <Content Include="ReportViewer\styles\blueopal\sprite.png" />
     <Content Include="ReportViewer\styles\kendo.blueopal.min.css" />
@@ -1939,6 +1941,7 @@
     <Content Include="Views\MemberAvatar.cshtml" />
     <Content Include="Views\Partials\Member\_MemberAvatar.cshtml" />
     <Content Include="Views\PageNotFound.cshtml" />
+    <Content Include="Views\Partials\PrintViews\_ReportViewerView1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1948,13 +1951,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\MacroPartials\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Appintern.Core\Appintern.Core.csproj">
-      <Project>{6be23fbe-3c14-444a-aad1-2a4bce4218cd}</Project>
-      <Name>Appintern.Core</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1967,6 +1963,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Appintern.Core\Appintern.Core.csproj">
+      <Project>{6be23fbe-3c14-444a-aad1-2a4bce4218cd}</Project>
+      <Name>Appintern.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

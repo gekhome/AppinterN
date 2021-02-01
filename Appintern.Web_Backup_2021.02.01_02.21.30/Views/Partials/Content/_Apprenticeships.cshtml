@@ -1,0 +1,100 @@
+﻿@inherits ApprenticeshipsViewPage
+
+@using Appintern.Core.ViewPages
+
+@{
+    var resultSet = ApprenticeshipService.GetLatestApprenticeships(Model, Request);
+}
+
+<link href="~/css/style.css" rel="stylesheet">
+
+<style>
+    div.box-shadow {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+        margin-top:20px;
+        margin-bottom:10px
+    }
+</style>
+
+@if (resultSet != null && resultSet.Results != null && resultSet.Results.Any())
+{
+    var apprenticeships = resultSet.Results.Cast<Apprenticeship>();
+
+    <div class="article-list">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">@(Model.Value<string>("latestArticlesTitle"))</h2>
+                <p class="text-center">@(Model.Value<string>("latestArticlesSubtitle"))</p>
+            </div>
+            @if (apprenticeships.Any())
+            {
+                <div class="row articles col-md-12">
+                    @foreach (var item in apprenticeships)
+                    {
+                        @RenderApprenticeship(item);
+                    }
+                </div>
+            }
+            <hr />
+            <!-- Pager -->
+            <div class="clearfix">
+                @if (resultSet.IsApprenticeshipListPage)
+                {
+                    if (resultSet.PageCount > 1)
+                    {
+                        <div class="paging-block text-center">
+                            <span>@Umbraco.GetDictionaryValue(key: "Paging.Page") @resultSet.PageNumber @Umbraco.GetDictionaryValue("Paging.Of") @resultSet.PageCount</span>
+                        </div>
+                        <div class="center">
+                            <span style="float:left">
+                                @if (resultSet.PageNumber > 1)
+                                {
+                                    <a class="btn btn-primary float-left" style="min-width:15ch" href="@( $"{resultSet.Url}?page={resultSet.PageNumber - 1}&size={resultSet.PageSize}")">
+                                        @Umbraco.GetDictionaryValue(key: "Paging.Previous")
+                                    </a>
+                                }
+                                else
+                                {
+                                    @Html.Raw("&nbsp;");
+                                }
+                            </span>
+                            <span style="float:right">
+                                @if (resultSet.PageNumber < resultSet.PageCount)
+                                {
+                                    <a class="btn btn-primary float-right" style="min-width:15ch" href="@( $"{resultSet.Url}?page={resultSet.PageNumber + 1}&size={resultSet.PageSize}")">
+                                        @Umbraco.GetDictionaryValue(key: "Paging.Next")
+                                    </a>
+                                }
+                                else
+                                {
+                                    @Html.Raw("&nbsp;");
+                                }
+                            </span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="container center">
+                        <a class="btn btn-primary" style="min-width:20ch" href="@(resultSet.Url)">@Umbraco.GetDictionaryValue(key: "Paging.ViewAll")</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+}
+
+@helper RenderApprenticeship(IPublishedContent item)
+{
+    string imageUrl = item.Value<IPublishedContent>("mainImage")?.GetCropUrl(720, 455) ?? "/img/carousel.jpg";
+    string title = item.HasValue("title") ? item.Value<string>("title") : item.Name;
+    string description = item.Value<string>("metaDescription");
+
+    <div class="box-shadow col-md-4 col-sm-6 item">
+        <a href="@item.Url()"><img class="img-responsive" src="@imageUrl"></a>
+        <h3 class="name"><a href="@item.Url()">@title</a></h3>
+        <p class="description">@description</p>
+        <p><a href="@item.Url()" class="btn btn-primary btn-outline with-arrow">Read More <i class="icon-arrow-right"></i></a></p>
+    </div>
+}

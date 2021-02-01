@@ -31,15 +31,15 @@
 {
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
-    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer.kendo-13.1.19.618.min.js")"></script>
-    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-13.1.19.618.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer.kendo-13.2.19.1030.min.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-13.2.19.1030.js")"></script>
     @(Html.TelerikReporting().DeferredScripts())
 }
 
 @(Html.TelerikReporting().ReportViewer()
     .Id("reportViewer1")
     .ServiceUrl(Url.Content("~/api/reports/"))
-    .TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate.html"))
+    
     .ReportSource(typeReportSource)
     .ViewMode(ViewMode.PrintPreview)
     .ScaleMode(ScaleMode.Specific)

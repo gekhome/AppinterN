@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using ClientDependency.Core.Mvc
+@{
+    Layout = "master.cshtml";
+    Html.RequiresCss("/css/Article-Clean.css");
+
+    Html.RenderCssHere();
+}
+
+@{ Html.RenderPartial("Content/_ApprenticeshipContent"); }

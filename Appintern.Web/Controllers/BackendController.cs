@@ -1354,7 +1354,7 @@ namespace Appintern.Web.Controllers
         public ActionResult MembersArticlesTestPrint()
         {
             //return View();
-            return PartialView(GetPrintViewPath("_MembersArticlesPrint"));
+            return PartialView(GetPrintViewPath("_ReportViewerView1"));
         }
 
     }

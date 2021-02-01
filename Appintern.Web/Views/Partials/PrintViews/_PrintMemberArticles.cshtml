@@ -1,4 +1,4 @@
-@using Telerik.Reporting
+ï»¿@using Telerik.Reporting
 @using Telerik.ReportViewer.Mvc
 @{
     Layout = null;
@@ -19,7 +19,7 @@
 
     <!--If Kendo is used it should be added before the report viewer.-->
     @*<script src="@Url.Content("~/api/reports/resources/js/telerikReportViewer")"></script>*@
-    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-13.1.19.618.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-13.2.19.1030.js")"></script>
 
     <style>
         #reportViewer1 {
@@ -52,7 +52,7 @@
         // The URL for the report viewer template. The template can be edited -
         // new functionalities can be added and unneeded ones can be removed.
         // For more information please check http://www.telerik.com/help/reporting/html5-report-viewer-templates.html.
-        //.TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate-13.1.19.618.html"))
+        //
         // The report source value contains Category and ReportName in the following format: {Category/ReportName}.
         .ReportSource("AppInterN/Members Articles")
         // Specifies whether the viewer is in interactive or print preview mode.
@@ -68,8 +68,8 @@
         // Zoom in and out the report using the scale
         // 1.0 is equal to 100%, i.e. the original size of the report
         .Scale(1.0)
-        // Sets whether the viewer’s client session to be persisted between the page’s refreshes(ex. postback).
-        // The session is stored in the browser’s sessionStorage and is available for the duration of the page session.
+        // Sets whether the viewerï¿½s client session to be persisted between the pageï¿½s refreshes(ex. postback).
+        // The session is stored in the browserï¿½s sessionStorage and is available for the duration of the page session.
         .PersistSession(false)
         // Sets the print mode of the viewer.
         .PrintMode(PrintMode.AutoSelect)

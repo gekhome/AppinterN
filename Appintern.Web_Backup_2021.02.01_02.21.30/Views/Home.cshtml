@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using ClientDependency.Core.Mvc
+
+@{ 
+    Layout = "master.cshtml";
+    Html.RequiresCss("/css/Article-List.css");
+    Html.RequiresCss("/css/Carousel-Hero.css");
+}
+
+
+@Html.CachedPartial("Partials/Content/_MainCarousel", Model, 3600)
+
+<!-- Targeted section -->
+@{ Html.RenderAction("RenderTargetedSection", "Content"); }
+
+<!-- Services section -->
+@{ Html.RenderAction("RenderServicesSection", "Content"); }
+
+<!-- Latest News section -->
+@Html.CachedPartial("Partials/Content/_LatestArticles", Model, 3600)

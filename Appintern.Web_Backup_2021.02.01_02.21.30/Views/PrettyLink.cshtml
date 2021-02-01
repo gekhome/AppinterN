@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using Umbraco.Web.Models
+
+@{
+    Layout = null;
+
+    var links = Model.Value<IEnumerable<Link>>("linkTarget");
+    if (links != null && links.Any())
+    {
+        var prettyLink = links.FirstOrDefault();
+        Response.RedirectPermanent(prettyLink.Url);
+    }
+}

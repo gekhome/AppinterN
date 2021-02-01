@@ -1,0 +1,37 @@
+﻿@inherits UmbracoViewPage<List<Appintern.Core.Models.TargetedItemModel>>
+
+@using Appintern.Core.Models
+@using System.Collections.Generic;
+
+
+@helper RenderTargetedItem(TargetedItemModel item, string extraClass = null)
+{
+    <a href="@item.LinkUrl" class="featured-grid @extraClass" style="background-image: url('@item.ImageUrl');">
+        <div class="desc">
+            <h3>@item.Name</h3>
+            <span>@item.Description</span>
+        </div>
+    </a>
+}
+
+<div id="fh5co-featured-section">
+    <div class="container">
+        <div class="row">
+            <div class="intro">
+                <h2 class="text-center">Targeted Groups</h2>
+                <p class="text-center">Please visit the pages listed below, depending on the member group you belong to</p>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        @RenderTargetedItem(item, "featured-grid-2")
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

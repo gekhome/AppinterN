@@ -1,0 +1,109 @@
+﻿body {
+}
+
+ul {
+    list-style-type: none;
+}
+
+a.navlink {
+    position: relative;
+    color: #055ADA;
+    text-decoration: none;
+}
+
+/* try fix blue bg when in focus*/
+a.navlink:focus {
+    color: #055ADA;
+    background-color: white;
+}
+
+a.navlink:hover {
+    color: #055ADA;
+    text-decoration: none;
+}
+
+a.navlink:visited {
+    color: #055ADA;
+    text-decoration: none;
+    background-color: whitesmoke;
+}
+
+
+
+a.navlink:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: -2px;
+    left: 0;
+    background-color: #055ADA;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+li.active a:before,
+a:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+/*
+  Crude fix for blue background bug. Bug origin is caused by gradients.less:22 
+  This overrides the background image tag as Site.css takes priority. 
+*/ 
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+    background-image: none;
+}
+
+.button.navlink {
+    background-color: #3f6ea6;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 2px 2px;
+    min-width: 160px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.button.navlink:hover {
+    background-color: #2a496f;
+    color: white;
+}
+
+.button.navlink span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button.navlink span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button.navlink:hover span {
+    padding-right: 20px;
+    color: white;
+}
+
+.button.navlink:hover span:after {
+    opacity: 1;
+    right: 0;
+    color: white;
+}

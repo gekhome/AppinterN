@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.FaqList>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{ 
+    var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920,400) : null;
+}
+
+<style>
+    .faq-header {
+        text-align: center;
+        font-weight: 700;
+        margin-top: 10px;
+        color: #808080;
+    }
+    div.fluent-image {
+        color: #fff;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="col-12" style="margin-top:40px">
+    <div class="fluent-image" style="background-image:url('@(imageUrl)');height:400px"></div>
+    @*<img class="fluent-image" src="@(!string.IsNullOrWhiteSpace(imageUrl) ? imageUrl : null)" />*@
+    <h2 class="col-12 faq-header">@(Model.Title)</h2>
+</div>

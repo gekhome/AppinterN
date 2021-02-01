@@ -1,0 +1,30 @@
+﻿@model ServicesModel
+
+@using Appintern.Core.Models
+@using System.Collections.Generic;
+
+
+<div id="fh5co-services-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <a href="/services/" style="text-decoration:none"><h2 class="newanchor">@Model.Title</h2></a>
+                <p>@Model.Subtitle</p>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.HasServices)
+            {
+                foreach (var item in Model.Services)
+                {
+                    <div class="col-md-4 services-inner text-center">
+                        <span><i class="sl-@item.IconClass"></i></span>
+                        <h3>@item.Title</h3>
+                        <p>@item.Introduction</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

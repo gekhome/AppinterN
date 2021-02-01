@@ -1,0 +1,152 @@
+﻿
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "News & Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header" style="margin:5px 30px 5px 30px">
+    <span style="margin:5px 30px 5px 30px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Members and related news &amp; events</font>
+    </span>
+    <span style="margin:5px 30px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Return to Dashboard", "RenderDashboardHome", "Backend", null, new { @class = "btn btn-warning", style = "font-size:14px" })
+    </span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Refresh</button>
+</div>
+
+<div class="body-content" style="margin:20px 30px 5px 30px;">
+    @(Html.Kendo().Grid<UMember>()
+        .Name("Master")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Id).Width(20).Groupable(false);
+            columns.Bound(c => c.Name).Width(40).Groupable(false);
+            columns.Bound(c => c.Email).Width(40).Groupable(false);
+            columns.Bound(c => c.Login).Width(30).Groupable(false);
+            columns.Bound(c => c.Group).Width(30);
+            columns.Bound(c => c.Type).Width(20);
+        })
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(10))
+        .Selectable()
+        .Filterable()
+        .Groupable()
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(320))
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(60)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+        })
+        .Read(read => read.Action("AllMembers_Read", "Backend"))
+        .Events(events => events.Error("error_handler1"))
+        )
+        .Events(events => events.Change("change"))
+        )
+</div>
+
+<div class="body-content" style="margin:20px 30px 5px 30px;">
+    @(Html.Kendo().Grid<ArticleViewModel>()
+        .Name("Child")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.ArticleId).Width(10).Filterable(false);
+            columns.Bound(c => c.Title).Width(40);
+            columns.Bound(c => c.AuthorName).Width(30);
+            columns.Bound(c => c.ArticleDate).Width(20).Format("{0:dd/MM/yyyy}");
+            columns.Bound(c => c.Country).Width(20);
+            columns.Bound(c => c.Description).Width(70).HtmlAttributes(new { style = "font-size:12px" });
+        })
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .Filterable()
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(220))
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.ArticleId);
+        })
+        .Read(read => read.Action("Articles_Read", "Backend").Data("data"))
+        .Events(events => events.Error("error_handler2"))
+        )
+        )
+</div>
+
+
+<script type="text/javascript">
+
+    function change(e) {
+        var dataItem = this.dataItem(this.select());
+        var memberID = dataItem.Id;
+        var memberType = dataItem.Type;
+
+        //alert("memberID = " + memberID + ", memberType = " + memberType);
+
+        $("#Child").data("kendoGrid").dataSource.read({ memberId: memberID, memberType: memberType });
+        $("#Child").css("display", "block");
+    }
+
+    function data() {
+        var masterGrid = $("#Master").data("kendoGrid");
+        // get data item for selected row
+        var dataItem = masterGrid.dataItem(masterGrid.select());
+        if (dataItem) {
+            return { memberId: dataItem.Id, memberType: dataItem.Type };
+        }
+        else {
+            return { memberId: 0, memberType: "" };
+        }
+    }
+
+    function RefreshGrid(e) {
+        var grid = $("#Child").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler1(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+        $("#Master").data("kendoGrid").dataSource.read();
+    }
+
+    function error_handler2(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+        $("#Child").data("kendoGrid").dataSource.read();
+    }
+
+
+</script>

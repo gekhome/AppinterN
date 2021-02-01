@@ -1,0 +1,108 @@
+﻿@inherits UmbracoViewPage<CM.Apprenticeship>
+
+@using CM = Umbraco.Web.PublishedModels
+@using Umbraco.Web.Models
+@{
+    string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? "";
+    string branches = "";
+    string employerName = "";
+    string duration = Model.Duration;
+    string commitment = Model.Commitment;
+    string compensation = Model.Compensation;
+    string linkLabel = "";
+    string linkUrl = "";
+    string target = "";
+
+    var employer = Model.Employer;
+    if (employer != null)
+    {
+        employerName = Model.Employer.Name;
+    }
+    if (!string.IsNullOrEmpty(Model.LinkLabel))
+    {
+        linkLabel = Model.LinkLabel;
+    }
+    if (Model.LinkUrl != null)
+    {
+        linkUrl = Model.LinkUrl.Url != null ? Model.LinkUrl.Url : "";
+        target = Model.LinkUrl.Target != null ? Model.LinkUrl.Target : "";
+    }
+}
+
+<div class="article-clean">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                <div class="intro">
+                    <h1 class="text-center">@(Model.HasValue("title") ? Model.Value<string>("title") : Model.Name)</h1>
+                    <div class="text-center">
+                        @if (Model.IndustryCategories.Any())
+                        {
+                            foreach (var item in Model.IndustryCategories)
+                            {
+                                branches += item + ", ";
+                            }
+                            <h4 class="text">@branches.TrimEnd(", ")</h4>
+                        }
+                    </div>
+                    @if (Model.HasValue("postDate"))
+                    {
+                        <p class="text-center">
+                            <span class="date">@(Model.Value<DateTime>("postDate").ToString("dddd, MMMM dd, yyyy"))</span>
+                        </p>
+                    }
+                    @if (!string.IsNullOrEmpty(mainImageUrl))
+                    {
+                        <img class="img-responsive" src="@(mainImageUrl)">
+                    }
+                </div>
+                <div class="text-center">
+                    <h3>Company: @employerName</h3>
+                </div>
+                <div class="text-center">
+                    <h5>Duration: <strong>@duration</strong>, Commitment: <strong>@commitment</strong>, Compensation: <strong>@compensation</strong></h5>
+                </div>
+                <div class="text">
+                    @Html.GetGridHtml(Model, "contentGrid", "CSUSKGrid")
+                </div>
+                <!-- ADDITIONAL CONTENT HERE -->
+                @RenderAdditionalContent(Model)
+                <hr />
+                <div class="text" style="font-size:1.4em">
+                    <a href="@linkUrl" target="@target">@linkLabel</a>
+                </div>
+                <!-- END ADDITIONAL CONTENT -->
+            </div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                @{
+                    var typedMultiMediaPicker = Model.Value<IEnumerable<IPublishedContent>>("documents");
+                    if (typedMultiMediaPicker != null && typedMultiMediaPicker.Any())
+                    {
+                        <h4>@(Model.Value<string>("legend"))</h4>
+                        foreach (var item in typedMultiMediaPicker)
+                        {
+                            <a href="@item.Url()" target="_blank" style="font-size:18px;margin-right:20px">@item.Name</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@helper RenderAdditionalContent(Apprenticeship model)
+{
+    <hr />
+    <div class="text">
+        @Html.Raw(model.Responsibilities)
+    </div>
+    <div class="text">
+        @Html.Raw(model.Qualifications)
+    </div>
+    <div class="text">
+        @Html.Raw(model.Conditions)
+    </div>
+    <div class="text">
+        @Html.Raw(model.Benefits)
+    </div>
+}

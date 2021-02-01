@@ -1,0 +1,13 @@
+﻿@model dynamic
+@using Umbraco.Web.Composing
+@using Umbraco.Web.Templates
+
+@*@Html.Raw(TemplateUtilities.ParseInternalLinks(Model.value.ToString(), Current.UmbracoContext.UrlProvider))*@
+
+<!-- This fixes the issue of RTE not displaying inline images -->
+@{
+    var value = TemplateUtilities.ParseInternalLinks(Model.value.ToString(), Current.UmbracoContext.UrlProvider);
+    value = TemplateUtilities.ResolveUrlsFromTextString(value);
+    value = TemplateUtilities.ResolveMediaFromTextString(value);
+}
+@Html.Raw(value)

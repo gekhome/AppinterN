@@ -1,0 +1,20 @@
+﻿@model ServicesMainModel
+
+@using Appintern.Core.Models
+
+
+@if (Model.HasServicesItems)
+{
+    foreach (var item in Model.ServicesItems)
+    {
+        <div class="col-md-12 services-inner">
+
+            <span><i class="sl-@item.IconClass"></i></span>
+            <div class="desc">
+                <a class="service-anchor" href="@item.Link"><h3 class="service-anchor">@item.Header</h3></a>
+                <p>@item.Introduction</p>
+            </div>
+        </div>
+    }
+}
+
