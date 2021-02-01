@@ -1632,6 +1632,7 @@
     <Compile Include="App_Data\Models\Login.generated.cs" />
     <Compile Include="App_Data\Models\Manage.generated.cs" />
     <Compile Include="App_Data\Models\Member.generated.cs" />
+    <Compile Include="App_Data\Models\MemberAvatar.generated.cs" />
     <Compile Include="App_Data\Models\MemberProfile.generated.cs" />
     <Compile Include="App_Data\Models\Members.generated.cs" />
     <Compile Include="App_Data\Models\MetaDataControls.generated.cs" />
@@ -1639,6 +1640,7 @@
     <Compile Include="App_Data\Models\Organization.generated.cs" />
     <Compile Include="App_Data\Models\Organizations.generated.cs" />
     <Compile Include="App_Data\Models\PageDenied.generated.cs" />
+    <Compile Include="App_Data\Models\PageNotFound.generated.cs" />
     <Compile Include="App_Data\Models\PrettyLink.generated.cs" />
     <Compile Include="App_Data\Models\PrettyLinkControls.generated.cs" />
     <Compile Include="App_Data\Models\School.generated.cs" />
@@ -1934,6 +1936,9 @@
     <Content Include="Views\Partials\PrintViews\_PrintMemberArticles.cshtml" />
     <Content Include="Views\Partials\PrintViews\_PrintMemberApprenticeships.cshtml" />
     <Content Include="Views\Sitemap.cshtml" />
+    <Content Include="Views\MemberAvatar.cshtml" />
+    <Content Include="Views\Partials\Member\_MemberAvatar.cshtml" />
+    <Content Include="Views\PageNotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

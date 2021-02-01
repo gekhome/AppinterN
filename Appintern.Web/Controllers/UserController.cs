@@ -5,6 +5,7 @@ using Appintern.Web.Library;
 using Appintern.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 using System.Web.Security;
 using Umbraco.Core;
@@ -148,6 +149,12 @@ namespace Appintern.Web.Controllers
 
         #region EDIT UPLOADED AVATAR IN PROFILE
 
+        public ActionResult RenderAvatarUpload()
+        {
+            return PartialView(GetViewPath("_MemberAvatar"), null);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SubmitAvatar(EditAvatarModel model)
@@ -159,16 +166,34 @@ namespace Appintern.Web.Controllers
 
             if (model.Avatar != null)
             {
+                string extension = Path.GetExtension(model.Avatar.FileName).Replace(".", "");
+                if (!ValidFileExtension(extension))
+                {
+                    ModelState.AddModelError("", "Only image file types are allowed (png, jpg, jpeg, gif, webp, tiff)");
+                    return CurrentUmbracoPage();
+                }
                 var avatarUdi = _mediaUploadService.CreateMediaItemFromFileUpload(model.Avatar, MEDIA_AVATAR_FOLDER_ID, "Image");
                 member.SetValue("avatar", avatarUdi);
+                Current.Services.MemberService.Save(member);
             }
-
-            return RedirectToCurrentUmbracoPage();
+            ViewData["message"] = string.Format(" The file <b><i>{0}</i></b> was succesfully uploaded.<br />", model.Avatar.FileName);
+            return CurrentUmbracoPage();
         }
 
         public IMember GetMemberFromUser(MembershipUser user)
         {
             return user != null ? _memberService.GetByUsername(user.UserName) : null;
+        }
+
+        public bool ValidFileExtension(string extension)
+        {
+            string[] extensions = { "PNG", "JPEG", "JPG", "GIF", "WEBP", "TIFF" };
+
+            List<string> valid_extensions = new List<string>(extensions);
+
+            if (valid_extensions.Contains(extension.ToUpper()))
+                return true;
+            return false;
         }
 
         #endregion
