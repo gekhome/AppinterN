@@ -1590,6 +1590,7 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\contactForm.js" />
+    <Content Include="scripts\custom\jspCustom.js" />
     <Content Include="scripts\jquery.min.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\jquery.validate.min.js" />

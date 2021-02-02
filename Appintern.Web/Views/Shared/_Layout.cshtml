@@ -13,18 +13,22 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-    	<link href="https://kendo.cdn.telerik.com/2019.3.1023/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />
-<link href="@Url.Content("~/Content//b4/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2019.3.1023/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content//b4/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/SiteKendo.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/scripts/messagebox/messagebox.css")" rel="stylesheet" type="text/css" />
 
-    	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-	<script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jquery.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jszip.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.all.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.aspnetmvc.min.js"></script>
-	<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
-<script src="@Url.Content("~/scripts/b4/kendo.modernizr.custom.js")"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.aspnetmvc.min.js"></script>
+    <script src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/scripts/b4/kendo.modernizr.custom.js")"></script>
+    <script src="@Url.Content("~/scripts/messagebox/messagebox.js")"></script>
+    <script src="@Url.Content("~/scripts/custom/jspCustom.js")"></script>
+
 
     <style>
         a.mya:link {
@@ -50,7 +54,7 @@
 
 </head>
 <body class="k-content">
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
         <div class="container-fluid d-flex justify-content-between p-0">
             <h1 class="navbar-brand d-flex align-items-center">
                 <a class="mya" href='@Url.Action("RenderHome", "Content")'>
@@ -63,6 +67,7 @@
             @if (member != null && Umbraco.MemberIsLoggedOn())
             {
                 <span style="float:right;margin-left:20px;margin-right:20px;color:whitesmoke;font-size:18px">
+                    Logged user: &nbsp;
                     <strong><i class="fa fa-user-circle-o" aria-hidden="true"></i> @member.UserName</strong>
                 </span>
             }

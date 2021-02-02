@@ -175,6 +175,9 @@
     }
 
     function updateUrlSlugs() {
+
+        var text = "Do you want to update the url slugs for all members?";
+        MessageBoxConfirm(text, "Message").done(function () {
             $.ajax({
             url: '@Url.Action("UpdateUrlSLugForAllMembers", "Content")',
             type: 'GET',
@@ -186,7 +189,11 @@
             error: function () {
                 alert("Error processing the request. Try again later.");
             }
+            });
+        }).fail(function () {
+            return;
         });
+
     }
 
 </script>

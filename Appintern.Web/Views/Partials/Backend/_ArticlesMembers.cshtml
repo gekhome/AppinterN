@@ -95,7 +95,7 @@
         var memberID = dataItem.Id;
         var memberType = dataItem.Type;
 
-        //alert("memberID = " + memberID + ", memberType = " + memberType);
+        //MessageBoxAlert("memberID = " + memberID + ", memberType = " + memberType, "Message");
 
         $("#Child").data("kendoGrid").dataSource.read({ memberId: memberID, memberType: memberType });
         $("#Child").css("display", "block");
