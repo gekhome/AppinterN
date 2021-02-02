@@ -1664,6 +1664,7 @@
     <Compile Include="App_Data\Models\ServiceItem.generated.cs" />
     <Compile Include="App_Data\Models\ServicesControls.generated.cs" />
     <Compile Include="App_Data\Models\VisibilityControls.generated.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LiaisonsController.cs" />

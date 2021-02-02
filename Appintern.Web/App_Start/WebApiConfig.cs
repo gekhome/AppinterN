@@ -15,6 +15,8 @@ namespace Appintern.Web.App_Start
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            Telerik.Reporting.Services.WebApi.ReportsControllerConfiguration.RegisterRoutes(config);
         }
     }
 }

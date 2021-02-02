@@ -1357,7 +1357,7 @@ namespace Appintern.Web.Controllers
         public ActionResult MembersArticlesTestPrint()
         {
             //return View();
-            return PartialView(GetPrintViewPath("_ReportViewerView1"));
+            return PartialView(GetPrintViewPath("_MembersArticlesPrint"));
         }
 
         #endregion

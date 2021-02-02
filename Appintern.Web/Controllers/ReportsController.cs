@@ -1,42 +1,64 @@
 ﻿using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Http;
 using Telerik.Reporting.Cache.File;
 using Telerik.Reporting.Services;
+using Telerik.Reporting.Services.Engine;
 using Telerik.Reporting.Services.WebApi;
 
 namespace Appintern.Web.Controllers
 {
+    [Route("api/reports")]
     public class ReportsController : ReportsControllerBase
     {
-        static ReportServiceConfiguration configurationInstance;
+        static ReportServiceConfiguration preservedConfiguration;
 
-        static ReportsController()
+        static IReportServiceConfiguration PreservedConfiguration
         {
-            //This is the folder that contains the report definitions
-            //In this case this is the Reports folder
-            var appPath = HttpContext.Current.Server.MapPath("~/");
-            var reportsPath = Path.Combine(appPath, "Reports");
-
-            //Add resolver for trdx/trdp report definitions, 
-            //then add resolver for class report definitions as fallback resolver; 
-            //finally create the resolver and use it in the ReportServiceConfiguration instance.
-            var resolver = new ReportFileResolver(reportsPath).AddFallbackResolver(new ReportTypeResolver());
-
-            //Setup the ReportServiceConfiguration
-            configurationInstance = new ReportServiceConfiguration
+            get
             {
-                HostAppId = "Html5App",
-                Storage = new FileStorage(),
-                ReportResolver = resolver,
-                // ReportSharingTimeout = 0,
-                // ClientSessionTimeout = 15,
-            };
+                if (null == preservedConfiguration)
+                {
+                    preservedConfiguration = new ReportServiceConfiguration
+                    {
+                        HostAppId = "AppInterN",
+                        Storage = new FileStorage(),
+                        ReportResolver = CreateResolver(),
+                        // ReportSharingTimeout = 0,
+                        // ClientSessionTimeout = 15,
+                    };
+                }
+                return preservedConfiguration;
+            }
         }
 
         public ReportsController()
         {
-            //Initialize the service configuration
-            this.ReportServiceConfiguration = configurationInstance;
+            this.ReportServiceConfiguration = PreservedConfiguration;
+        }
+
+        protected override HttpStatusCode SendMailMessage(MailMessage mailMessage)
+        {
+            throw new System.NotImplementedException("This method should be implemented in order to send mail messages.");
+            //using (var smtpClient = new SmtpClient("smtp01.mycompany.com", 25))
+            //{
+            //    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //    smtpClient.EnableSsl = false;
+
+            //    smtpClient.Send(mailMessage);
+            //}
+            //return HttpStatusCode.OK;
+        }
+
+        static IReportResolver CreateResolver()
+        {
+            var appPath = HttpContext.Current.Server.MapPath("~/");
+            var reportsPath = Path.Combine(appPath, "Reports");
+
+            return new ReportFileResolver(reportsPath)
+                .AddFallbackResolver(new ReportTypeResolver());
         }
     }
 }

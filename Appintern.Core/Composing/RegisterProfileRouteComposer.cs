@@ -16,7 +16,7 @@ namespace Appintern.Core.Composing
     /// We need 8 composers, one for each member type as we have 'Students', 'Graduates'
     /// and we do not use the member type 'Member'
     /// </summary>
-    [RuntimeLevel(MinLevel = Umbraco.Core.RuntimeLevel.Run)]
+    [RuntimeLevel(MinLevel = RuntimeLevel.Run)]
     public class RegisterMemberProfileRouteComposer : ComponentComposer<RegisterMemberProfileRouteComponent>
     { }
 
