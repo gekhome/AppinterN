@@ -345,6 +345,9 @@
     <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery-ui-1.12.1.custom\LICENSE.txt" />
+    <Content Include="img\Error.png" />
+    <Content Include="img\Success.png" />
+    <Content Include="img\Warning.png" />
     <Content Include="ReportViewer\js\telerikReportViewer-13.2.19.1030.js" />
     <Content Include="ReportViewer\js\telerikReportViewer-13.2.19.1030.min.js" />
     <Content Include="ReportViewer\js\telerikReportViewer.kendo-13.2.19.1030.min.js" />
