@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using Appintern.Core.Models
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
+}
+
+<style>
+    .search-header {
+        text-align: center;
+        font-weight: 700;
+        margin-top: 10px;
+        color: #808080;
+    }
+
+    div.fluent-image {
+        color: #fff;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="col-md-12" style="margin-top:0px">
+    <div class="fluent-image" style="background-image:url('@(imageUrl)');height:400px"></div>
+    <h2 class="col-md-12 search-header">@(Model.Value<string>("title"))</h2>
+    <h4 class="col-md-12" style="text-align:center;color:#808080">@Html.Raw(Model.Value("description"))</h4>
+</div>

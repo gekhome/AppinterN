@@ -345,6 +345,9 @@
     <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery-ui-1.12.1.custom\LICENSE.txt" />
+    <Content Include="Images\33.jpg" />
+    <Content Include="Images\44.jpg" />
+    <Content Include="Images\apprenticeship-logo-1.jpg" />
     <Content Include="img\Error.png" />
     <Content Include="img\Success.png" />
     <Content Include="img\Warning.png" />
@@ -1652,6 +1655,8 @@
     <Compile Include="App_Data\Models\School.generated.cs" />
     <Compile Include="App_Data\Models\Schools.generated.cs" />
     <Compile Include="App_Data\Models\Search.generated.cs" />
+    <Compile Include="App_Data\Models\SearchAll.generated.cs" />
+    <Compile Include="App_Data\Models\SearchPage.generated.cs" />
     <Compile Include="App_Data\Models\Services.generated.cs" />
     <Compile Include="App_Data\Models\ServicesMainItem.generated.cs" />
     <Compile Include="App_Data\Models\ServicesSidebarItem.generated.cs" />
@@ -1947,6 +1952,12 @@
     <Content Include="Views\Partials\Member\_MemberAvatar.cshtml" />
     <Content Include="Views\PageNotFound.cshtml" />
     <Content Include="Views\Partials\PrintViews\_ReportViewerView1.cshtml" />
+    <Content Include="Views\Partials\SearchAll\_SearchForm.cshtml" />
+    <Content Include="Views\Partials\SearchAll\_SearchResults.cshtml" />
+    <Content Include="Views\SearchAll.cshtml" />
+    <Content Include="Views\Partials\Search\_SearchForm.cshtml" />
+    <Content Include="Views\Partials\Search\_SearchHeader.cshtml" />
+    <Content Include="Views\SearchPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

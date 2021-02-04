@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Search</summary>
 	[PublishedModel("search")]
-	public partial class Search : PublishedContentModel, IMetaDataControls, INavigationControls, IUmbracoUrlAliasControls
+	public partial class Search : PublishedContentModel, IContentControls, IMetaDataControls, INavigationControls, IUmbracoUrlAliasControls
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -43,6 +43,41 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// Category: Select one or more categories
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("category")]
+		public global::System.Collections.Generic.IEnumerable<string> Category => global::Umbraco.Web.PublishedModels.ContentControls.GetCategory(this);
+
+		///<summary>
+		/// Content Grid: Enter the content for the grid
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("contentGrid")]
+		public global::Newtonsoft.Json.Linq.JToken ContentGrid => global::Umbraco.Web.PublishedModels.ContentControls.GetContentGrid(this);
+
+		///<summary>
+		/// Description: Enter a description of the page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("description")]
+		public global::System.Web.IHtmlString Description => global::Umbraco.Web.PublishedModels.ContentControls.GetDescription(this);
+
+		///<summary>
+		/// Main Image: Choose an image to show as the main image on this page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("mainImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent MainImage => global::Umbraco.Web.PublishedModels.ContentControls.GetMainImage(this);
+
+		///<summary>
+		/// Title: Enter the title for this page. If you leave this blank, we will use the page name.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("title")]
+		public string Title => global::Umbraco.Web.PublishedModels.ContentControls.GetTitle(this);
 
 		///<summary>
 		/// Meta Description: Enter the meta description. This is what shows up in Google etc. If left blank, will use the page name.

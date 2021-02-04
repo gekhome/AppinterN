@@ -73,6 +73,13 @@ namespace Umbraco.Web.PublishedModels
 		public string AuthorName => global::Umbraco.Web.PublishedModels.ArticleControls.GetAuthorName(this);
 
 		///<summary>
+		/// Category: Select one or more categories
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("category")]
+		public global::System.Collections.Generic.IEnumerable<string> Category => global::Umbraco.Web.PublishedModels.ContentControls.GetCategory(this);
+
+		///<summary>
 		/// Content Grid: Enter the content for the grid
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -84,7 +91,7 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("description")]
-		public string Description => global::Umbraco.Web.PublishedModels.ContentControls.GetDescription(this);
+		public global::System.Web.IHtmlString Description => global::Umbraco.Web.PublishedModels.ContentControls.GetDescription(this);
 
 		///<summary>
 		/// Main Image: Choose an image to show as the main image on this page

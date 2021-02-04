@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<SearchContentModel>
+
+@using Appintern.Core.Models
+
+@{
+    Layout = "master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/Search/_SearchHeader.cshtml")
+
+<div class="container">
+    <div class="col-md-4">
+        <div class="row">
+            @Html.Partial("~/Views/Partials/Search/_SearchForm.cshtml", Model.SearchViewModel)
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <aside class="sidebar">
+            <div class="row">
+                <p style="font-size:16px">Your search for <strong>@Model.SearchViewModel.Query</strong> returned these results:</p>
+
+                @if (Model.SearchResults != null && Model.SearchResults.Any())
+                {
+                    foreach (var item in Model.SearchResults)
+                    {
+                        <div class="list-group">
+                            @RenderBoxedItem(item)
+                        </div>
+                    }
+                }
+            </div>
+        </aside>
+    </div>
+</div>
+
+@helper RenderBoxedItem(IPublishedContent item)
+{
+    <div class="list-group-item col-md-12">
+        <img src='@Url.Content("~/Images/33.jpg")' height="60" width="80" />
+        <a href="@item.Url()">@item.Name</a>
+        <p>@Html.Raw(item.Value("description"))</p>
+    </div>
+}

@@ -42,6 +42,8 @@
 
     @Html.RenderCssHere()
 
+    @*@RenderSection("Head", false)*@
+
 </head>
 <body>
     <div style="margin-top:70px;"></div>
@@ -51,6 +53,10 @@
 
     @Html.CachedPartial("SiteLayout/_Footer", Model, 3600)
 
+    @*@RenderSection("ScriptsBottom", false)*@
+
     @Html.RenderJsHere()
+
+
 </body>
 </html>

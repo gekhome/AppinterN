@@ -3,13 +3,39 @@
 @using ClientDependency.Core.Mvc
 @using Umbraco.Web.Composing
 
-@{
+@{ 
     Layout = "Master.cshtml";
     Html.RequiresCss("/css/Contact-Form-Clean.css");
-    var searchQuery = Request.QueryString["q"];
+    var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
+    var searchQuery = Request.QueryString["q"]; 
 }
 
-<div class="contact-clean">
+<style>
+    .search-header {
+        text-align: center;
+        font-weight: 700;
+        margin-top: 10px;
+        color: #808080;
+    }
+
+    div.fluent-image {
+        color: #fff;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="col-md-12" style="margin-top:0px;margin-bottom:20px">
+    <div class="fluent-image" style="background-image:url('@(imageUrl)');height:400px"></div>
+    <h2 class="col-md-12 search-header">@(Model.Value<string>("title"))</h2>
+    <h4 class="col-md-12" style="text-align:center;color:#808080">@Html.Raw(Model.Value("description"))</h4>
+</div>
+
+<div class="contact-clean" style="margin-top:20px">
     <form action="@Model.Url()" method="GET" id="search">
         <div class="form-group">
             <div class="row">
@@ -28,18 +54,17 @@
                             <p>We found <strong>@resultCount</strong> result@(resultCount != 1 ? "s" : "") when searching for <strong>@searchQuery</strong></p>
                             @if (resultCount > 0)
                             {
-                                <ul>
-                                    @foreach (var result in results)
-                                    {
-                                        <li>
-                                            <h3><a href="@result.Content.Url()">@result.Content.Name</a></h3>
-                                            <p>@(result.Content.Value<string>("metaDescription"))</p>
-                                        </li>
-                                    }
-                                </ul>
+                            <ul>
+                                @foreach (var result in results)
+                                {
+                                    <li>
+                                        <h3><a href="@result.Content.Url()">@result.Content.Name</a></h3>
+                                        <p>@(result.Content.Value<string>("metaDescription"))</p>
+                                    </li>
+                                }
+                            </ul>
                             }
-                        </div>
-                    }
+                        </div>}
                 </div>
             </div>
         </div>

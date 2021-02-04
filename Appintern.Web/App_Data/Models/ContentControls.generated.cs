@@ -23,13 +23,17 @@ namespace Umbraco.Web.PublishedModels
 	/// <summary>Content Controls</summary>
 	public partial interface IContentControls : IPublishedContent
 	{
+		/// <summary>Category</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		global::System.Collections.Generic.IEnumerable<string> Category { get; }
+
 		/// <summary>Content Grid</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		global::Newtonsoft.Json.Linq.JToken ContentGrid { get; }
 
 		/// <summary>Description</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		string Description { get; }
+		global::System.Web.IHtmlString Description { get; }
 
 		/// <summary>Main Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -66,6 +70,17 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
+		/// Category: Select one or more categories
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("category")]
+		public global::System.Collections.Generic.IEnumerable<string> Category => GetCategory(this);
+
+		/// <summary>Static getter for Category</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		public static global::System.Collections.Generic.IEnumerable<string> GetCategory(IContentControls that) => that.Value<global::System.Collections.Generic.IEnumerable<string>>("category");
+
+		///<summary>
 		/// Content Grid: Enter the content for the grid
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -81,11 +96,11 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("description")]
-		public string Description => GetDescription(this);
+		public global::System.Web.IHtmlString Description => GetDescription(this);
 
 		/// <summary>Static getter for Description</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		public static string GetDescription(IContentControls that) => that.Value<string>("description");
+		public static global::System.Web.IHtmlString GetDescription(IContentControls that) => that.Value<global::System.Web.IHtmlString>("description");
 
 		///<summary>
 		/// Main Image: Choose an image to show as the main image on this page

@@ -22,6 +22,8 @@ namespace Appintern.Core.Composing
             composition.Register<IApprenticeshipService, ApprenticeshipService>(Lifetime.Request);
 
             composition.Register(typeof(IMediaUploadService), typeof(MediaUploadService), Lifetime.Request);
+
+            composition.Register<ISearchService, SearchService>(Lifetime.Request);
         }
     }
 }

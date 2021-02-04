@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+}
+
+<style>
+    button.current {
+        font-weight: 700;
+    }
+</style>
+
+<!--You may not want to reference jQuery here if you already have it in your master template-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+
+<section class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            @{ Html.RenderAction("RenderSearchForm", "Search", new { docTypeAliases = "article,home,apprenticeship", fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 10, pagingGroupSize = 3 }); }
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
+    $(document).on("click", "#submit-button", function (e) {
+        e.preventDefault();
+        var form = $(this).closest('form');
+        $(form).submit();
+    })
+
+    $(document).on("keyup", "#SearchTerm", debounce(function (e) {
+        e.preventDefault();
+        var form = $(e.target).closest('form');
+        $(form).submit();
+    }, 300))
+
+</script>

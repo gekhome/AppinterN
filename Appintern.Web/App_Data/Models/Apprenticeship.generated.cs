@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Apprenticeship</summary>
 	[PublishedModel("apprenticeship")]
-	public partial class Apprenticeship : PublishedContentModel, ILinkControls, IMetaDataControls, IVisibilityControls
+	public partial class Apprenticeship : PublishedContentModel, IContentControls, ILinkControls, IMetaDataControls, IVisibilityControls
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -73,60 +73,32 @@ namespace Umbraco.Web.PublishedModels
 		public global::System.Web.IHtmlString Conditions => this.Value<global::System.Web.IHtmlString>("conditions");
 
 		///<summary>
-		/// ContentGrid: Enter the main content here
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("contentGrid")]
-		public global::Newtonsoft.Json.Linq.JToken ContentGrid => this.Value<global::Newtonsoft.Json.Linq.JToken>("contentGrid");
-
-		///<summary>
-		/// Country: Enter the country of the apprenticeship
+		/// Country: Select the country for this apprenticeship
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("country")]
 		public string Country => this.Value<string>("country");
 
 		///<summary>
-		/// Description: Enter a description for the apprenticeship
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("description")]
-		public global::System.Web.IHtmlString Description => this.Value<global::System.Web.IHtmlString>("description");
-
-		///<summary>
-		/// Duration: Select the duration in months
+		/// Duration: Select the duration of this apprenticeship
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("duration")]
 		public string Duration => this.Value<string>("duration");
 
 		///<summary>
-		/// Employer: Select the employer member
+		/// Employer: Select the employer for this apprenticeship
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("employer")]
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Employer => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("employer");
 
 		///<summary>
-		/// Industry Categories: Select one or more job sector categories
+		/// Job Sector: Select one or more job sectors
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("industryCategories")]
-		public global::System.Collections.Generic.IEnumerable<string> IndustryCategories => this.Value<global::System.Collections.Generic.IEnumerable<string>>("industryCategories");
-
-		///<summary>
-		/// Main Image: Select an image for this page
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("mainImage")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent MainImage => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("mainImage");
-
-		///<summary>
-		/// Post Date: Enter the date the apprenticeship is posted
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("postDate")]
-		public global::System.DateTime PostDate => this.Value<global::System.DateTime>("postDate");
+		[ImplementPropertyType("jobSector")]
+		public global::System.Collections.Generic.IEnumerable<string> JobSector => this.Value<global::System.Collections.Generic.IEnumerable<string>>("jobSector");
 
 		///<summary>
 		/// Qualifications: Enter here the qualifications required
@@ -143,11 +115,39 @@ namespace Umbraco.Web.PublishedModels
 		public global::System.Web.IHtmlString Responsibilities => this.Value<global::System.Web.IHtmlString>("responsibilities");
 
 		///<summary>
-		/// Title: Enter the title for the apprenticeship position
+		/// Category: Select one or more categories
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("category")]
+		public global::System.Collections.Generic.IEnumerable<string> Category => global::Umbraco.Web.PublishedModels.ContentControls.GetCategory(this);
+
+		///<summary>
+		/// Content Grid: Enter the content for the grid
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("contentGrid")]
+		public global::Newtonsoft.Json.Linq.JToken ContentGrid => global::Umbraco.Web.PublishedModels.ContentControls.GetContentGrid(this);
+
+		///<summary>
+		/// Description: Enter a description of the page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("description")]
+		public global::System.Web.IHtmlString Description => global::Umbraco.Web.PublishedModels.ContentControls.GetDescription(this);
+
+		///<summary>
+		/// Main Image: Choose an image to show as the main image on this page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("mainImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent MainImage => global::Umbraco.Web.PublishedModels.ContentControls.GetMainImage(this);
+
+		///<summary>
+		/// Title: Enter the title for this page. If you leave this blank, we will use the page name.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("title")]
-		public string Title => this.Value<string>("title");
+		public string Title => global::Umbraco.Web.PublishedModels.ContentControls.GetTitle(this);
 
 		///<summary>
 		/// Link Label: Enter the label of the link

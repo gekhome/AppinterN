@@ -271,12 +271,20 @@
     <Compile Include="Composing\RegisterProfileRouteComposer.cs" />
     <Compile Include="Composing\RegisterServicesComposer.cs" />
     <Compile Include="Controllers\ContactSurfaceController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SearchPageController.cs" />
+    <Compile Include="Controllers\SearchSurfaceController.cs" />
+    <Compile Include="Extensions\StringArrayExtensions.cs" />
     <Compile Include="Helpers\HomeHelper.cs" />
     <Compile Include="Helpers\MemberHelper.cs" />
     <Compile Include="Helpers\QueryStringHelper.cs" />
+    <Compile Include="Helpers\SearchHelper.cs" />
     <Compile Include="Models\ApprenticeshipResultSet.cs" />
     <Compile Include="Models\ArticleResultSet.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\SearchContentModel.cs" />
+    <Compile Include="Models\SearchingModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\ServicesPageModel.cs" />
     <Compile Include="Models\ServicesModel.cs" />
     <Compile Include="Models\SponsorItemModel.cs" />
@@ -294,8 +302,10 @@
     <Compile Include="Services\IArticleService.cs" />
     <Compile Include="Services\IDataTypeValueService.cs" />
     <Compile Include="Services\IMediaUploadService.cs" />
+    <Compile Include="Services\ISearchService.cs" />
     <Compile Include="Services\ISmtpService.cs" />
     <Compile Include="Services\MediaUploadService.cs" />
+    <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\SmtpService.cs" />
     <Compile Include="ViewPages\ApprenticeshipsViewPage.cs" />
     <Compile Include="ViewPages\ArticlesViewPage.cs" />
@@ -311,9 +321,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets" Condition="Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

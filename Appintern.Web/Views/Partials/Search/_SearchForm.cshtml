@@ -1,0 +1,33 @@
+﻿@inherits UmbracoViewPage<Appintern.Core.Models.SearchViewModel>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+@using (Html.BeginUmbracoForm("SubmitForm", "SearchSurface", FormMethod.Post))
+{
+    <div class="row">
+        <div class="form-header" style="margin-bottom:20px;text-align:center">
+            <strong class="form-title">Search Criteria</strong>
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Query, new { @class = "control-label col-md-5" })
+            @Html.TextBoxFor(m => m.Query, new { @class = "form-control", placeholder = "Search...", style="max-height:34px" })
+            @Html.ValidationMessageFor(m => m.Query, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Category, new { @class = "control-label col-md-5" })
+            @Html.DropDownListFor(m => m.Category, Model.Categories, "All", new { @class = "form-control", style = "font-size:14px;padding:1px;max-height:34px" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Page, new { @class = "control-label col-md-5" })
+            @Html.TextBoxFor(m => m.Page, new { @class = "form-control", placeholder = "Page number", style = "max-height:34px" })
+            @Html.ValidationMessageFor(m => m.Page)
+        </div>
+
+        <div class="form-group col-md-12" style="margin-top:15px">
+            <button id="submit" class="btn btn-primary btn-block" style="padding:4px;font-size:16px"><i class="fa fa-search"></i> Search</button>
+        </div>
+    </div>
+}
