@@ -15,9 +15,8 @@
 
 <head>
     <title></title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery.ui.datepicker.min.js"></script>
 </head>
 
 <div class="container">
@@ -64,7 +63,7 @@
         </div>
         <div class="col-md-12">
             @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-10" })
-            @Html.EditorFor(m => m.BirthDate, new { @class = "form-control datepicker", style = "min-width:200px;padding:2px" })
+            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datepicker", style = "min-width:200px;padding:2px" })
             @Html.ValidationMessageFor(m => m.BirthDate)
         </div>
         <div class="col-md-12">
@@ -89,7 +88,7 @@
         </div>
         <div class="col-md-12">
             @Html.LabelFor(m => m.State, new { @class = "control-label col-md-3" })
-            @Html.TextBoxFor(m => m.State, new { @class = "form-control", placeholder = "State" })
+            @Html.TextBoxFor(m => m.State, new { @class = "form-control", placeholder = "State", style = "font-size:16px;min-width:100px;padding:1px" })
             @Html.ValidationMessageFor(m => m.State)
         </div>
         <div class="col-md-12">
@@ -129,7 +128,7 @@
 <script type="text/javascript">
 
     $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker(); //Initialise any date pickers
+        $('.datepicker').datepicker({ dateFormat: "dd/mm/yyyy" }); //Initialise any date pickers
     });
 
     function refreshPage() {
