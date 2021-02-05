@@ -208,10 +208,10 @@ namespace Appintern.Web.Controllers
                     string country = item.GetProperty("country").GetValue().ToString();
                     DateTime postDate = (DateTime)item.GetProperty("postDate").GetValue();
 
-                    string[] jobSectors = item.GetProperty("industryCategories").GetValue() as string[];
-                    string industryCategories = utilities.ConcatenateStringArray(jobSectors);
+                    string[] jobSectors = item.GetProperty("jobSector").GetValue() as string[];
+                    string jobCategories = utilities.ConcatenateStringArray(jobSectors);
 
-                    model.Add(new ApprenticeshipViewModel(apprenticeshipId, title, postDate, duration, commitment, compensation, industryCategories, country, employerId));
+                    model.Add(new ApprenticeshipViewModel(apprenticeshipId, title, postDate, duration, commitment, compensation, jobCategories, country, employerId));
                 }
             }
             return model;
@@ -598,12 +598,12 @@ namespace Appintern.Web.Controllers
                 DateTime postDate = (DateTime)item.GetProperty("postDate").GetValue();
                 Employer employer = item.GetProperty("employer").GetValue() as Employer;
 
-                string[] jobSectors = item.GetProperty("industryCategories").GetValue() as string[];
-                string industryCategories = utilities.ConcatenateStringArray(jobSectors);
+                string[] jobSectors = item.GetProperty("jobSector").GetValue() as string[];
+                string jobCategories = utilities.ConcatenateStringArray(jobSectors);
 
                 string description = HtmlUtilities.ConvertToPlainText(item.GetProperty("description").GetValue().ToString());
 
-                data.Add(new ApprenticeshipViewModel(apprenticeshipId, title, postDate, duration, commitment, compensation, industryCategories, country, employer.Id, description));
+                data.Add(new ApprenticeshipViewModel(apprenticeshipId, title, postDate, duration, commitment, compensation, jobCategories, country, employer.Id, description));
             }
             foreach (ApprenticeshipViewModel model in data)
             {

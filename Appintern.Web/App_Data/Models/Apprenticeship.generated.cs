@@ -101,6 +101,13 @@ namespace Umbraco.Web.PublishedModels
 		public global::System.Collections.Generic.IEnumerable<string> JobSector => this.Value<global::System.Collections.Generic.IEnumerable<string>>("jobSector");
 
 		///<summary>
+		/// Post Date: Enter the date of posting the apprenticeship
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("postDate")]
+		public global::System.DateTime PostDate => this.Value<global::System.DateTime>("postDate");
+
+		///<summary>
 		/// Qualifications: Enter here the qualifications required
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
