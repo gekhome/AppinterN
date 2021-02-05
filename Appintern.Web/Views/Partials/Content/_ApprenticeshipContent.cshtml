@@ -36,9 +36,9 @@
                 <div class="intro">
                     <h1 class="text-center">@(Model.HasValue("title") ? Model.Value<string>("title") : Model.Name)</h1>
                     <div class="text-center">
-                        @if (Model.IndustryCategories.Any())
+                        @if (Model.JobSector.Any())
                         {
-                            foreach (var item in Model.IndustryCategories)
+                            foreach (var item in Model.JobSector)
                             {
                                 branches += item + ", ";
                             }
