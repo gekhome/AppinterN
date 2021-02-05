@@ -63,7 +63,7 @@
         </div>
         <div class="col-md-12">
             @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-10" })
-            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datepicker", style = "min-width:200px;padding:2px" })
+            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datepicker", style = "max-width:200px;padding:2px" })
             @Html.ValidationMessageFor(m => m.BirthDate)
         </div>
         <div class="col-md-12">
