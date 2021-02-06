@@ -25,7 +25,7 @@
                 {
                     <h4 class="text-center">Summary</h4>
                     <p class="text-center">
-                        @(Model.Value<string>("description"))
+                        @Html.Raw(Model.Value("description"))
                     </p>
                 }
                 <div class="text">
