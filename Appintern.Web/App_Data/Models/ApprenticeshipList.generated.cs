@@ -45,6 +45,13 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
+		/// Category: Select one or more categories
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("category")]
+		public global::System.Collections.Generic.IEnumerable<string> Category => this.Value<global::System.Collections.Generic.IEnumerable<string>>("category");
+
+		///<summary>
 		/// Latest Articles Subtitle: Enter the subtitle for the latest articles
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -64,6 +71,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("disableDropdown")]
 		public bool DisableDropdown => global::Umbraco.Web.PublishedModels.NavigationControls.GetDisableDropdown(this);
+
+		///<summary>
+		/// Exclude From Top Navigation: Tick this if you don't want this page to appear in the top navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("excludeFromTopNavigation")]
+		public bool ExcludeFromTopNavigation => global::Umbraco.Web.PublishedModels.NavigationControls.GetExcludeFromTopNavigation(this);
 
 		///<summary>
 		/// Text Only In Navigation: Tick this box if you want this item to be just text only in the navigation menu.

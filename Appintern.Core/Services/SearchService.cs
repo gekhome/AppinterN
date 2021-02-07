@@ -82,9 +82,11 @@ namespace Appintern.Core.Services
                     .GroupedOr(new[] { "nodeName", "title", "contentGrid", "metaDescription", "keywords" }, terms.Fuzzy()), BooleanOperation.Or);
                 }
 
+                // this was 'And' and was not searching all passed aliases
+                // either leave it with 'Or' or check documentation
                 if (docTypeAliases != null && docTypeAliases.Any())
                 {
-                    query.And(q => q.GroupedOr(new[] { "__NodeTypeAlias" }, docTypeAliases));
+                    query.Or(q => q.GroupedOr(new[] { "__NodeTypeAlias" }, docTypeAliases));
                 }
 
                 if (!string.IsNullOrWhiteSpace(category))

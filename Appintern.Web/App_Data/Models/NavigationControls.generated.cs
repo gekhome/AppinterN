@@ -27,6 +27,10 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		bool DisableDropdown { get; }
 
+		/// <summary>Exclude From Top Navigation</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		bool ExcludeFromTopNavigation { get; }
+
 		/// <summary>Text Only In Navigation</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		bool TextOnlyInNavigation { get; }
@@ -71,6 +75,17 @@ namespace Umbraco.Web.PublishedModels
 		/// <summary>Static getter for Disable Dropdown</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		public static bool GetDisableDropdown(INavigationControls that) => that.Value<bool>("disableDropdown");
+
+		///<summary>
+		/// Exclude From Top Navigation: Tick this if you don't want this page to appear in the top navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("excludeFromTopNavigation")]
+		public bool ExcludeFromTopNavigation => GetExcludeFromTopNavigation(this);
+
+		/// <summary>Static getter for Exclude From Top Navigation</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		public static bool GetExcludeFromTopNavigation(INavigationControls that) => that.Value<bool>("excludeFromTopNavigation");
 
 		///<summary>
 		/// Text Only In Navigation: Tick this box if you want this item to be just text only in the navigation menu.

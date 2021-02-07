@@ -52,6 +52,13 @@ namespace Umbraco.Web.PublishedModels
 		public bool DisableDropdown => global::Umbraco.Web.PublishedModels.NavigationControls.GetDisableDropdown(this);
 
 		///<summary>
+		/// Exclude From Top Navigation: Tick this if you don't want this page to appear in the top navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("excludeFromTopNavigation")]
+		public bool ExcludeFromTopNavigation => global::Umbraco.Web.PublishedModels.NavigationControls.GetExcludeFromTopNavigation(this);
+
+		///<summary>
 		/// Text Only In Navigation: Tick this box if you want this item to be just text only in the navigation menu.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]

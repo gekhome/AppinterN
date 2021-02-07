@@ -44,6 +44,7 @@ namespace Appintern.Core.Composing
                     switch (e.ValueSet.ItemType)
                     {
                         case "article":
+                        case "content":
                         case "apprenticeship":
                         case "clientPage":
                             using (var umbracoContext = _umbracoContextFactory.EnsureUmbracoContext())
