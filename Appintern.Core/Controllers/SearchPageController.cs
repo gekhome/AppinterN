@@ -17,7 +17,7 @@ namespace Appintern.Core.Controllers
         {
             _searchService = searchService;
             _dataTypeValueService = dataTypeValueService;
-            DocTypeAliases = new[] { "article", "clientPage", "apprenticeship, content" };
+            DocTypeAliases = new[] { "article", "clientPage", "apprenticeship, faq" };
         }
 
         public ActionResult Index(ContentModel model, string query, string page, string category)
