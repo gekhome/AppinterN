@@ -22,11 +22,17 @@
                 </div>
             }
         </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                @RenderPagingButtons(Model.PagingBounds, Model.PageNumber, Model.PageCount)
+            </div>
+        </div>
     }
-    @*else
+    else
     {
         <p>No results to display</p>
-    }*@
+    }
 }
 
 @helper RenderPagingButtons(PagingBoundsModel pagingBounds, int pageNumber, int pageCount)

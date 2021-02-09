@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Search All</summary>
 	[PublishedModel("searchAll")]
-	public partial class SearchAll : PublishedContentModel
+	public partial class SearchAll : PublishedContentModel, INavigationControls
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -43,5 +43,33 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// Disable Dropdown: Tick this box if you want to disable the dropdown for this item
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("disableDropdown")]
+		public bool DisableDropdown => global::Umbraco.Web.PublishedModels.NavigationControls.GetDisableDropdown(this);
+
+		///<summary>
+		/// Exclude From Top Navigation: Tick this if you don't want this page to appear in the top navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("excludeFromTopNavigation")]
+		public bool ExcludeFromTopNavigation => global::Umbraco.Web.PublishedModels.NavigationControls.GetExcludeFromTopNavigation(this);
+
+		///<summary>
+		/// Text Only In Navigation: Tick this box if you want this item to be just text only in the navigation menu.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("textOnlyInNavigation")]
+		public bool TextOnlyInNavigation => global::Umbraco.Web.PublishedModels.NavigationControls.GetTextOnlyInNavigation(this);
+
+		///<summary>
+		/// Umbraco Navi Hide: Tick this box if you want to hide it from the site.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide => global::Umbraco.Web.PublishedModels.NavigationControls.GetUmbracoNaviHide(this);
 	}
 }

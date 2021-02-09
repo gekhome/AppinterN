@@ -23,8 +23,7 @@ namespace Appintern.Core.Services
         public IEnumerable<IPublishedContent> GetPageOfContentSearchResults(string searchTerm, string category, int pageNumber, out long totalItemCount, 
                                                                             string[] docTypeAliases, int pageSize = 6)
         {
-            var pageOfResults = GetPageOfSearchResults(searchTerm, category, pageNumber,
-                out totalItemCount, docTypeAliases, "content");
+            var pageOfResults = GetPageOfSearchResults(searchTerm, category, pageNumber, out totalItemCount, docTypeAliases, "content");
 
             var items = new List<IPublishedContent>();
             if (pageOfResults != null && pageOfResults.Any())

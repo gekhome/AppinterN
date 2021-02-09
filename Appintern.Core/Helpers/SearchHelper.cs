@@ -23,7 +23,7 @@ namespace Appintern.Core.Helpers
 {
     public class SearchHelper
     {
-        private string _docTypeAliasFieldName { get { return "nodeTypeAlias"; } }
+        private string _docTypeAliasFieldName { get { return "__NodeTypeAlias"; } }
         private UmbracoHelper _uHelper { get; set; }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Appintern.Core.Helpers
 
             if (documentTypes != null && documentTypes.Length > 0)
             {
-                //only get results for documents of a certain type
+                //only get results for documents of a certain type - changed And() to Or()
                 queryNodes = queryNodes.And().GroupedOr(new string[] { _docTypeAliasFieldName }, documentTypes);
             }
 

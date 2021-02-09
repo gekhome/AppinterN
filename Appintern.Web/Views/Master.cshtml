@@ -42,7 +42,7 @@
 
     @Html.RenderCssHere()
 
-    @*@RenderSection("Head", false)*@
+    @RenderSection("Head", false)
 
 </head>
 <body>
@@ -53,10 +53,10 @@
 
     @Html.CachedPartial("SiteLayout/_Footer", Model, 3600)
 
-    @*@RenderSection("ScriptsBottom", false)*@
 
     @Html.RenderJsHere()
 
+    @RenderSection("ScriptsBottom", false)
 
 </body>
 </html>
