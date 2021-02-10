@@ -42,18 +42,45 @@
     <h4 class="col-md-12" style="text-align:center;color:#808080">@Html.Raw(Model.Value("description"))</h4>
 </div>
 
-<div class="container">
-    <div class="col-md-4">
-        <div class="row">
-            @{ Html.RenderAction("RenderSearch2Form", "Search", new { docTypeAliases = "article,clientPage,apprenticeship", fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 }); }
-        </div>
-    </div>
+@{ Html.RenderAction("RenderSearch2Form", "Search", new { docTypeAliases = "article,clientPage,apprenticeship", fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 }); }
 
-    <div class="col-md-8">
-        <aside class="sidebar">
-            <div class="row">
-                @{ Html.RenderAction("RenderSearch2Results", "Search"); }
-            </div>
-        </aside>
-    </div>
-</div>
+
+@section ScriptsBottom
+{
+    <!--You may not want to reference jQuery here if you already have it in your master template-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/scripts/jquery.validate.min.js"></script>
+    <script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script type="text/javascript">
+
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+
+        $(document).on("click", "#submit-button", function (e) {
+            e.preventDefault();
+            var form = $(this).closest('form');
+            $(form).submit();
+        })
+
+        $(document).on("keyup", "#SearchTerm", debounce(function (e) {
+            e.preventDefault();
+            var form = $(e.target).closest('form');
+            $(form).submit();
+        }, 600))
+
+    </script>
+}

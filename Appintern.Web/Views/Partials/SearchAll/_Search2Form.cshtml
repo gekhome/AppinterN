@@ -1,22 +1,40 @@
 ﻿@model Search2ViewModel
 @using Appintern.Core.Models
 
-@using (Html.BeginUmbracoForm("SubmitSearch2Form", "Search", FormMethod.Post))
+@using (Ajax.BeginForm("SubmitSearch2Form", "Search", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "search-results"
+}))
 {
     @Html.HiddenFor(m => m.DocTypeAliases)
     @Html.HiddenFor(m => m.FieldPropertyAliases)
     @Html.HiddenFor(m => m.PageSize)
     @Html.HiddenFor(m => m.PagingGroupSize)
 
+<div class="container">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "Search...", @class = "form-control col-md-8", style = "max-height:34px" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Category, new { @class = "control-label col-md-5" })
+                @Html.DropDownListFor(m => m.Category, Model.Categories, "All", new { @class = "form-control", style = "font-size:16px;padding:1px;max-height:34px" })
+            </div>
+            <div class="col-md-12" style="margin-top:10px">
+                <button class="btn btn-primary" id="submit-button">Search <i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
 
-    <div class="col-md-12">
-        @Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "Search...", @class = "form-control col-md-8", style="max-height:34px" })
+    <div class="col-md-8">
+        <aside class="sidebar">
+            <div class="row" id="search-results" style="margin-left:2px">
+                @{ Html.RenderAction("RenderSearch2Results", "Search", new { Model = Model.SearchResults }); }
+            </div>
+        </aside>
     </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Category, new { @class = "control-label col-md-5" })
-        @Html.DropDownListFor(m => m.Category, Model.Categories, "All", new { @class = "form-control", style = "font-size:16px;padding:1px;max-height:34px" })
-    </div>
-    <div class="col-md-12" style="margin-top:10px">
-        <button class="btn btn-primary" id="submit">Search <i class="fa fa-search"></i></button>
-    </div>
+</div>
 }

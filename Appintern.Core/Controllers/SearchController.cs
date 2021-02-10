@@ -79,6 +79,11 @@ namespace Appintern.Core.Controllers
             return null;
         }
 
+        public ActionResult RenderSearchResults(SearchResultsModel model)
+        {
+            return PartialView(PartialViewPath("_SearchResults"), model);
+        }
+
         #endregion
 
         #region Search From with additional Criteria
@@ -140,11 +145,6 @@ namespace Appintern.Core.Controllers
         }
 
         #endregion
-
-        public ActionResult RenderSearchResults(SearchResultsModel model)
-        {
-            return PartialView(PartialViewPath("_SearchResults"), model);
-        }
 
         #endregion
     }

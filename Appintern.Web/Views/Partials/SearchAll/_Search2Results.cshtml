@@ -22,7 +22,7 @@
             }
         </div>
 
-        <div class="row" styel="margin-top:10px">
+        <div class="row" style="margin-top:10px">
             <div class="col-xs-12">
                 @RenderPagingButtons(Model.PagingBounds, Model.PageNumber, Model.PageCount)
             </div>
@@ -66,6 +66,6 @@
     <div class="list-group-item col-md-12">
         <img src='@Url.Content("~/Images/33.jpg")' height="60" width="80" />
         <a href="@item.Url()" target="_blank">@item.Name</a>
-        <p>@Html.Raw(item.Value("description"))</p>
+        <p>@Html.Raw(item.Value("metaDescription"))</p>
     </div>
 }
