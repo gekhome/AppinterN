@@ -129,7 +129,7 @@ namespace Appintern.Core.Controllers
                     model.SearchGroups = GetSearch2Groups(model);
                     model.SearchResults = _searchHelper.GetSearch2Results(model, Request.Form.AllKeys);
                 }
-                return RenderSearchResults(model.SearchResults);
+                return RenderSearch2Results(model.SearchResults);
             }
             return null;
         }
