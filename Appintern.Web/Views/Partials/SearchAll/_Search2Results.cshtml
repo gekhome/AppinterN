@@ -16,7 +16,9 @@
         <div class="row">
             @foreach (IPublishedContent result in Model.Results)
             {
-                @RenderBoxedItem(result)
+                <div class="list-group">
+                    @RenderBoxedItem(result)
+                </div>
             }
         </div>
 
