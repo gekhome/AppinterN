@@ -109,6 +109,66 @@ namespace Appintern.Core.Helpers
         }
 
 
+        /// <summary>
+        /// Modified to accept additional criteria
+        /// </summary>
+        /// <param name="searchModel"></param>
+        /// <param name="allKeys"></param>
+        /// <returns></returns>
+        public SearchResultsModel GetSearch2Results(Search2ViewModel searchModel, string[] allKeys)
+        {
+            SearchResultsModel resultsModel = new SearchResultsModel();
+            resultsModel.SearchTerm = searchModel.SearchTerm;
+            resultsModel.PageNumber = GetPageNumber(allKeys);
+
+            ISearchResults allResults = Search2UsingExamine(searchModel.DocTypeAliases.Split(','), searchModel.SearchGroups, searchModel.Category);
+            resultsModel.TotalItemCount = (int)allResults.TotalItemCount;
+            resultsModel.Results = GetResultsForThisPage(allResults, resultsModel.PageNumber, searchModel.PageSize);
+
+            resultsModel.PageCount = Convert.ToInt32(Math.Ceiling((decimal)resultsModel.TotalItemCount / (decimal)searchModel.PageSize));
+            resultsModel.PagingBounds = GetPagingBounds(resultsModel.PageCount, resultsModel.PageNumber, searchModel.PagingGroupSize);
+            return resultsModel;
+        }
+
+        public Examine.ISearchResults Search2UsingExamine(string[] documentTypes, List<SearchGroup> searchGroups, string category)
+        {
+            if (!ExamineManager.Instance.TryGetIndex("ExternalIndex", out var index))
+                throw new InvalidOperationException($"No index found by name 'External Index'");
+
+            var searcher = index.GetSearcher();
+
+            var searchCriteria = searcher.CreateQuery(IndexTypes.Content);
+
+            //only shows results for visible documents.
+            IBooleanOperation queryNodes = searchCriteria.GroupedOr(new string[] { "umbracoNaviHide" }, "0", "");
+
+            if (documentTypes != null && documentTypes.Length > 0)
+            {
+                //only get results for documents of a certain type - changed And() to Or()
+                queryNodes = queryNodes.And().GroupedOr(new string[] { _docTypeAliasFieldName }, documentTypes);
+            }
+
+            if (searchGroups != null && searchGroups.Any())
+            {
+                //in each search group it looks for a match where the specified fields contain any of the specified search terms
+                //usually would only have 1 search group, unless you want to filter out further, i.e. using categories as well as search terms
+                foreach (SearchGroup searchGroup in searchGroups)
+                {
+                    queryNodes = queryNodes.And().GroupedOr(searchGroup.FieldsToSearchIn, searchGroup.SearchTerms);
+                }
+            }
+
+            // This is wehere we add additional criteria
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                queryNodes.And().Field("searchableCategories", category);
+            }
+
+            //return the results of the search
+            return queryNodes.Execute();
+        }
+
+
         //-----------------------------------------------------
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.Mvc;
 using Umbraco.Core.Models.PublishedContent;
 
 namespace Appintern.Core.Models
@@ -20,6 +22,30 @@ namespace Appintern.Core.Models
 
         public SearchResultsModel SearchResults { get; set; }
     }
+
+    public class Search2ViewModel
+    {
+        public string SearchTerm { get; set; }
+
+        [Display(Name = "Category")]
+        public string Category { get; set; }
+
+        public string DocTypeAliases { get; set; }
+
+        public string FieldPropertyAliases { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int PagingGroupSize { get; set; }
+
+        public List<SearchGroup> SearchGroups { get; set; }
+
+        public SearchResultsModel SearchResults { get; set; }
+
+        public IEnumerable<SelectListItem> Categories { get; set; }
+
+    }
+
 
     public class SearchGroup
     {

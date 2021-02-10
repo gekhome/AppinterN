@@ -5,9 +5,9 @@
 {
     if (Model.HasResults)
     {
-        <p>Your search for <strong>@Model.SearchTerm</strong> returned @Model.TotalItemCount result@(Model.TotalItemCount != 1 ? "s" : null)</p>
+        <p>Your search for <strong>@Model.SearchTerm</strong> returned <strong>@Model.TotalItemCount</strong> result@(Model.TotalItemCount != 1 ? "s" : null)</p>
 
-        <div class="row">
+        <div class="row" style="margin-bottom:10px">
             <div class="col-xs-12">
                 @RenderPagingButtons(Model.PagingBounds, Model.PageNumber, Model.PageCount)
             </div>
@@ -17,13 +17,13 @@
             @foreach (IPublishedContent result in Model.Results)
             {
                 <div class="col-xs-12">
-                    <a href="@(result.Url())" target="_blank">@(result.Name)</a>
+                    <a href="@(result.Url())" target="_blank" style="font-size:18px">@(result.Name)</a>
                     <p>@(result.GetProperty("metaDescription").GetValue().ToString())</p>
                 </div>
             }
         </div>
 
-        <div class="row">
+        <div class="row" styel="margin-top:10px">
             <div class="col-xs-12">
                 @RenderPagingButtons(Model.PagingBounds, Model.PageNumber, Model.PageCount)
             </div>

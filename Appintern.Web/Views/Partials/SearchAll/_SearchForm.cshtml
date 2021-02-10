@@ -13,8 +13,15 @@
     @Html.HiddenFor(m => m.PageSize)
     @Html.HiddenFor(m => m.PagingGroupSize)
 
-    @Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "Search..." })
-    <button id="submit-button">Search</button>
+    @*@Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "Search...", @class = "form-control col-md-8" })*@
+    <div class="input-group">
+        <span class="input-group-addon">
+            <span class="icon glyphicon glyphicon-search"></span>
+        </span>
+        @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Search..." })
+    </div>
+
+    @*<button class="btn btn-primary" id="submit-button">Search <i class="fa fa-search"></i></button>*@
 
     <div id="search-results">
         @{ Html.RenderAction("RenderSearchResults", "Search", new { Model = Model.SearchResults });}

@@ -85,7 +85,7 @@ namespace Appintern.Core.Services
                 // either leave it with 'Or' or check documentation
                 if (docTypeAliases != null && docTypeAliases.Any())
                 {
-                    query.Or(q => q.GroupedOr(new[] { "__NodeTypeAlias" }, docTypeAliases));
+                    query.And(q => q.GroupedOr(new[] { "__NodeTypeAlias" }, docTypeAliases));
                 }
 
                 if (!string.IsNullOrWhiteSpace(category))

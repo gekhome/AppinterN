@@ -1,0 +1,26 @@
+﻿@model Search2ViewModel
+@using Appintern.Core.Models
+
+@using (Html.BeginUmbracoForm("SubmitSearch2Form", "Search", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.DocTypeAliases)
+    @Html.HiddenFor(m => m.FieldPropertyAliases)
+    @Html.HiddenFor(m => m.PageSize)
+    @Html.HiddenFor(m => m.PagingGroupSize)
+
+
+    <div class="col-md-12">
+        @Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "Search...", @class = "form-control col-md-8", style="max-height:34px" })
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Category, new { @class = "control-label col-md-5" })
+        @Html.DropDownListFor(m => m.Category, Model.Categories, "All", new { @class = "form-control", style = "font-size:16px;padding:1px;max-height:34px" })
+    </div>
+    <div class="col-md-12" style="margin-top:10px">
+        <button class="btn btn-primary" id="submit">Search <i class="fa fa-search"></i></button>
+    </div>
+}
+
+<div id="search-results">
+    @{ Html.RenderAction("RenderSearchResults", "Search", new { Model = Model.SearchResults });}
+</div>

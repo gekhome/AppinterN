@@ -1728,6 +1728,7 @@
     <Compile Include="App_Data\Models\Schools.generated.cs" />
     <Compile Include="App_Data\Models\Search.generated.cs" />
     <Compile Include="App_Data\Models\SearchAll.generated.cs" />
+    <Compile Include="App_Data\Models\SearchCustom1.generated.cs" />
     <Compile Include="App_Data\Models\SearchPage.generated.cs" />
     <Compile Include="App_Data\Models\Services.generated.cs" />
     <Compile Include="App_Data\Models\ServicesMainItem.generated.cs" />
@@ -2030,6 +2031,9 @@
     <Content Include="Views\Partials\Search\_SearchForm.cshtml" />
     <Content Include="Views\Partials\Search\_SearchHeader.cshtml" />
     <Content Include="Views\SearchPage.cshtml" />
+    <Content Include="Views\Partials\SearchAll\_Search2Form.cshtml" />
+    <Content Include="Views\SearchCustom1.cshtml" />
+    <Content Include="Views\Partials\SearchAll\_Search2Results.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
