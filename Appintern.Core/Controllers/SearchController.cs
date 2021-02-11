@@ -86,7 +86,7 @@ namespace Appintern.Core.Controllers
 
         #endregion
 
-        #region Search From with additional Criteria
+        #region Search From with criterion Category
 
         private List<SearchGroup> GetSearch2Groups(Search2ViewModel model)
         {
