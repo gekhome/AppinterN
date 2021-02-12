@@ -15,15 +15,16 @@ namespace Appintern.Web.DAL
     public partial class Apprenticeships
     {
         public int ApprenticeshipID { get; set; }
+        public string Name { get; set; }
         public string Title { get; set; }
+        public Nullable<System.DateTime> PostDate { get; set; }
         public string Description { get; set; }
-        public string Requirements { get; set; }
         public string DurationMonths { get; set; }
         public string Commitment { get; set; }
         public string Compensation { get; set; }
         public string JobSector { get; set; }
         public string Country { get; set; }
-        public Nullable<System.DateTime> PostDate { get; set; }
+        public string Requirements { get; set; }
         public Nullable<int> EmployerID { get; set; }
     }
 }

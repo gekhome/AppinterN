@@ -17,6 +17,7 @@ namespace Appintern.Web.DAL
         public int ArticleId { get; set; }
         public Nullable<System.DateTime> ArticleDate { get; set; }
         public string AuthorName { get; set; }
+        public string Name { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }

@@ -24,6 +24,7 @@ namespace Appintern.Web.DAL.Services
                 ApprenticeshipID = model.ApprenticeshipID,
                 PostDate = model.PostDate,
                 DurationMonths = model.DurationMonths,
+                Name = model.Name,
                 Title = model.Title,
                 Description = model.Description,
                 Country = model.Country,
@@ -44,6 +45,7 @@ namespace Appintern.Web.DAL.Services
             entity.ApprenticeshipID = model.ApprenticeshipID;
             entity.PostDate = model.PostDate;
             entity.DurationMonths = model.DurationMonths;
+            entity.Name = model.Name;
             entity.Title = model.Title;
             entity.Description = model.Description;
             entity.Country = model.Country;

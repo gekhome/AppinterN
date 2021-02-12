@@ -66,13 +66,6 @@ namespace Umbraco.Web.PublishedModels
 		public string Compensation => this.Value<string>("compensation");
 
 		///<summary>
-		/// Conditions: Describe any conditions that apply
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("conditions")]
-		public global::System.Web.IHtmlString Conditions => this.Value<global::System.Web.IHtmlString>("conditions");
-
-		///<summary>
 		/// Country: Select the country for this apprenticeship
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -92,6 +85,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("employer")]
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Employer => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("employer");
+
+		///<summary>
+		/// End Date: Enter the end date of this apprenticeship
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("endDate")]
+		public global::System.DateTime EndDate => this.Value<global::System.DateTime>("endDate");
 
 		///<summary>
 		/// Job Sector: Select one or more job sectors
@@ -120,6 +120,20 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("responsibilities")]
 		public global::System.Web.IHtmlString Responsibilities => this.Value<global::System.Web.IHtmlString>("responsibilities");
+
+		///<summary>
+		/// Start Date: Enter the start date of the apprenticeship
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("startDate")]
+		public global::System.DateTime StartDate => this.Value<global::System.DateTime>("startDate");
+
+		///<summary>
+		/// Status: Select the status of the apprenticeship
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("status")]
+		public string Status => this.Value<string>("status");
 
 		///<summary>
 		/// Category: Select one or more categories

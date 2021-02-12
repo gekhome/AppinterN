@@ -31,8 +31,6 @@ namespace Appintern.Web.DAL
         public virtual DbSet<Genders> Genders { get; set; }
         public virtual DbSet<JobSectors> JobSectors { get; set; }
         public virtual DbSet<MemberGroups> MemberGroups { get; set; }
-        public virtual DbSet<Apprenticeships> Apprenticeships { get; set; }
-        public virtual DbSet<Articles> Articles { get; set; }
         public virtual DbSet<Employers> Employers { get; set; }
         public virtual DbSet<Ambassadors> Ambassadors { get; set; }
         public virtual DbSet<Graduates> Graduates { get; set; }
@@ -41,5 +39,7 @@ namespace Appintern.Web.DAL
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
         public virtual DbSet<Schools> Schools { get; set; }
+        public virtual DbSet<Apprenticeships> Apprenticeships { get; set; }
+        public virtual DbSet<Articles> Articles { get; set; }
     }
 }

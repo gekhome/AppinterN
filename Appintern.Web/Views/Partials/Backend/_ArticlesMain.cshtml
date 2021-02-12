@@ -23,6 +23,7 @@
         .Columns(columns =>
         {
             columns.Bound(c => c.ArticleId).Width(10).Filterable(false).Groupable(false);
+            columns.Bound(c => c.Name).Width(20).Groupable(false);
             columns.Bound(c => c.Title).Width(40).Groupable(false);
             columns.Bound(c => c.AuthorName).Width(30);
             columns.Bound(c => c.ArticleDate).Width(20).Format("{0:dd/MM/yyyy}").Groupable(false);

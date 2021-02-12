@@ -50,7 +50,7 @@ namespace Appintern.Web.Controllers
 
         private const int HOME_PAGE_ID = 1080;
         private const int DASHBOARD_PAGE_ID = 1189;
-        private const int APPRENTICESHIP_MAIN_PAGE_ID = 1427;
+        private const int APPRENTICESHIP_MAIN_PAGE_ID = 1529;
         private const int ARTICLELIST_MAIN_PAGE_ID = 1082;
 
         public BackendController(ILogger logger)
@@ -201,6 +201,7 @@ namespace Appintern.Web.Controllers
                 if (employer.Id == employerId)
                 {
                     int apprenticeshipId = item.Id;
+                    string name = item.Name;
                     string title = item.GetProperty("title").GetValue().ToString();
                     string duration = item.GetProperty("duration").GetValue().ToString();
                     string commitment = item.GetProperty("commitment").GetValue().ToString();
@@ -211,7 +212,7 @@ namespace Appintern.Web.Controllers
                     string[] jobSectors = item.GetProperty("jobSector").GetValue() as string[];
                     string jobCategories = utilities.ConcatenateStringArray(jobSectors);
 
-                    model.Add(new ApprenticeshipViewModel(apprenticeshipId, title, postDate, duration, commitment, compensation, jobCategories, country, employerId));
+                    model.Add(new ApprenticeshipViewModel(apprenticeshipId, name, title, postDate, duration, commitment, compensation, jobCategories, country, employerId));
                 }
             }
             return model;
@@ -237,12 +238,12 @@ namespace Appintern.Web.Controllers
 
         public ActionResult Articles_Read([DataSourceRequest] DataSourceRequest request, int memberId = 0, string memberType = null)
         {
-            var data = GetArticles(memberId, memberType);
+            var data = GetUmbracoArticles(memberId, memberType);
 
             return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-        public List<ArticleViewModel> GetArticles(int memberId = 0, string memberType = null)
+        public List<ArticleViewModel> GetUmbracoArticles(int memberId = 0, string memberType = null)
         {
             List<ArticleViewModel> model = new List<ArticleViewModel>();
 
@@ -261,13 +262,14 @@ namespace Appintern.Web.Controllers
                 if (resultId == memberId)
                 {
                     int articleId = item.Id;
+                    string name = item.Name;
                     DateTime articleDate = (DateTime)item.GetProperty("articleDate").GetValue();
                     string authorName = item.GetProperty("authorName").GetValue().ToString();
                     string title = item.GetProperty("title").GetValue().ToString();
                     string description = item.GetProperty("description").GetValue().ToString();
                     string country = item.GetProperty("country").GetValue().ToString();
 
-                    model.Add(new ArticleViewModel(articleId, articleDate, authorName, title, description, country, memberId));
+                    model.Add(new ArticleViewModel(articleId, articleDate, authorName, name, title, description, country, memberId));
                 }
             }
             return model;
@@ -398,6 +400,7 @@ namespace Appintern.Web.Controllers
             foreach (IPublishedContent item in articlesList.Children.OrderBy(x => x.Name))
             {
                 int articleId = item.Id;
+                string name = item.Name;
                 DateTime articleDate = (DateTime)item.GetProperty("articleDate").GetValue();
                 string authorName = item.GetProperty("authorName").GetValue().ToString();
                 string title = item.GetProperty("title").GetValue().ToString();
@@ -406,7 +409,7 @@ namespace Appintern.Web.Controllers
 
                 int memberId = GetMemberId(item, memberTypes);
 
-                data.Add(new ArticleViewModel(articleId, articleDate, authorName, title, description, country, memberId));
+                data.Add(new ArticleViewModel(articleId, articleDate, authorName, name, title, description, country, memberId));
             }
 
             foreach (ArticleViewModel article in data)
@@ -429,12 +432,13 @@ namespace Appintern.Web.Controllers
         public List<ArticleViewModel> GetArticlesFromDatabase()
         {
             var data = (from d in db.Articles
-                        orderby d.ArticleDate descending, d.Title
+                        orderby d.ArticleDate descending, d.Name
                         select new ArticleViewModel
                         {
                             ArticleId = d.ArticleId,
                             ArticleDate = d.ArticleDate,
                             AuthorName = d.AuthorName,
+                            Name = d.Name,
                             Title = d.Title,
                             Description = d.Description,
                             Country = d.Country,
@@ -561,12 +565,13 @@ namespace Appintern.Web.Controllers
         public List<ApprenticeshipViewModel> GetApprenticeshipsFromDatabase()
         {
             var data = (from d in db.Apprenticeships
-                        orderby d.PostDate descending, d.Title
+                        orderby d.PostDate descending, d.Name
                         select new ApprenticeshipViewModel
                         {
                             ApprenticeshipID = d.ApprenticeshipID,
                             PostDate = d.PostDate,
                             DurationMonths = d.DurationMonths,
+                            Name = d.Name,
                             Title = d.Title,
                             Description = d.Description,
                             Commitment = d.Commitment,
@@ -590,6 +595,7 @@ namespace Appintern.Web.Controllers
             foreach (IPublishedContent item in apprenticeshipList.Children.OrderBy(x => x.Name))
             {
                 int apprenticeshipId = item.Id;
+                string name = item.Name;
                 string title = item.GetProperty("title").GetValue().ToString();
                 string duration = item.GetProperty("duration").GetValue().ToString();
                 string commitment = item.GetProperty("commitment").GetValue().ToString();
@@ -603,7 +609,7 @@ namespace Appintern.Web.Controllers
 
                 string description = HtmlUtilities.ConvertToPlainText(item.GetProperty("description").GetValue().ToString());
 
-                data.Add(new ApprenticeshipViewModel(apprenticeshipId, title, postDate, duration, commitment, compensation, jobCategories, country, employer.Id, description));
+                data.Add(new ApprenticeshipViewModel(apprenticeshipId, name, title, postDate, duration, commitment, compensation, jobCategories, country, employer.Id, description));
             }
             foreach (ApprenticeshipViewModel model in data)
             {

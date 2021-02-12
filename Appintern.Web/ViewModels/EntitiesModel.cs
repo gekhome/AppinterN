@@ -160,6 +160,7 @@ namespace Appintern.Web.ViewModels
     public class ApprenticeshipViewModel
     {
         public int ApprenticeshipID { get; set; }
+        public string Name { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Requirements { get; set; }
@@ -178,10 +179,11 @@ namespace Appintern.Web.ViewModels
         public ApprenticeshipViewModel()
         { }
 
-        public ApprenticeshipViewModel(int apprId, string title, DateTime? postDate, string duration, string commitment, string compensation,
+        public ApprenticeshipViewModel(int apprId, string name, string title, DateTime? postDate, string duration, string commitment, string compensation,
                                        string jobSector, string country, int employerId, string description = null)
         {
             ApprenticeshipID = apprId;
+            Name = name;
             Title = title;
             PostDate = postDate;
             DurationMonths = duration;
@@ -205,6 +207,7 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Author Name")]
         public string AuthorName { get; set; }
+        public string Name { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
@@ -213,11 +216,12 @@ namespace Appintern.Web.ViewModels
         public ArticleViewModel()
         { }
 
-        public ArticleViewModel(int articleId, DateTime? articleDate, string authorName, string title, string description, string country, int articleMemberId = 0)
+        public ArticleViewModel(int articleId, DateTime? articleDate, string authorName, string name, string title, string description, string country, int articleMemberId = 0)
         {
             ArticleId = articleId;
             ArticleDate = articleDate;
             AuthorName = authorName;
+            Name = name;
             Title = title;
             Description = description;
             Country = country;

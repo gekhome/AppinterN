@@ -63,9 +63,11 @@
                     <h5>Duration: <strong>@duration</strong>, Commitment: <strong>@commitment</strong>, Compensation: <strong>@compensation</strong></h5>
                 </div>
                 <div class="text">
-                    @Html.GetGridHtml(Model, "contentGrid", "CSUSKGrid")
+                    @Html.Raw(Model.Value("description"))
+                    @*@Html.GetGridHtml(Model, "contentGrid", "CSUSKGrid")*@
                 </div>
                 <!-- ADDITIONAL CONTENT HERE -->
+                <hr />
                 @RenderAdditionalContent(Model)
                 <hr />
                 <div class="text" style="font-size:1.4em">
@@ -92,17 +94,27 @@
 
 @helper RenderAdditionalContent(Apprenticeship model)
 {
-    <hr />
-    <div class="text">
-        @Html.Raw(model.Responsibilities)
-    </div>
-    <div class="text">
-        @Html.Raw(model.Qualifications)
-    </div>
-    <div class="text">
-        @Html.Raw(model.Conditions)
-    </div>
-    <div class="text">
-        @Html.Raw(model.Benefits)
-    </div>
+    if (!string.IsNullOrEmpty(model.Responsibilities.ToString()))
+    {
+        <h3>Responsibilities</h3>
+        <div class="text">
+            @Html.Raw(model.Responsibilities)
+        </div>
+    }
+
+    if (!string.IsNullOrEmpty(model.Qualifications.ToString()))
+    {
+        <h3>Qualifications</h3>
+        <div class="text">
+            @Html.Raw(model.Qualifications)
+        </div>
+    }
+
+    if (!string.IsNullOrEmpty(model.Benefits.ToString()))
+    {
+        <h3>Benefits</h3>
+        <div class="text">
+            @Html.Raw(model.Benefits)
+        </div>
+    }
 }

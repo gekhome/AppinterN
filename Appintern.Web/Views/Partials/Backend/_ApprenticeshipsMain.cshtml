@@ -23,6 +23,7 @@
         .Columns(columns =>
         {
             columns.Bound(c => c.ApprenticeshipID).Width(15).Filterable(false).Groupable(false);
+            columns.Bound(c => c.Name).Width(30).Groupable(false);
             columns.Bound(c => c.Title).Width(40).Groupable(false);
             columns.Bound(c => c.PostDate).Width(20).Format("{0:dd/MM/yyyy}").Groupable(false);
             columns.Bound(c => c.DurationMonths).Width(20).Title("Duration");

@@ -24,6 +24,7 @@ namespace Appintern.Web.DAL.Services
                 ArticleId = model.ArticleId,
                 ArticleDate = model.ArticleDate,
                 AuthorName = model.AuthorName,
+                Name = model.Name,
                 Title = model.Title,
                 Description = model.Description,
                 Country = model.Country,
@@ -40,6 +41,7 @@ namespace Appintern.Web.DAL.Services
             entity.ArticleId = model.ArticleId;
             entity.ArticleDate = model.ArticleDate;
             entity.AuthorName = model.AuthorName;
+            entity.Name = model.Name;
             entity.Title = model.Title;
             entity.Description = model.Description;
             entity.Country = model.Country;
