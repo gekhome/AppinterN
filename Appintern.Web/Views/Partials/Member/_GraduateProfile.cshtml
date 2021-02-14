@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-12">
             @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-10" })
-            @Html.EditorFor(m => m.BirthDate, new { @class = "form-control datepicker", placeholer = "mm/dd/yyyy", style = "max-width:220px;padding:2px" })
+            @Html.EditorFor(m => m.BirthDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholer = "mm/dd/yyyy", style = "max-width:220px;padding:2px" })
             @Html.ValidationMessageFor(m => m.BirthDate)
         </div>
         <div class="col-md-12">
