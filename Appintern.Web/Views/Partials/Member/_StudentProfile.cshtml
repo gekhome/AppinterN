@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-12">
             @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-10" })
-            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datepicker", placeholer="dd/mm/yyyy", style = "max-width:220px;padding:2px" })
+            @Html.TextBoxFor(m => m.BirthDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", placeholer="mm/dd/yyyy", style = "max-width:220px;padding:2px" })
             @Html.ValidationMessageFor(m => m.BirthDate)
         </div>
         <div class="col-md-12">
@@ -130,7 +130,7 @@
 <script type="text/javascript">
 
     $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker({ format: 'dd/mm/yyyy' }); //Initialise any date pickers
+        $('.datepicker').datepicker({ format: 'mm/dd/yyyy' }); //Initialise any date pickers
     });
 
     function refreshPage() {

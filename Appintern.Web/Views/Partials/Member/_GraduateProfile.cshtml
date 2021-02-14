@@ -12,18 +12,15 @@
     {
         successMessage = ViewData["successMessage"].ToString();
     }
+
+    Html.RequiresCss("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js");
+
+    @Html.RenderCssHere();
+    @Html.RenderJsHere();
+
 }
 
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
-
-
-@*<div class="contact-clean">*@
 <div class="container">
     @{
         using (Html.BeginUmbracoForm("SubmitGraduateForm", "Profiles", FormMethod.Post))
@@ -49,7 +46,6 @@
         }
     }
 </div>
-@*</div>*@
 
 
 @helper RenderProfileForm()
@@ -69,7 +65,7 @@
         </div>
         <div class="col-md-12">
             @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-10" })
-            @Html.EditorFor(m => m.BirthDate, new { @class = "form-control datepicker", placeholer = "mm/dd/yyyy", style = "max-width:220px;padding:2px" })
+            @Html.TextBoxFor(m => m.BirthDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", placeholer = "mm/dd/yyyy", style = "max-width:220px;padding:2px" })
             @Html.ValidationMessageFor(m => m.BirthDate)
         </div>
         <div class="col-md-12">
@@ -134,7 +130,7 @@
 <script type="text/javascript">
 
     $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker("option", "dateFormat", "dd/mm/yyyy");
+        $('.datepicker').datepicker({ format: 'mm/dd/yyyy' }); //Initialise any date pickers
     });
 
     function refreshPage() {
