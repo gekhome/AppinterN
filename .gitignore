@@ -372,3 +372,5 @@ healthchecksdb
 
 # Ignore the Models Builder models out of date flag
 **/App_Data/Models/ood.flag
+/Appintern.Web/Views/Partials/Search/_SearchFormNOTHIS.cshtml
+/Appintern.Web/Media/gqvheiat
