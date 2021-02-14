@@ -43,9 +43,9 @@ namespace Appintern.Web.ViewModels
         [Required(ErrorMessage = "Full name cannot be blank")]
         public string FullName { get; set; }
 
-        [Display(Name = "Date of Birth (mm/dd/yyyy)")]
+        [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Gender")]
@@ -99,9 +99,9 @@ namespace Appintern.Web.ViewModels
         [Required(ErrorMessage = "Full name cannot be blank")]
         public string FullName { get; set; }
 
-        [Display(Name = "Date of Birth (mm/dd/yyyy)")]
+        [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Gender")]

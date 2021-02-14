@@ -16,9 +16,11 @@ namespace Appintern.Web.ViewModels
         public string Login { get; set; }
 
         public string Email { get; set; }
+
         public string Type { get; set; }
 
         public string Group { get; set; }
+
         public DateTime LastLogin { get; set; }
 
         public DateTime CreatedOn { get; set; }

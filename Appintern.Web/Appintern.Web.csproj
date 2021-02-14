@@ -348,7 +348,18 @@
     <Content Include="Images\33.jpg" />
     <Content Include="Images\44.jpg" />
     <Content Include="Images\apprenticeship-logo-1.jpg" />
+    <Content Include="Images\metro\orderedList0.png" />
+    <Content Include="Images\metro\orderedList1.png" />
+    <Content Include="Images\metro\orderedList2.png" />
+    <Content Include="Images\metro\orderedList3.png" />
+    <Content Include="Images\metro\orderedList4.png" />
+    <Content Include="Images\metro\orderedList5.png" />
+    <Content Include="Images\metro\orderedList6.png" />
+    <Content Include="Images\metro\orderedList7.png" />
+    <Content Include="Images\metro\orderedList8.png" />
+    <Content Include="Images\metro\orderedList9.png" />
     <Content Include="img\Error.png" />
+    <Content Include="img\home-bg.jpg" />
     <Content Include="img\Success.png" />
     <Content Include="img\Warning.png" />
     <Content Include="Media\0oifek1a\picture2.png" />
@@ -1692,6 +1703,7 @@
     <Compile Include="App_Data\Models\Content.generated.cs" />
     <Compile Include="App_Data\Models\ContentControls.generated.cs" />
     <Compile Include="App_Data\Models\Dashboard.generated.cs" />
+    <Compile Include="App_Data\Models\DashboardMember.generated.cs" />
     <Compile Include="App_Data\Models\Employer.generated.cs" />
     <Compile Include="App_Data\Models\Employers.generated.cs" />
     <Compile Include="App_Data\Models\Employment.generated.cs" />
@@ -1749,6 +1761,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\TasksMemberController.cs" />
     <Compile Include="Controllers\LiaisonsController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\AmbassadorsController.cs" />
@@ -1855,6 +1868,7 @@
       <DependentUpon>MembersArticles.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EditAvatarModel.cs" />
+    <Compile Include="ViewModels\UmbracoEntitiesModel.cs" />
     <Compile Include="ViewModels\ProfilesModel.cs" />
     <Compile Include="ViewModels\FaqModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
@@ -2034,6 +2048,11 @@
     <Content Include="Views\Partials\SearchAll\_Search2Form.cshtml" />
     <Content Include="Views\SearchCustom1.cshtml" />
     <Content Include="Views\Partials\SearchAll\_Search2Results.cshtml" />
+    <Content Include="Views\Shared\_MemberLayout.cshtml" />
+    <Content Include="Views\MemberBase.cshtml" />
+    <Content Include="Views\DashboardMember.cshtml" />
+    <Content Include="Views\Partials\TasksMember\_TasksHome.cshtml" />
+    <Content Include="Views\Partials\TasksMember\_MemberArticles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

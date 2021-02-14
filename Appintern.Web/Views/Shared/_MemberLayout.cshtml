@@ -1,0 +1,117 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var member = System.Web.Security.Membership.GetUser();
+    var loggedMember = Members.GetCurrentMember();
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - AppInterN</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://kendo.cdn.telerik.com/2019.3.1023/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content//b4/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/SiteKendo.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/scripts/messagebox/messagebox.css")" rel="stylesheet" type="text/css" />
+
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.aspnetmvc.min.js"></script>
+    <script src="@Url.Content("~/scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/scripts/b4/kendo.modernizr.custom.js")"></script>
+    <script src="@Url.Content("~/scripts/messagebox/messagebox.js")"></script>
+    <script src="@Url.Content("~/scripts/custom/jspCustom.js")"></script>
+
+
+    <style>
+        a.mya:link {
+            color: lightgray !important;
+            text-decoration: none;
+        }
+
+        a.mya:visited {
+            color: lightgray !important;
+            text-decoration: none;
+        }
+
+        a.mya:hover {
+            color: white !important;
+            text-decoration: none;
+        }
+
+        a.mya:active {
+            color: lightgray !important;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body class="k-content">
+    <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+        <div class="container-fluid d-flex justify-content-between p-0">
+            <h1 class="navbar-brand d-flex align-items-center">
+                <a class="mya" href='@Url.Action("RenderHome", "Content")'>
+                    <img src="~/Images/site-logo-home.png" width="36" height="36" style="margin-right:10px" />AppInternN Home >
+                </a>
+            </h1>
+            <button id="configure" class="k-rpanel-toggle k-button k-primary btn-toggle">
+                <span class="k-icon k-i-menu"></span>
+            </button>
+            @if (member != null && Umbraco.MemberIsLoggedOn())
+            {
+                <span style="float:right;margin-left:20px;margin-right:20px;color:whitesmoke;font-size:18px">
+                    Logged user: &nbsp;
+                    <strong><i class="fa fa-user-circle-o" aria-hidden="true"></i> @loggedMember.Name</strong>
+                </span>
+            }
+        </div>
+    </nav>
+
+    <div id="responsive-panel" class="navbar navbar-dark bg-light">
+        @(Html.Kendo().Menu()
+            .Name("Menu")
+            .HtmlAttributes(new { style="width:100%" })
+            .Items(items =>
+            {
+                items.Add().Text("News & Events").ImageUrl(Url.Content("~/img/menu-icons/appbar.newspaper.png")).Action("RenderMemberArticles", "TasksMember");
+                items.Add().Text("Apprenticeships").ImageUrl(Url.Content("~/img/menu-icons/appbar.group.png")).Action("RenderDashboardHome", "BackEnd");
+                items.Add().Text("Job Offers").ImageUrl(Url.Content("~/img/menu-icons/appbar.home.people.png")).Action("RenderDashboardHome", "BackEnd");
+                items.Add().Text("Search Students").ImageUrl(Url.Content("~/img/menu-icons/appbar.man.suitcase.fast.png")).Enabled(false);
+            })
+        )
+    </div>
+
+    <main>
+        <div class="row">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer text-center d-flex align-items-center" style="background-color:dimgray">
+        <div class="container-fluid">
+            <p style="color:white">Copyright © @DateTime.Now.Year @Umbraco.GetDictionaryValue(key: "Footer.CopyrightText") OAED.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+</body>
+</html>

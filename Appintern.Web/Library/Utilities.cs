@@ -5,10 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Umbraco.Core;
-using Umbraco.Core.Composing;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
-using Umbraco.Web.Composing;
 using CM = Umbraco.Web.PublishedModels;
 
 namespace Appintern.Web.Library

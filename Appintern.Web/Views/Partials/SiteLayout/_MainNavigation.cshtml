@@ -9,7 +9,6 @@
 
     var member = System.Web.Security.Membership.GetUser();
     var loggedMember = Members.GetCurrentMember();
-
     string memberType = "";
     string urlSlug = "";
     string baseLink = "";
@@ -21,7 +20,7 @@
         memberType = loggedMember.ContentType.Alias.ToString();
         baseLink = memberType.ToString().ToLower() + "s";
         displayName = Members.GetCurrentMemberProfileModel().Name;
-        displayUser = displayName.Length > 20 ? @displayName.Substring(0, 20) + "..." : @displayName;
+        displayUser = displayName.Length > 10 ? @displayName.Substring(0, 10) + "..." : @displayName;
     }
 }
 
@@ -68,7 +67,7 @@
                 {
                     <span style="float:right;margin-left:20px;margin-top:10px">
                         <strong><i class="fa fa-user-circle-o" aria-hidden="true"></i></strong>
-                        <a class="user" href="/@baseLink/@urlSlug" title="Edit profile for @displayName">@displayUser</a>
+                        <a class="user" href="/@baseLink/@urlSlug" title="Edit profile for @displayName">@member.UserName</a>
                     </span>
                 }
                 <ul class="nav navbar-nav navbar-right" style="font-size:14px">

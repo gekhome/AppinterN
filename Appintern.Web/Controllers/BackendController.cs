@@ -279,72 +279,63 @@ namespace Appintern.Web.Controllers
         {
             if (memberType == "ambassador")
             {
-                Ambassador articleMember = item.GetProperty("articleMember").GetValue() as Ambassador;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Ambassador articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "employer")
             {
-                Employer articleMember = item.GetProperty("articleMember").GetValue() as Employer;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Employer articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "graduate")
             {
-                Graduate articleMember = item.GetProperty("articleMember").GetValue() as Graduate;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Graduate articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "liaison")
             {
-                Liaison articleMember = item.GetProperty("articleMember").GetValue() as Liaison;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Liaison articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "organization")
             {
-                Organization articleMember = item.GetProperty("articleMember").GetValue() as Organization;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Organization articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "school")
             {
-                School articleMember = item.GetProperty("articleMember").GetValue() as School;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is School articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "student")
             {
-                Student articleMember = item.GetProperty("articleMember").GetValue() as Student;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Student articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "teacher")
             {
-                Teacher articleMember = item.GetProperty("articleMember").GetValue() as Teacher;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is Teacher articleMember)
                     return articleMember.Id;
                 else
                     return 0;
             }
             else if (memberType == "Member")
             {
-                CM.Member articleMember = item.GetProperty("articleMember").GetValue() as CM.Member;
-                if (articleMember != null)
+                if (item.GetProperty("articleMember").GetValue() is CM.Member articleMember)
                     return articleMember.Id;
                 else
                     return 0;
@@ -1367,5 +1358,27 @@ namespace Appintern.Web.Controllers
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets current logged in Member. Returns Id, Name, and Type
+        /// </summary>
+        /// <returns>model with Id, Name and member Type</returns>
+        public LoggedMemberModel GetLoggedMember()
+        {
+            IPublishedContent loggedMember = Members.GetCurrentMember();
+            string memberType = loggedMember.ContentType.Alias.ToString();
+
+            int memberId = loggedMember.Id;
+            string memberName = loggedMember.Name;
+
+            LoggedMemberModel model = new LoggedMemberModel()
+            {
+                MemberId = memberId,
+                MemberName = memberName,
+                MemberType = memberType
+            };
+            return model;
+        }
+
     }
 }
