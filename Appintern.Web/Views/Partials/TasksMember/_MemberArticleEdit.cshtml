@@ -7,11 +7,7 @@
     ViewBag.Title = "News Edit Form";
     Layout = "~/Views/Shared/_LayoutMin.cshtml";
     var articleId = Model.ArticleId;
-    string successMessage = "";
-    if (ViewData["successMessage"] != null)
-    {
-        successMessage = ViewData["successMessage"].ToString();
-    }
+    string successMessage = ViewData["successMessage"] != null ? ViewData["successMessage"].ToString() : "";
 }
 
 <div class="page-header" style="margin:5px 60px 5px 60px;width:100%">
