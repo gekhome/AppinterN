@@ -22,7 +22,8 @@
         .Columns(columns =>
         {
             columns.Bound(c => c.ArticleId).Width(10).Filterable(false);
-            columns.Bound(c => c.ArticleName).Width(20);
+            columns.Bound(c => c.ArticleName).Width(25);
+            columns.Bound(c => c.ArticleDate).Width(25);
             columns.Bound(c => c.Title).Width(30);
             columns.Bound(c => c.AuthorName).Width(30);
             columns.Bound(c => c.Categories).Width(30);
@@ -31,7 +32,7 @@
             columns.Command(command => { command.Edit(); command.Destroy(); }).Width(33);
             columns.Template(@<text></text>)
             .ClientTemplate(
-            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("UmbracoArticleEdit", "TasksMember") + "?articleId=#=ArticleId#' target = _blank>Content</a>"
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("MemberArticleEdit", "TasksMember") + "?articleId=#=ArticleId#' target = _blank>Content</a>"
             ).Width(20);
         })
         .ToolBar(toolBar =>
@@ -66,6 +67,10 @@
         )
 </div>
 
+<script type="text/javascript">
+    //set current to the "en-GB" culture script. Required!
+    kendo.culture("en-GB");
+</script>
 
 <script type="text/javascript">
 

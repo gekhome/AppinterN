@@ -98,7 +98,7 @@ namespace Appintern.Web.Controllers
 
         #endregion
 
-        #region ARTICLES PUBLISHING GRID AND FORM
+        #region ARTICLES PUBLISHING GRID
 
         public ActionResult RenderMemberArticles()
         {
@@ -147,10 +147,10 @@ namespace Appintern.Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult UmbracoArticle_Destroy([DataSourceRequest] DataSourceRequest request, UmbracoArticleModel data)
+        public ActionResult UmbracoArticle_Destroy([DataSourceRequest] DataSourceRequest request, UmbracoArticleModel model)
         {
 
-            return Json(new[] { data }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
 
         public void UpdateArticleGridFields(IContent article, UmbracoArticleModel model)
@@ -163,6 +163,7 @@ namespace Appintern.Web.Controllers
 
             article.SetValue(Article.GetModelPropertyType(x => x.Title).Alias, model.Title);
             article.SetValue(Article.GetModelPropertyType(x => x.AuthorName).Alias, model.AuthorName);
+            article.SetValue(Article.GetModelPropertyType(x => x.ArticleDate).Alias, model.ArticleDate);
             article.SetValue(Article.GetModelPropertyType(x => x.MetaDescription).Alias, model.MetaDescription);
             article.SetValue(Article.GetModelPropertyType(x => x.Category).Alias, JsonConvert.SerializeObject(categories));
             article.SetValue(Article.GetModelPropertyType(x => x.MetaKeywords).Alias, JsonConvert.SerializeObject(keywords));
@@ -187,7 +188,7 @@ namespace Appintern.Web.Controllers
                 {
                     int articleId = item.Id;
                     string name = item.Name;
-                    //DateTime articleDate = (DateTime)item.GetProperty("articleDate").GetValue();
+                    DateTime articleDate = (DateTime)item.GetProperty("articleDate").GetValue();
                     string authorName = item.GetProperty("authorName").GetValue().ToString();
                     string title = item.GetProperty("title").GetValue().ToString();
                     var description = item.GetProperty("description").GetValue();
@@ -201,7 +202,7 @@ namespace Appintern.Web.Controllers
                     {
                         ArticleId = articleId,
                         ArticleName = name,
-                        //ArticleDate = articleDate,
+                        ArticleDate = articleDate,
                         AuthorName = authorName,
                         Title = title,
                         Description = (IHtmlString)description,
@@ -272,6 +273,27 @@ namespace Appintern.Web.Controllers
                 return 0;
         }
 
-         #endregion
+        #endregion
+
+        #region ARTICLE EDIT FORM
+
+        public ActionResult MemberArticleEdit(int articleId)
+        {
+            UmbracoArticleModel model = new UmbracoArticleModel();
+            model.ArticleId = articleId;
+
+            return PartialView(GetTasksViewPath("_MemberArticleEdit"), model);
         }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitArticleForm(UmbracoArticleModel model)
+        {
+            ViewData["successMessage"] = "Your form was successfully submitted at " + string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
+
+            return PartialView(GetTasksViewPath("_MemberArticleEdit"), model);
+            //return RedirectToCurrentUmbracoPage(); // does not work for simple MVC form
+        }
+
+        #endregion
     }
+}

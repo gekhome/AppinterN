@@ -45,7 +45,7 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/ΜΜ/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Gender")]
@@ -101,7 +101,7 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/ΜΜ/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Gender")]

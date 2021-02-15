@@ -15,7 +15,7 @@ namespace Appintern.Web.ViewModels
         public string ArticleName { get; set; }
 
         [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Article Date")]
         public DateTime? ArticleDate { get; set; }
 
