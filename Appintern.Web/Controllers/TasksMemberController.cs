@@ -156,6 +156,12 @@ namespace Appintern.Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UmbracoArticle_Destroy([DataSourceRequest] DataSourceRequest request, UmbracoArticleModel model)
         {
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(model.ArticleId);
+
+            contentService.Unpublish(article);
+            contentService.Delete(article); // here content getting deleted
+            contentService.EmptyRecycleBin(userId:-1);
 
             return Json(new[] { model }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
