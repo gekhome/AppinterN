@@ -20,6 +20,9 @@ using Umbraco.Web.Composing;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.PublishedModels;
 using CM = Umbraco.Web.PublishedModels;
+using Newtonsoft.Json.Linq;
+using Appintern.Core.Services;
+using System.IO;
 
 namespace Appintern.Web.Controllers
 {
@@ -32,6 +35,8 @@ namespace Appintern.Web.Controllers
         private readonly Utilities utilities = new Utilities();
         private readonly ILogger _logger;
         private LoggedMemberModel loggedMember;
+        private readonly IDataTypeValueService _dataTypeValueService;
+        private readonly IMediaUploadService _mediaUploadService;
 
         private readonly DataAccess dataAccess = new DataAccess();
         ServiceContext _serviceContext = Current.Services;
@@ -43,13 +48,15 @@ namespace Appintern.Web.Controllers
         private const int HOME_PAGE_ID = 1080;
         private const int DASHBOARD_PAGE_ID = 1189;
         private const int TASKS_MAIN_PAGE_ID = 1539;
+        private const int MEDIA_NEWS_FOLDER_ID = 1134;
         private const int APPRENTICESHIP_MAIN_PAGE_ID = 1529;
 
-        public TasksMemberController(ILogger logger)
+        public TasksMemberController(ILogger logger, IDataTypeValueService dataTypeValueService, IMediaUploadService mediaUploadService)
         {
             _logger = logger;
+            _dataTypeValueService = dataTypeValueService;
+            _mediaUploadService = mediaUploadService;
 
-            // Just testing to have this elsewhere in the project
             loggedMember = GetLoggedMember();
         }
 
@@ -158,15 +165,11 @@ namespace Appintern.Web.Controllers
             loggedMember = GetLoggedMember();
             var memberUdi = Current.Services.MemberService.GetById(loggedMember.MemberId).GetUdi();
 
-            List<string> categories = model.Categories.Split(',').ToList();
-            List<string> keywords = model.MetaKeywords.Split(',').ToList();
-
+            article.Name = model.ArticleName;
             article.SetValue(Article.GetModelPropertyType(x => x.Title).Alias, model.Title);
             article.SetValue(Article.GetModelPropertyType(x => x.AuthorName).Alias, model.AuthorName);
             article.SetValue(Article.GetModelPropertyType(x => x.ArticleDate).Alias, model.ArticleDate);
-            article.SetValue(Article.GetModelPropertyType(x => x.MetaDescription).Alias, model.MetaDescription);
-            article.SetValue(Article.GetModelPropertyType(x => x.Category).Alias, JsonConvert.SerializeObject(categories));
-            article.SetValue(Article.GetModelPropertyType(x => x.MetaKeywords).Alias, JsonConvert.SerializeObject(keywords));
+            article.SetValue(Article.GetModelPropertyType(x => x.MetaName).Alias, model.MetaName);
             article.SetValue(Article.GetModelPropertyType(x => x.ArticleMember).Alias, memberUdi);
         }
 
@@ -211,7 +214,7 @@ namespace Appintern.Web.Controllers
                         MetaName = metaName,
                         MetaDescription = metaDescription,
                         MetaKeywords = utilities.ConcatenateStringArray(metaKeywords),
-                        Categories = utilities.ConcatenateStringArray(categories)
+                        SelectedCategories = categories
                     });
                 }
             }
@@ -275,23 +278,134 @@ namespace Appintern.Web.Controllers
 
         #endregion
 
-        #region ARTICLE EDIT FORM
+        #region ARTICLE DETAILS FORM
 
         public ActionResult MemberArticleEdit(int articleId)
         {
-            UmbracoArticleModel model = new UmbracoArticleModel();
-            model.ArticleId = articleId;
+            UmbracoArticleModel model = GetArticleRecord(articleId);
+            model.Countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
 
             return PartialView(GetTasksViewPath("_MemberArticleEdit"), model);
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitArticleForm(UmbracoArticleModel model)
+        public ActionResult SubmitArticleDetails(UmbracoArticleModel model)
         {
-            ViewData["successMessage"] = "Your form was successfully submitted at " + string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(model.ArticleId);
+
+            if (model != null && ModelState.IsValid)
+            {
+                UpdateArticleDetails(article, model);
+                contentService.SaveAndPublish(article);
+            }
+
+            // required to set the sources again on post
+            model.Countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
+            model.Categories = utilities.GetContentCategories();
+
+            ViewData["successMessage"] = "Detail data were successfully saved at " + string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
 
             return PartialView(GetTasksViewPath("_MemberArticleEdit"), model);
-            //return RedirectToCurrentUmbracoPage(); // does not work for simple MVC form
+        }
+
+        public UmbracoArticleModel GetArticleRecord(int articleId)
+        {
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(articleId);
+
+            JArray rawCategories = (JArray)JsonConvert.DeserializeObject(article.GetValue("category").ToString());
+            JArray rawKeywords = (JArray)JsonConvert.DeserializeObject(article.GetValue("metaKeywords").ToString());
+            JArray rawCountry = (JArray)JsonConvert.DeserializeObject(article.GetValue("country").ToString());
+
+            string[] taggedCategories = rawCategories.ToObject<string[]>();
+            string[] taggedKeywords = rawKeywords.ToObject<string[]>();
+            string[] countries = rawCountry.ToObject<string[]>();
+
+            string keywords = utilities.ConcatenateStringArray(taggedKeywords);
+            string country = countries[0];
+
+            UmbracoArticleModel model = new UmbracoArticleModel()
+            {
+                ArticleId = article.Id,
+                ArticleName = article.Name,
+                ArticleDate = article.GetValue("articleDate") != null ? (DateTime)article.GetValue("articleDate") : DateTime.Now.Date,
+                AuthorName = article.GetValue("authorName") != null ? article.GetValue("authorName").ToString() : "",
+                Title = article.GetValue("title") != null ? article.GetValue("title").ToString() : "",
+                MetaName = article.GetValue("metaName") != null ? article.GetValue("metaName").ToString() : "",
+                MetaDescription = article.GetValue("metaDescription") != null ? article.GetValue("metaDescription").ToString() : "",
+                Country = country,
+                MetaKeywords = keywords,
+                SelectedCategories = taggedCategories,
+                Categories = utilities.GetContentCategories()
+            };
+
+            return model;
+        }
+
+        public void UpdateArticleDetails(IContent article, UmbracoArticleModel model)
+        {
+            List<string> keywords = model.MetaKeywords.Split(',').ToList();
+            List<string> categories = model.SelectedCategories.ToList();
+
+            var country = JsonConvert.SerializeObject(new[] { model.Country });
+
+            article.Name = model.ArticleName;
+            article.SetValue(Article.GetModelPropertyType(x => x.Title).Alias, model.Title);
+            article.SetValue(Article.GetModelPropertyType(x => x.AuthorName).Alias, model.AuthorName);
+            article.SetValue(Article.GetModelPropertyType(x => x.ArticleDate).Alias, model.ArticleDate);
+            article.SetValue(Article.GetModelPropertyType(x => x.MetaName).Alias, model.MetaName);
+            article.SetValue(Article.GetModelPropertyType(x => x.MetaDescription).Alias, model.MetaDescription);
+            article.SetValue(Article.GetModelPropertyType(x => x.Category).Alias, JsonConvert.SerializeObject(categories));
+            article.SetValue(Article.GetModelPropertyType(x => x.MetaKeywords).Alias, JsonConvert.SerializeObject(keywords));
+            article.SetValue(Article.GetModelPropertyType(x => x.Country).Alias, JsonConvert.SerializeObject(new[] { model.Country }));
+        }
+
+        #endregion
+
+
+        #region ARTICLE IMAGE FORM
+
+        public ActionResult MemberArticleImage(int articleId)
+        {
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(articleId);
+            ArticleImageModel model = new ArticleImageModel();
+
+            string mediaUdi = article.GetValue("mainImage") != null ? article.GetValue("mainImage").ToString() : "";
+
+            if (!string.IsNullOrEmpty(mediaUdi))
+            {
+                Udi imageUdi = Udi.Parse(mediaUdi);
+                model.ImageUrl = Umbraco.PublishedContent(imageUdi).Url();
+            }
+            model.ArticleId = articleId;
+
+            return PartialView(GetTasksViewPath("_MemberArticleImage"), model);
+        }
+
+        public ActionResult SubmitArticleImage(ArticleImageModel model)
+        {
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(model.ArticleId);
+
+            if (model.MainImage != null && ModelState.IsValid)
+            {
+                string extension = Path.GetExtension(model.MainImage.FileName).Replace(".", "");
+                if (!utilities.ValidImageFileExtension(extension))
+                {
+                    ModelState.AddModelError("", "Only image file types are allowed (png, jpg, jpeg, gif, webp, tiff)");
+
+                    return PartialView(GetTasksViewPath("_MemberArticleImage"), model);
+                }
+                var imageUdi = _mediaUploadService.CreateMediaItemFromFileUpload(model.MainImage, MEDIA_NEWS_FOLDER_ID, "Image");
+                article.SetValue(Article.GetModelPropertyType(x => x.MainImage).Alias, imageUdi);
+
+                contentService.SaveAndPublish(article);
+                ViewData["successMessage"] = string.Format(" The file <b><i>{0}</i></b> was succesfully uploaded.<br />", model.MainImage.FileName);
+            }
+
+            return PartialView(GetTasksViewPath("_MemberArticleImage"), model);
         }
 
         #endregion

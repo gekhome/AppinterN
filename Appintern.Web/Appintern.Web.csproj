@@ -2055,6 +2055,7 @@
     <Content Include="Views\Partials\TasksMember\_MemberArticles.cshtml" />
     <Content Include="Views\Shared\_LayoutMin.cshtml" />
     <Content Include="Views\Partials\TasksMember\_MemberArticleEdit.cshtml" />
+    <Content Include="Views\Partials\TasksMember\_MemberArticleImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

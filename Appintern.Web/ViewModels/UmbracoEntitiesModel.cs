@@ -1,7 +1,9 @@
 ﻿using Appintern.Web.Library;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using System.Web.Mvc;
 using Umbraco.Core.Models;
 
 namespace Appintern.Web.ViewModels
@@ -17,7 +19,7 @@ namespace Appintern.Web.ViewModels
         [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Article Date")]
-        public DateTime? ArticleDate { get; set; }
+        public DateTime ArticleDate { get; set; }
 
         [Display(Name = "Author Name")]
         public string AuthorName { get; set; }
@@ -28,15 +30,11 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Article Description")]
         public IHtmlString Description { get; set; }
 
-        [Display(Name = "Main Image")]
-        //[MaxFileSize(100 * 1024, ErrorMessage = "Maximum allowed file size is {0} bytes")]
-        public HttpPostedFileBase MainImage { get; set; }
-
         [Display(Name = "Article Member")]
         public int MemberId { get; set; }
 
         [Display(Name = "Categories")]
-        public string Categories { get; set; }
+        public string[] SelectedCategories { get; set; }
 
         [Display(Name = "Country")]
         public string Country { get; set; }
@@ -47,7 +45,24 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Meta Description")]
         public string MetaDescription { get; set; }
 
-        [Display(Name = "Meta Keywords")]
+        [Display(Name = "Meta Keywords (comma separated keywords)")]
         public string MetaKeywords { get; set; }
+
+        public List<string> Categories { get; set; }
+
+        public IEnumerable<SelectListItem> Countries { get; set; }
+    }
+
+    public class ArticleImageModel
+    {
+        [Required(ErrorMessage = "You must select an image file before submitting the form")]
+        [Display(Name = "Main Image")]
+        [MaxFileSize(200 * 1024, ErrorMessage = "Maximum allowed file size is {0} bytes")]
+        public HttpPostedFileBase MainImage { get; set; }
+
+        public int ArticleId { get; set; }
+        public string ImageUrl { get; set; }
+
+        public string ImageUdi { get; set; }
     }
 }

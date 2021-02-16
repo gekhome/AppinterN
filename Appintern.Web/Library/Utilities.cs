@@ -263,6 +263,31 @@ namespace Appintern.Web.Library
             return memberTypes;
         }
 
+        public List<string> GetContentCategories()
+        {
+            List<string> categories = new List<string>
+            {
+                "News",
+                "Events",
+                "Jobs",
+                "Employment",
+                "Apprenticeships"
+            };
+
+            return categories;
+        }
+
+        public bool ValidImageFileExtension(string extension)
+        {
+            string[] extensions = { "PNG", "JPEG", "JPG", "GIF", "WEBP", "TIFF" };
+
+            List<string> valid_extensions = new List<string>(extensions);
+
+            if (valid_extensions.Contains(extension.ToUpper()))
+                return true;
+            return false;
+        }
+
     }
 
     public class MaxFileSizeAttribute : ValidationAttribute

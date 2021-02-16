@@ -87,7 +87,7 @@ namespace Umbraco.Web.PublishedModels
 		public global::Newtonsoft.Json.Linq.JToken ContentGrid => global::Umbraco.Web.PublishedModels.ContentControls.GetContentGrid(this);
 
 		///<summary>
-		/// Description: Enter a description of the page
+		/// Description: Enter a description or content of the page
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("description")]

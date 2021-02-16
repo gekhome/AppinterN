@@ -520,7 +520,7 @@ namespace Appintern.Web.Controllers
                     member.SetValue(CM.Member.GetModelPropertyType(p => p.Phone).Alias, model.Phone);
                     member.SetValue(CM.Member.GetModelPropertyType(p => p.Address).Alias, model.Address);
                     member.SetValue(CM.Member.GetModelPropertyType(p => p.Occupation).Alias, model.Occupation);
-                    // For dropdown data types we need to serialize before setting the valuw
+                    // For dropdown data types we need to serialize before setting the value
                     member.SetValue(CM.Member.GetModelPropertyType(p => p.JobSector).Alias, JsonConvert.SerializeObject(new[] { model.JobSector }));
 
                     Current.Services.MemberService.Save(member);

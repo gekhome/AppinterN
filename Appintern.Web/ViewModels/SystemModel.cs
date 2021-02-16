@@ -27,4 +27,8 @@ namespace Appintern.Web.ViewModels
         public string MemberGroupText { get; set; }
     }
 
+    public class CountriesViewModel
+    {
+        public string Country { get; set; }
+    }
 }
