@@ -21,6 +21,9 @@
         <EntityTypeShape EntityType="AppinternWorksModel.Schools" Width="1.5" PointX="8" PointY="0.5" />
         <EntityTypeShape EntityType="AppinternWorksModel.Apprenticeships" Width="1.5" PointX="4.25" PointY="4.625" />
         <EntityTypeShape EntityType="AppinternWorksModel.Articles" Width="1.5" PointX="6.125" PointY="4.625" />
+        <EntityTypeShape EntityType="AppinternWorksModel.rep_MembersApprenticeships" Width="2.375" PointX="10.625" PointY="5.625" />
+        <EntityTypeShape EntityType="AppinternWorksModel.rep_MembersArticles" Width="1.875" PointX="8.375" PointY="5.625" />
+        <EntityTypeShape EntityType="AppinternWorksModel.sql_MembersAll" Width="1.5" PointX="6.125" PointY="7.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -230,6 +230,59 @@
           <Property Name="TeachingYears" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppinternWorks.dbo.rep_MembersApprenticeships' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_MembersApprenticeships">
+          <Key>
+            <PropertyRef Name="AppID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="AppID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TradeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostDate" Type="date" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DurationMonths" Type="nvarchar" MaxLength="50" />
+          <Property Name="Commitment" Type="nvarchar" MaxLength="50" />
+          <Property Name="Compensation" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppinternWorks.dbo.rep_MembersArticles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_MembersArticles">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="FullAddress" Type="nvarchar" MaxLength="329" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ArticleDate" Type="date" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sql_MembersAll">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="FullAddress" Type="nvarchar" MaxLength="329" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="AppinternWorksModelStoreContainer">
           <EntitySet Name="Ambassadors" EntityType="Self.Ambassadors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Apprenticeships" EntityType="Self.Apprenticeships" Schema="dbo" store:Type="Tables" />
@@ -247,6 +300,48 @@
           <EntitySet Name="Schools" EntityType="Self.Schools" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rep_MembersApprenticeships" EntityType="Self.rep_MembersApprenticeships" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_MembersApprenticeships].[AppID] AS [AppID], 
+    [rep_MembersApprenticeships].[MemberID] AS [MemberID], 
+    [rep_MembersApprenticeships].[TradeName] AS [TradeName], 
+    [rep_MembersApprenticeships].[Phone] AS [Phone], 
+    [rep_MembersApprenticeships].[Email] AS [Email], 
+    [rep_MembersApprenticeships].[PostDate] AS [PostDate], 
+    [rep_MembersApprenticeships].[Title] AS [Title], 
+    [rep_MembersApprenticeships].[Description] AS [Description], 
+    [rep_MembersApprenticeships].[DurationMonths] AS [DurationMonths], 
+    [rep_MembersApprenticeships].[Commitment] AS [Commitment], 
+    [rep_MembersApprenticeships].[Compensation] AS [Compensation], 
+    [rep_MembersApprenticeships].[JobSector] AS [JobSector], 
+    [rep_MembersApprenticeships].[Country] AS [Country]
+    FROM [dbo].[rep_MembersApprenticeships] AS [rep_MembersApprenticeships]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_MembersArticles" EntityType="Self.rep_MembersArticles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_MembersArticles].[ArticleId] AS [ArticleId], 
+    [rep_MembersArticles].[MemberID] AS [MemberID], 
+    [rep_MembersArticles].[Name] AS [Name], 
+    [rep_MembersArticles].[Email] AS [Email], 
+    [rep_MembersArticles].[FullAddress] AS [FullAddress], 
+    [rep_MembersArticles].[Country] AS [Country], 
+    [rep_MembersArticles].[LoginName] AS [LoginName], 
+    [rep_MembersArticles].[ArticleDate] AS [ArticleDate], 
+    [rep_MembersArticles].[AuthorName] AS [AuthorName], 
+    [rep_MembersArticles].[Title] AS [Title], 
+    [rep_MembersArticles].[Description] AS [Description]
+    FROM [dbo].[rep_MembersArticles] AS [rep_MembersArticles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sql_MembersAll" EntityType="Self.sql_MembersAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sql_MembersAll].[MemberID] AS [MemberID], 
+    [sql_MembersAll].[Name] AS [Name], 
+    [sql_MembersAll].[Email] AS [Email], 
+    [sql_MembersAll].[FullAddress] AS [FullAddress], 
+    [sql_MembersAll].[Country] AS [Country], 
+    [sql_MembersAll].[LoginName] AS [LoginName]
+    FROM [dbo].[sql_MembersAll] AS [sql_MembersAll]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -304,6 +399,9 @@
           <EntitySet Name="Schools" EntityType="AppinternWorksModel.Schools" />
           <EntitySet Name="Apprenticeships" EntityType="AppinternWorksModel.Apprenticeships" />
           <EntitySet Name="Articles" EntityType="AppinternWorksModel.Articles" />
+          <EntitySet Name="rep_MembersApprenticeships" EntityType="AppinternWorksModel.rep_MembersApprenticeships" />
+          <EntitySet Name="rep_MembersArticles" EntityType="AppinternWorksModel.rep_MembersArticles" />
+          <EntitySet Name="sql_MembersAll" EntityType="AppinternWorksModel.sql_MembersAll" />
         </EntityContainer>
         <EntityType Name="MemberGroups">
           <Key>
@@ -494,6 +592,53 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ArticleMemberID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="rep_MembersApprenticeships">
+          <Key>
+            <PropertyRef Name="AppID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="AppID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TradeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DurationMonths" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Commitment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Compensation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="rep_MembersArticles">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FullAddress" Type="String" MaxLength="329" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleDate" Type="DateTime" Precision="0" />
+          <Property Name="AuthorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sql_MembersAll">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FullAddress" Type="String" MaxLength="329" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -739,6 +884,54 @@
                 <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
                 <ScalarProperty Name="ArticleDate" ColumnName="ArticleDate" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_MembersApprenticeships">
+            <EntityTypeMapping TypeName="AppinternWorksModel.rep_MembersApprenticeships">
+              <MappingFragment StoreEntitySet="rep_MembersApprenticeships">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
+                <ScalarProperty Name="Compensation" ColumnName="Compensation" />
+                <ScalarProperty Name="Commitment" ColumnName="Commitment" />
+                <ScalarProperty Name="DurationMonths" ColumnName="DurationMonths" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_MembersArticles">
+            <EntityTypeMapping TypeName="AppinternWorksModel.rep_MembersArticles">
+              <MappingFragment StoreEntitySet="rep_MembersArticles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="ArticleDate" ColumnName="ArticleDate" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sql_MembersAll">
+            <EntityTypeMapping TypeName="AppinternWorksModel.sql_MembersAll">
+              <MappingFragment StoreEntitySet="sql_MembersAll">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

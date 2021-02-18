@@ -1830,6 +1830,12 @@
     <Compile Include="DAL\Organizations.cs">
       <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\rep_MembersApprenticeships.cs">
+      <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\rep_MembersArticles.cs">
+      <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Schools.cs">
       <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
     </Compile>
@@ -1843,6 +1849,9 @@
     <Compile Include="DAL\Services\GraduateService.cs" />
     <Compile Include="DAL\Services\TeacherService.cs" />
     <Compile Include="DAL\Services\StudentService.cs" />
+    <Compile Include="DAL\sql_MembersAll.cs">
+      <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Students.cs">
       <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
     </Compile>

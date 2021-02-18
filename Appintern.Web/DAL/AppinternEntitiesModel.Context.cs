@@ -41,5 +41,8 @@ namespace Appintern.Web.DAL
         public virtual DbSet<Schools> Schools { get; set; }
         public virtual DbSet<Apprenticeships> Apprenticeships { get; set; }
         public virtual DbSet<Articles> Articles { get; set; }
+        public virtual DbSet<rep_MembersApprenticeships> rep_MembersApprenticeships { get; set; }
+        public virtual DbSet<rep_MembersArticles> rep_MembersArticles { get; set; }
+        public virtual DbSet<sql_MembersAll> sql_MembersAll { get; set; }
     }
 }
