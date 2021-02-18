@@ -105,7 +105,7 @@ namespace Appintern.Web.Controllers
 
         #endregion
 
-        #region ARTICLES PUBLISHING GRID
+        #region ARTICLES PUBLISH GRID
 
         public ActionResult RenderMemberArticles()
         {
@@ -214,7 +214,7 @@ namespace Appintern.Web.Controllers
                         ArticleDate = articleDate,
                         AuthorName = authorName,
                         Title = title,
-                        Description = (IHtmlString)description,
+                        Description = (HtmlString)description,
                         Country = country,
                         MemberId = memberId,
                         MetaName = metaName,
@@ -286,12 +286,12 @@ namespace Appintern.Web.Controllers
 
         #region ARTICLE DETAILS FORM
 
-        public ActionResult MemberArticleEdit(int articleId)
+        public ActionResult MemberArticleDetail(int articleId)
         {
             UmbracoArticleModel model = GetArticleRecord(articleId);
             model.Countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
 
-            return PartialView(GetTasksViewPath("_MemberArticleEdit"), model);
+            return PartialView(GetTasksViewPath("_ArticleDetail"), model);
         }
 
         [ValidateAntiForgeryToken]
@@ -312,7 +312,7 @@ namespace Appintern.Web.Controllers
 
             ViewData["successMessage"] = "Detail data were successfully saved at " + string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
 
-            return PartialView(GetTasksViewPath("_MemberArticleEdit"), model);
+            return PartialView(GetTasksViewPath("_ArticleDetail"), model);
         }
 
         public UmbracoArticleModel GetArticleRecord(int articleId)
@@ -369,7 +369,6 @@ namespace Appintern.Web.Controllers
 
         #endregion
 
-
         #region ARTICLE IMAGE FORM
 
         public ActionResult MemberArticleImage(int articleId)
@@ -387,7 +386,7 @@ namespace Appintern.Web.Controllers
             }
             model.ArticleId = articleId;
 
-            return PartialView(GetTasksViewPath("_MemberArticleImage"), model);
+            return PartialView(GetTasksViewPath("_ArticleImage"), model);
         }
 
         public ActionResult SubmitArticleImage(ArticleImageModel model)
@@ -402,7 +401,7 @@ namespace Appintern.Web.Controllers
                 {
                     ModelState.AddModelError("", "Only image file types are allowed (png, jpg, jpeg, gif, webp, tiff)");
 
-                    return PartialView(GetTasksViewPath("_MemberArticleImage"), model);
+                    return PartialView(GetTasksViewPath("_ArticleImage"), model);
                 }
                 var imageUdi = _mediaUploadService.CreateMediaItemFromFileUpload(model.MainImage, MEDIA_NEWS_FOLDER_ID, "Image");
                 article.SetValue(Article.GetModelPropertyType(x => x.MainImage).Alias, imageUdi);
@@ -411,7 +410,51 @@ namespace Appintern.Web.Controllers
                 ViewData["successMessage"] = string.Format(" The file <b><i>{0}</i></b> was succesfully uploaded.<br />", model.MainImage.FileName);
             }
 
-            return PartialView(GetTasksViewPath("_MemberArticleImage"), model);
+            return PartialView(GetTasksViewPath("_ArticleImage"), model);
+        }
+
+        #endregion
+
+        #region ARTICLE RTE CONTENT FORM
+
+        public ActionResult MemberArticleContent(int articleId)
+        {
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(articleId);
+
+            UmbracoArticleModel model = new UmbracoArticleModel();
+
+            model.Description = new HtmlString(article.GetValue("description").ToString());
+            model.ArticleId = articleId;
+
+            return PartialView(GetTasksViewPath("_ArticleContent"), model);
+        }
+
+        public ActionResult ArticleContentSave(string htmlText, int articleId)
+        {
+            string msg = "The content of the article was successfully saved.";
+
+            var contentService = Services.ContentService;
+            var article = contentService.GetById(articleId);
+
+            UmbracoArticleModel model = new UmbracoArticleModel();
+
+            string htmlValue = JsonConvert.DeserializeObject(htmlText).ToString();
+            // Do this to get rid of the enclosing quotation marks ""
+            model.Description = new HtmlString(htmlValue);
+
+            article.SetValue(Article.GetModelPropertyType(x => x.Description).Alias, model.Description);
+            contentService.SaveAndPublish(article);
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
+        {
+            var fileContents = Convert.FromBase64String(base64);
+
+            return File(fileContents, contentType, fileName);
         }
 
         #endregion

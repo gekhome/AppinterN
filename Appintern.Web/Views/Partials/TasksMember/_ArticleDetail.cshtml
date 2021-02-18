@@ -1,0 +1,149 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<UmbracoArticleModel>
+
+@*@model UmbracoArticleModel*@
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "News Edit Form";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    var articleId = Model.ArticleId;
+    string successMessage = ViewData["successMessage"] != null ? ViewData["successMessage"].ToString() : "";
+}
+
+<div class="page-header" style="margin:5px auto 5px auto;width:80%">
+    <span style="margin:5px 5px 5px 5px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">News &amp; Events: Article Details Form</font>
+    </span>
+    <span style="margin:5px 60px 5px 5px;float:right;font-family:'Segoe UI';">
+        <a class="btn btn-warning" style="font-family:'Segoe UI';font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Close form</a>
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Edit Content", "MemberArticleContent", "TasksMember", new { articleId = Model.ArticleId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Edit Image", "MemberArticleImage", "TasksMember", new { articleId = Model.ArticleId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+</div>
+
+<div class="container" style="margin:10px auto 5px auto;background-color:whitesmoke;">
+    @{
+        using (Html.BeginForm("SubmitArticleDetails", "TasksMember", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @RenderDetailsForm(Model)
+
+            <div class="form-group" style="margin-top:20px">
+                <button class="btn btn-primary" name="submit" type="submit" style="margin-right:5px"> Submit </button>
+            </div>
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@Html.ValidationSummary()</strong>
+                </div>
+            }
+
+            if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@successMessage</strong>
+                </div>
+            }
+
+        }
+    }
+</div>
+
+@helper RenderDetailsForm(UmbracoArticleModel model)
+{
+    @Html.HiddenFor(m => m.ArticleId)
+    <h4>Article Details</h4>
+
+    <div class="col-md-12" style="margin-bottom:10px;margin-top:10px">
+        @Html.LabelFor(m => m.ArticleName, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.ArticleName, new { @class = "form-control", placeholder = "Article name..." })
+        @Html.ValidationMessageFor(m => m.ArticleName)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Article title..." })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.ArticleDate, new { @class = "control-label col-md-12" })
+        @Html.Kendo().DatePickerFor(m => m.ArticleDate)
+        @Html.ValidationMessageFor(m => m.ArticleDate)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.AuthorName, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.AuthorName, new { @class = "form-control", placeholder = "Author name..." })
+        @Html.ValidationMessageFor(m => m.AuthorName)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.MetaName, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.MetaName, new { @class = "form-control", placeholder = "Meta name..." })
+        @Html.ValidationMessageFor(m => m.MetaName)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.MetaDescription, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.MetaDescription, new { @class = "form-control", placeholder = "Meta description..." })
+        @Html.ValidationMessageFor(m => m.MetaDescription)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.MetaKeywords, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.MetaKeywords, new { @class = "form-control", placeholder = "Meta description..." })
+        @Html.ValidationMessageFor(m => m.MetaKeywords)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-3" })
+        @Html.DropDownListFor(m => m.Country, Model.Countries, "Select a country...", new { @class = "form-control", style = "font-size:15px;min-width:200px;padding:1px" })
+        @Html.ValidationMessageFor(m => m.Country)
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        @Html.LabelFor(m => m.SelectedCategories, new { @class = "control-label col-md-8" })
+        @(Html.Kendo().MultiSelectFor(m => m.SelectedCategories)
+            .Name("SelectedCategories")
+            .Placeholder("Select categories...")
+            .BindTo(Model.Categories)
+            .Value(Model.SelectedCategories)
+          )
+        @Html.ValidationMessageFor(m => m.MetaDescription)
+    </div>
+}
+
+@helper RenderTabsForm(UmbracoArticleModel model)
+{
+    @(Html.Kendo().TabStrip()
+        .Name("tabstrip")
+        .HtmlAttributes(new { style = "min-height:420px;margin-top:10px;margin-bottom:10px" })
+        .Animation(animation => animation.Open(effect => effect.Fade(FadeDirection.In)))
+        .Items(tabstrip =>
+        {
+        tabstrip.Add().Text("Details")
+            .Selected(true)
+            .Content(@<text>
+            <h3>Test tab 1</h3>
+            </text>);
+
+        tabstrip.Add().Text("Image")
+            .Content(@<text>
+            <h3>Test tab 2</h3>
+            </text>);
+
+        tabstrip.Add().Text("Content")
+            .Content(@<text>
+            <h3>Test tab 3</h3>
+            </text>);
+        })
+    )
+}
+
+<script type="text/javascript">
+
+    //set current to the "en-GB" culture script. Required for all Kendo controls!
+    kendo.culture("en-GB");
+
+</script>

@@ -28,7 +28,7 @@ namespace Appintern.Web.ViewModels
         public string Title { get; set; }
 
         [Display(Name = "Article Description")]
-        public IHtmlString Description { get; set; }
+        public HtmlString Description { get; set; }
 
         [Display(Name = "Article Member")]
         public int MemberId { get; set; }
