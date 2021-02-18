@@ -1,15 +1,17 @@
-﻿using Appintern.Web.DAL;
-using Appintern.Web.DAL.Services;
+﻿using Appintern.Core.Services;
+using Appintern.Web.DAL;
 using Appintern.Web.Library;
 using Appintern.Web.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
@@ -20,9 +22,6 @@ using Umbraco.Web.Composing;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.PublishedModels;
 using CM = Umbraco.Web.PublishedModels;
-using Newtonsoft.Json.Linq;
-using Appintern.Core.Services;
-using System.IO;
 
 namespace Appintern.Web.Controllers
 {
