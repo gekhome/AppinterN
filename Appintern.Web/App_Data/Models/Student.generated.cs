@@ -45,13 +45,6 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Address: Enter the address (street and number)
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("address")]
-		public string Address => this.Value<string>("address");
-
-		///<summary>
 		/// Avatar: Select an avatar or picture for the profile
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -59,18 +52,18 @@ namespace Umbraco.Web.PublishedModels
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Avatar => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("avatar");
 
 		///<summary>
+		/// Bio Summary: Enter a brief summary of the CV
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("bioSummary")]
+		public global::System.Web.IHtmlString BioSummary => this.Value<global::System.Web.IHtmlString>("bioSummary");
+
+		///<summary>
 		/// Birth Date: Enter the birth date
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("birthDate")]
 		public global::System.DateTime BirthDate => this.Value<global::System.DateTime>("birthDate");
-
-		///<summary>
-		/// City: Enter the city
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("city")]
-		public string City => this.Value<string>("city");
 
 		///<summary>
 		/// Country: Select the country
@@ -94,13 +87,6 @@ namespace Umbraco.Web.PublishedModels
 		public string Gender => this.Value<string>("gender");
 
 		///<summary>
-		/// Job Sector: Select the job sector of the specialty
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("jobSector")]
-		public string JobSector => this.Value<string>("jobSector");
-
-		///<summary>
 		/// Phone: Enter the phone number
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -115,18 +101,18 @@ namespace Umbraco.Web.PublishedModels
 		public string School => this.Value<string>("school");
 
 		///<summary>
-		/// Specialty: Enter the studies specialty
+		/// Specialization: Enter the field of studies
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("specialty")]
-		public string Specialty => this.Value<string>("specialty");
+		[ImplementPropertyType("specialization")]
+		public string Specialization => this.Value<string>("specialization");
 
 		///<summary>
-		/// State: Enter the state or region
+		/// Tax Number: Enter the tax number
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("state")]
-		public string State => this.Value<string>("state");
+		[ImplementPropertyType("taxNumber")]
+		public string TaxNumber => this.Value<string>("taxNumber");
 
 		///<summary>
 		/// Is Approved
@@ -197,12 +183,5 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("urlSlug")]
 		public string UrlSlug => this.Value<string>("urlSlug");
-
-		///<summary>
-		/// Zip: Enter the zip code
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("zip")]
-		public string Zip => this.Value<string>("zip");
 	}
 }

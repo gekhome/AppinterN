@@ -175,6 +175,60 @@ namespace Appintern.Web.Library
             return result;
         }
 
+
+        public List<string> MemberTypesList()
+        {
+            List<string> memberTypes = new List<string>();
+
+            memberTypes.Add("ambassador");
+            memberTypes.Add("employer");
+            memberTypes.Add("graduate");
+            memberTypes.Add("liaison");
+            memberTypes.Add("organization");
+            memberTypes.Add("school");
+            memberTypes.Add("student");
+            memberTypes.Add("teacher");
+            memberTypes.Add("Member");
+
+            return memberTypes;
+        }
+
+        public List<string> GetContentCategories()
+        {
+            List<string> categories = new List<string>
+            {
+                "News",
+                "Events",
+                "Jobs",
+                "Employment",
+                "Apprenticeships"
+            };
+
+            return categories;
+        }
+
+        public bool ValidImageFileExtension(string extension)
+        {
+            string[] extensions = { "PNG", "JPEG", "JPG", "GIF", "WEBP", "TIFF" };
+
+            List<string> valid_extensions = new List<string>(extensions);
+
+            if (valid_extensions.Contains(extension.ToUpper()))
+                return true;
+            return false;
+        }
+
+        public bool ValidDocumentExtension(string extension)
+        {
+            string[] extensions = { "DOC", "DOCX", "PDF", "ODT" };
+
+            List<string> valid_extensions = new List<string>(extensions);
+
+            if (valid_extensions.Contains(extension.ToUpper()))
+                return true;
+            return false;
+        }
+
         #region ALL MEMBER GETTERS
 
         /// <summary>
@@ -245,48 +299,6 @@ namespace Appintern.Web.Library
         }
 
         #endregion
-
-        public List<string> MemberTypesList()
-        {
-            List<string> memberTypes = new List<string>();
-
-            memberTypes.Add("ambassador");
-            memberTypes.Add("employer");
-            memberTypes.Add("graduate");
-            memberTypes.Add("liaison");
-            memberTypes.Add("organization");
-            memberTypes.Add("school");
-            memberTypes.Add("student");
-            memberTypes.Add("teacher");
-            memberTypes.Add("Member");
-
-            return memberTypes;
-        }
-
-        public List<string> GetContentCategories()
-        {
-            List<string> categories = new List<string>
-            {
-                "News",
-                "Events",
-                "Jobs",
-                "Employment",
-                "Apprenticeships"
-            };
-
-            return categories;
-        }
-
-        public bool ValidImageFileExtension(string extension)
-        {
-            string[] extensions = { "PNG", "JPEG", "JPG", "GIF", "WEBP", "TIFF" };
-
-            List<string> valid_extensions = new List<string>(extensions);
-
-            if (valid_extensions.Contains(extension.ToUpper()))
-                return true;
-            return false;
-        }
 
     }
 

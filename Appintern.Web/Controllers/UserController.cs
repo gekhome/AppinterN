@@ -23,18 +23,14 @@ namespace Appintern.Web.Controllers
         private readonly AppinternWorksEntities db = new AppinternWorksEntities();
         private readonly Utilities utilities = new Utilities();
 
-        private const int MEDIA_AVATAR_FOLDER_ID = 1462;
-
         private readonly ILogger _logger;
         private readonly IDataTypeValueService _dataTypeValueService;
-        private readonly IMediaUploadService _mediaUploadService;
         private readonly IMemberService _memberService;
 
-        public UserController(ILogger logger, IDataTypeValueService dataTypeValueService, IMediaUploadService mediaUploadService, IMemberService memberService)
+        public UserController(ILogger logger, IDataTypeValueService dataTypeValueService, IMemberService memberService)
         {
             _logger = logger;
             _dataTypeValueService = dataTypeValueService;
-            _mediaUploadService = mediaUploadService;
             _memberService = memberService;
         }
 
@@ -147,38 +143,7 @@ namespace Appintern.Web.Controllers
         }
 
 
-        #region EDIT UPLOADED AVATAR IN PROFILE
-
-        public ActionResult RenderAvatarUpload()
-        {
-            return PartialView(GetViewPath("_MemberAvatar"), null);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SubmitAvatar(EditAvatarModel model)
-        {
-            if (!ModelState.IsValid) 
-                return CurrentUmbracoPage();
-
-            var member = GetMemberFromUser(Membership.GetUser());
-
-            if (model.Avatar != null)
-            {
-                string extension = Path.GetExtension(model.Avatar.FileName).Replace(".", "");
-                if (!ValidFileExtension(extension))
-                {
-                    ModelState.AddModelError("", "Only image file types are allowed (png, jpg, jpeg, gif, webp, tiff)");
-                    return CurrentUmbracoPage();
-                }
-                var avatarUdi = _mediaUploadService.CreateMediaItemFromFileUpload(model.Avatar, MEDIA_AVATAR_FOLDER_ID, "Image");
-                member.SetValue("avatar", avatarUdi);
-                Current.Services.MemberService.Save(member);
-            }
-            ViewData["message"] = string.Format(" The file <b><i>{0}</i></b> was succesfully uploaded.<br />", model.Avatar.FileName);
-            return CurrentUmbracoPage();
-        }
+        #region UTILITIES
 
         public IMember GetMemberFromUser(MembershipUser user)
         {

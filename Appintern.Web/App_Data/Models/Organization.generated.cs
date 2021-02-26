@@ -45,25 +45,11 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Address: Enter the organization's address (street and number)
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("address")]
-		public string Address => this.Value<string>("address");
-
-		///<summary>
 		/// Avatar: Select a picture or logo for the organization
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("avatar")]
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Avatar => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("avatar");
-
-		///<summary>
-		/// City: Enter the organization's city
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("city")]
-		public string City => this.Value<string>("city");
 
 		///<summary>
 		/// Contact Person: Enter the name of the contact person
@@ -80,18 +66,11 @@ namespace Umbraco.Web.PublishedModels
 		public string Country => this.Value<string>("country");
 
 		///<summary>
-		/// Director Name: Enter the director or CEO name
+		/// Headquarters: Enter the home base address
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("directorName")]
-		public string DirectorName => this.Value<string>("directorName");
-
-		///<summary>
-		/// Fax: Enter the organization's fax number
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("fax")]
-		public string Fax => this.Value<string>("fax");
+		[ImplementPropertyType("headquarters")]
+		public string Headquarters => this.Value<string>("headquarters");
 
 		///<summary>
 		/// Job Sector: Select the organization's job sector
@@ -99,6 +78,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("jobSector")]
 		public string JobSector => this.Value<string>("jobSector");
+
+		///<summary>
+		/// Organization Info: Enter a brief description of the organization
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("organizationInfo")]
+		public global::System.Web.IHtmlString OrganizationInfo => this.Value<global::System.Web.IHtmlString>("organizationInfo");
 
 		///<summary>
 		/// Organization Name: Enter the name of the organization
@@ -115,11 +101,18 @@ namespace Umbraco.Web.PublishedModels
 		public string Phone => this.Value<string>("phone");
 
 		///<summary>
-		/// State: Enter the organization's state or region
+		/// Social Media: Enter the social media of the organization
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("state")]
-		public string State => this.Value<string>("state");
+		[ImplementPropertyType("socialMedia")]
+		public string SocialMedia => this.Value<string>("socialMedia");
+
+		///<summary>
+		/// Tax Number: Enter the tax number of the organization
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("taxNumber")]
+		public string TaxNumber => this.Value<string>("taxNumber");
 
 		///<summary>
 		/// Is Approved
@@ -192,10 +185,10 @@ namespace Umbraco.Web.PublishedModels
 		public string UrlSlug => this.Value<string>("urlSlug");
 
 		///<summary>
-		/// Zip: Enter the organization's postal code
+		/// Website: Enter the website address
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("zip")]
-		public string Zip => this.Value<string>("zip");
+		[ImplementPropertyType("website")]
+		public string Website => this.Value<string>("website");
 	}
 }

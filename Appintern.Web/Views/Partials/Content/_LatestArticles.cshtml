@@ -82,7 +82,7 @@
 
 @helper RenderArticle(IPublishedContent item)
 {
-    string imageUrl = item.Value<IPublishedContent>("mainImage")?.GetCropUrl(720, 455) ?? "/img/carousel.jpg";
+    string imageUrl = item.Value<IPublishedContent>("mainImage")?.GetCropUrl(720, 455) ?? "/img/news-banner.jpg";
     string title = item.HasValue("title") ? item.Value<string>("title") : item.Name;
     string description = item.Value<string>("metaDescription");
 

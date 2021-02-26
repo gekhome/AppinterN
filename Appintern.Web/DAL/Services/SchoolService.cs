@@ -22,17 +22,16 @@ namespace Appintern.Web.DAL.Services
             Schools entity = new Schools()
             {
                 MemberID = model.MemberID,
-                LoginName = model.LoginName,
-                Email = model.Email,
+                TaxNumber = model.TaxNumber,
                 SchoolName = model.SchoolName,
                 ContactPerson = model.ContactPerson,
-                Address = model.Address,
-                City = model.City,
-                State = model.State,
-                Zip = model.Zip,
                 Country = model.Country,
+                Address = model.Address,
                 Phone = model.Phone,
-                Fax = model.Fax
+                Email = model.Email,
+                Website = model.Website,
+                SocialMedia = model.SocialMedia,
+                LoginName = model.LoginName
             };
             entities.Schools.Add(entity);
             entities.SaveChanges();
@@ -43,17 +42,16 @@ namespace Appintern.Web.DAL.Services
             var entity = new Schools();
 
             entity.MemberID = model.MemberID;
-            entity.LoginName = model.LoginName;
-            entity.Email = model.Email;
+            entity.TaxNumber = model.TaxNumber;
             entity.SchoolName = model.SchoolName;
             entity.ContactPerson = model.ContactPerson;
-            entity.Address = model.Address;
-            entity.City = model.City;
-            entity.State = model.State;
             entity.Country = model.Country;
-            entity.Zip = model.Zip;
+            entity.Address = model.Address;
             entity.Phone = model.Phone;
-            entity.Fax = model.Fax;
+            entity.Email = model.Email;
+            entity.Website = model.Website;
+            entity.SocialMedia = model.SocialMedia;
+            entity.LoginName = model.LoginName;
 
             entities.Schools.Attach(entity);
             entities.Entry(entity).State = EntityState.Modified;

@@ -42,9 +42,7 @@ namespace Appintern.Core.Services
 
             var hasArticles = articles != null && articles.Any();
 
-            var pageOfArticles = hasArticles
-                ? articles.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList()
-                : Enumerable.Empty<IPublishedContent>();
+            var pageOfArticles = hasArticles ? articles.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList() : Enumerable.Empty<IPublishedContent>();
 
             var totalItemCount = hasArticles ? articles.Count() : 0;
 

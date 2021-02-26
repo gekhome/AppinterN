@@ -16,8 +16,9 @@ namespace Appintern.Web.DAL
     {
         public int MemberID { get; set; }
         public string Name { get; set; }
+        public string TaxNumber { get; set; }
         public string Email { get; set; }
-        public string FullAddress { get; set; }
+        public string Phone { get; set; }
         public string Country { get; set; }
         public string LoginName { get; set; }
     }

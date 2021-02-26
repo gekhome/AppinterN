@@ -34,12 +34,12 @@ namespace Appintern.Web.Library
         /// <returns></returns>
         public static int CountWords(string plainText)
         {
-            return !String.IsNullOrEmpty(plainText) ? plainText.Split(' ', '\n').Length : 0;
+            return !string.IsNullOrEmpty(plainText) ? plainText.Split(' ', '\n').Length : 0;
         }
 
         public static string Cut(string text, int length)
         {
-            if (!String.IsNullOrEmpty(text) && text.Length > length)
+            if (!string.IsNullOrEmpty(text) && text.Length > length)
             {
                 text = text.Substring(0, length - 4) + " ...";
             }

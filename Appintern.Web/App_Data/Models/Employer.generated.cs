@@ -45,13 +45,6 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Address: Enter the company address (street, number)
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("address")]
-		public string Address => this.Value<string>("address");
-
-		///<summary>
 		/// Avatar: Select an image for your logo
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -59,11 +52,11 @@ namespace Umbraco.Web.PublishedModels
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Avatar => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("avatar");
 
 		///<summary>
-		/// City: Enter the city
+		/// Company Info: Enter a brief description of the company
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("city")]
-		public string City => this.Value<string>("city");
+		[ImplementPropertyType("companyInfo")]
+		public global::System.Web.IHtmlString CompanyInfo => this.Value<global::System.Web.IHtmlString>("companyInfo");
 
 		///<summary>
 		/// Company Name: Enter the name of the company
@@ -87,18 +80,32 @@ namespace Umbraco.Web.PublishedModels
 		public string Country => this.Value<string>("country");
 
 		///<summary>
-		/// Fax: Enter the fax number
+		/// Headquarters: Enter the home base address of this company
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("fax")]
-		public string Fax => this.Value<string>("fax");
+		[ImplementPropertyType("headquarters")]
+		public string Headquarters => this.Value<string>("headquarters");
 
 		///<summary>
-		/// Job Sector: Enter the job sector of the company
+		/// Job Sector 1: Select the job sector of the company
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("jobSector")]
-		public string JobSector => this.Value<string>("jobSector");
+		[ImplementPropertyType("jobSector1")]
+		public string JobSector1 => this.Value<string>("jobSector1");
+
+		///<summary>
+		/// Job Sector 2: Enter a second job sector of the company
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("jobSector2")]
+		public string JobSector2 => this.Value<string>("jobSector2");
+
+		///<summary>
+		/// Job Sector 3: Select a third job sector of the company
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("jobSector3")]
+		public string JobSector3 => this.Value<string>("jobSector3");
 
 		///<summary>
 		/// Phone: Enter the phone number
@@ -108,11 +115,18 @@ namespace Umbraco.Web.PublishedModels
 		public string Phone => this.Value<string>("phone");
 
 		///<summary>
-		/// State: Enter the state or region
+		/// Social Media: Enter the social media of the company
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("state")]
-		public string State => this.Value<string>("state");
+		[ImplementPropertyType("socialMedia")]
+		public string SocialMedia => this.Value<string>("socialMedia");
+
+		///<summary>
+		/// Tax Number: Enter the tax number of this company
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("taxNumber")]
+		public string TaxNumber => this.Value<string>("taxNumber");
 
 		///<summary>
 		/// Is Approved
@@ -185,10 +199,10 @@ namespace Umbraco.Web.PublishedModels
 		public string UrlSlug => this.Value<string>("urlSlug");
 
 		///<summary>
-		/// Zip: Enter the zip code
+		/// Website: Enter the website address of the company
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("zip")]
-		public string Zip => this.Value<string>("zip");
+		[ImplementPropertyType("website")]
+		public string Website => this.Value<string>("website");
 	}
 }

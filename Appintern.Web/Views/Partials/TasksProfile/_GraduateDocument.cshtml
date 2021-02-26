@@ -1,0 +1,81 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<MemberDocumentModel>
+
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "Profile Image";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    string successMessage = ViewData["successMessage"] != null ? ViewData["successMessage"].ToString() : "";
+}
+
+<div class="page-header" style="margin:5px auto 5px auto;width:80%">
+    <span style="margin:5px 5px 5px 5px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Graduate Profile Form</font>
+    </span>
+    <span style="margin:5px 60px 5px 5px;float:right;font-family:'Segoe UI';">
+        @Html.ActionLink("Member Main Page", "RenderTasksMain", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-warning", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Profile Image", "GraduateImage", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Bio Summary", "GraduateSummary", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Profile Details", "GraduateDetail", "TasksProfile", new { articleId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+</div>
+
+<div class="container" style="margin:10px auto 5px auto;background-color:whitesmoke;">
+    @{
+        using (Html.BeginForm("SubmitGraduateFile", "TasksProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @RenderImageForm()
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@Html.ValidationSummary()</strong>
+                </div>
+            }
+
+            if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@Html.Raw(successMessage)</strong>
+                </div>
+            }
+
+        }
+    }
+</div>
+
+@helper RenderImageForm()
+{
+    @Html.HiddenFor(m => m.MemberId)
+
+    <div class="col-md-12" style="margin-top:10px">
+        <div class="form-header" style="margin-bottom:20px">
+            <h4 style="margin-bottom:20px">Member CV Attachment:</h4>
+            @if(!string.IsNullOrEmpty(Model.FileUrl))
+            {
+                <a href="@Model.FileUrl" target="_blank" style="font-size:18px;margin-right:20px;"><strong>@Model.FileName</strong></a>
+            }
+        </div>
+        <div class="form-group" style="margin-bottom:20px;margin-left:20px;margin-top:40px">
+            <input type="file" name="Attachment" id="Attachment" accept=".doc, .docx, .odt, .pdf" style="font-size:18px" />
+            <button class="btn btn-primary" name="submit" type="submit">Upload document </button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    //set current to the "en-GB" culture script. Required for all Kendo controls!
+    kendo.culture("en-GB");
+
+</script>

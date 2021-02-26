@@ -23,11 +23,11 @@
         .Columns(columns =>
         {
             columns.Bound(c => c.MemberID).Width(15).Filterable(false).Groupable(false);
-            columns.Bound(c => c.TradeName).Width(40).Groupable(false);
+            columns.Bound(c => c.CompanyName).Width(40).Groupable(false);
             columns.Bound(c => c.Phone).Width(20).Groupable(false);
             columns.Bound(c => c.Email).Width(20).Groupable(false);
             columns.Bound(c => c.Country).Width(20);
-            columns.Bound(c => c.JobSector).Width(30).Title("Job Sector");
+            columns.Bound(c => c.JobSector1).Width(30).Title("Job Sector");
             columns.Bound(c => c.ContactPerson).Width(30).Groupable(false);
         })
         .Pageable(pageable => pageable

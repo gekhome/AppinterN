@@ -16,7 +16,8 @@ namespace Appintern.Web.DAL
     {
         public int AppID { get; set; }
         public int MemberID { get; set; }
-        public string TradeName { get; set; }
+        public string TaxNumber { get; set; }
+        public string CompanyName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> PostDate { get; set; }

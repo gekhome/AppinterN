@@ -36,14 +36,15 @@
                 <div class="intro">
                     <h1 class="text-center">@(Model.HasValue("title") ? Model.Value<string>("title") : Model.Name)</h1>
                     <div class="text-center">
-                        @if (Model.JobSector.Any())
+                        <h4 class="text">@Model.JobSector</h4>
+                        @*@if (Model.JobSector.Any())
                         {
                             foreach (var item in Model.JobSector)
                             {
                                 branches += item + ", ";
                             }
                             <h4 class="text">@branches.TrimEnd(", ")</h4>
-                        }
+                        }*@
                     </div>
                     @if (Model.HasValue("postDate"))
                     {

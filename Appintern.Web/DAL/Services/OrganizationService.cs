@@ -22,18 +22,17 @@ namespace Appintern.Web.DAL.Services
             Organizations entity = new Organizations()
             {
                 MemberID = model.MemberID,
-                LoginName = model.LoginName,
-                Email = model.Email,
+                TaxNumber = model.TaxNumber,
                 OrganizationName = model.OrganizationName,
-                Address = model.Address,
-                City = model.City,
-                State = model.State,
-                Zip = model.Zip,
+                ContactPerson = model.ContactPerson,
                 Country = model.Country,
-                Phone = model.Phone,
-                Fax = model.Fax,
+                Headquarters = model.Headquarters,
                 JobSector = model.JobSector,
-                ContactPerson = model.ContactPerson
+                Phone = model.Phone,
+                Email = model.Email,
+                Website = model.Website,
+                SocialMedia = model.SocialMedia,
+                LoginName = model.LoginName
             };
             entities.Organizations.Add(entity);
             entities.SaveChanges();
@@ -44,18 +43,17 @@ namespace Appintern.Web.DAL.Services
             var entity = new Organizations();
 
             entity.MemberID = model.MemberID;
-            entity.LoginName = model.LoginName;
-            entity.Email = model.Email;
+            entity.TaxNumber = model.TaxNumber;
             entity.OrganizationName = model.OrganizationName;
-            entity.Address = model.Address;
-            entity.City = model.City;
-            entity.State = model.State;
-            entity.Country = model.Country;
-            entity.Zip = model.Zip;
-            entity.Phone = model.Phone;
-            entity.Fax = model.Fax;
-            entity.JobSector = model.JobSector;
             entity.ContactPerson = model.ContactPerson;
+            entity.Country = model.Country;
+            entity.Headquarters = model.Headquarters;
+            entity.JobSector = model.JobSector;
+            entity.Phone = model.Phone;
+            entity.Email = model.Email;
+            entity.Website = model.Website;
+            entity.SocialMedia = model.SocialMedia;
+            entity.LoginName = model.LoginName;
 
             entities.Organizations.Attach(entity);
             entities.Entry(entity).State = EntityState.Modified;

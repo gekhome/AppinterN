@@ -94,11 +94,11 @@ namespace Umbraco.Web.PublishedModels
 		public global::System.DateTime EndDate => this.Value<global::System.DateTime>("endDate");
 
 		///<summary>
-		/// Job Sector: Select one or more job sectors
+		/// Job Sector: Select a job sector for this apprenticeship
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("jobSector")]
-		public global::System.Collections.Generic.IEnumerable<string> JobSector => this.Value<global::System.Collections.Generic.IEnumerable<string>>("jobSector");
+		public string JobSector => this.Value<string>("jobSector");
 
 		///<summary>
 		/// Post Date: Enter the date of posting the apprenticeship

@@ -29,71 +29,71 @@ namespace Appintern.Core.Composing
                 controller = "Members",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/members"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/members"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileStudentRoute", "students/{memberAlias}", new
             {
                 controller = "Students",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/students"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/students"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileGraduateRoute", "graduates/{memberAlias}", new
             {
                 controller = "Graduates",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/graduates"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/graduates"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileAmbassadorRoute", "ambassadors/{memberAlias}", new
             {
                 controller = "Ambassadors",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/ambassadors"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/ambassadors"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileEmployerRoute", "employers/{memberAlias}", new
             {
                 controller = "Employers",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/employers"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/employers"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileLiaisonRoute", "liaisons/{memberAlias}", new
             {
                 controller = "Liaisons",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/liaisons"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/liaisons"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileOrganizationRoute", "organizations/{memberAlias}", new
             {
                 controller = "Organizations",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/organizations"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/organizations"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileSchoolRoute", "schools/{memberAlias}", new
             {
                 controller = "Schools",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/schools"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/schools"));
 
             RouteTable.Routes.MapUmbracoRoute("ProfileTeacherRoute", "teachers/{memberAlias}", new
             {
                 controller = "Teachers",
                 action = "Profile",
                 memberAlias = UrlParameter.Optional
-            }, new UmbracoVirtualNodeByUrlRoutHandler("/teachers"));
+            }, new UmbracoVirtualNodeByUrlRouteHandler("/teachers"));
 
         }
 
-        public class UmbracoVirtualNodeByUrlRoutHandler : UmbracoVirtualNodeRouteHandler
+        public class UmbracoVirtualNodeByUrlRouteHandler : UmbracoVirtualNodeRouteHandler
         {
             private readonly string url;
 
-            public UmbracoVirtualNodeByUrlRoutHandler(string url)
+            public UmbracoVirtualNodeByUrlRouteHandler(string url)
             {
                 if (string.IsNullOrWhiteSpace(url))
                 {

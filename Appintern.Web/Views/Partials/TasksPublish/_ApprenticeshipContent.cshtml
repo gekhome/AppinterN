@@ -1,0 +1,230 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<UmbracoApprenticeshipModel>
+
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "Apprenticeship Content";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    var apprenticeshipId = Model.ApprenticeshipId;
+}
+
+<div class="page-header" style="margin:5px auto 5px auto;width:80%">
+    <span style="margin:5px 5px 5px 5px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Apprenticeships Content Editor</font>
+    </span>
+    <span style="margin:5px 60px 5px 5px;float:right;font-family:'Segoe UI';">
+        <a class="btn btn-warning" style="font-family:'Segoe UI';font-size:16px" href="#" onclick="javascript:window.close();opener.window.focus();">Close form</a>
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Edit Image", "ApprenticeshipImage", "TasksPublish", new { apprenticeshipId = Model.ApprenticeshipId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Edit Details", "ApprenticeshipDetail", "TasksPublish", new { apprenticeshipId = Model.ApprenticeshipId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+</div>
+
+<div class="container" style="margin:10px auto 5px auto;background-color:whitesmoke;">
+
+    <p id="article" style="display:none">@Model.ApprenticeshipId</p>
+
+    <div class="col-md-12"><textarea id="value1" style="display:none" rows="4" cols="120">@Model.Description</textarea></div>
+    <div class="col-md-12"><textarea id="value2" style="display:none" rows="4" cols="120">@Model.Responsibilities</textarea></div>
+    <div class="col-md-12"><textarea id="value3" style="display:none" rows="4" cols="120">@Model.Benefits</textarea></div>
+    <div class="col-md-12"><textarea id="value4" style="display:none" rows="4" cols="120">@Model.Qualifications</textarea></div>
+
+    <h4>Apprenticeship Description</h4>
+    <div class="col-md-12" style="margin-bottom:20px">
+        @(Html.Kendo().Editor()
+        .Name("description")
+        .HtmlAttributes(new { style = "width: 100%;min-height:480px;margin-right:40px" })
+        .Resizable(resizable => resizable.Content(true))
+        .Pdf(pdf => pdf
+          .Margin(20, 20, 20, 20)
+          .PaperSize("A4")
+          .ProxyURL(Url.Action("Pdf_Export_Save", "TasksPublish"))
+          )
+        .Tools(tools => tools
+            .Clear()
+            .Bold().Italic().Underline().Strikethrough()
+            .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+            .InsertUnorderedList().InsertOrderedList()
+            .Outdent().Indent()
+            .CreateLink().Unlink()
+            .SubScript()
+            .SuperScript()
+            .TableEditing()
+            .ViewHtml()
+            .Formatting()
+            .CleanFormatting()
+            .FontName()
+            .FontSize()
+            .FontColor()
+            .BackColor()
+            .Print()
+            .Pdf()
+            )
+        .Value(@<text> <p>Enter your content here</p> </text>)
+        )
+    </div>
+
+    <h4>Apprenticeship Responsibilities</h4>
+    <div class="col-md-12" style="margin-bottom:20px">
+        @(Html.Kendo().Editor()
+        .Name("responsibilities")
+        .HtmlAttributes(new { style = "width: 100%;min-height:480px;margin-right:40px" })
+        .Resizable(resizable => resizable.Content(true))
+        .Pdf(pdf => pdf
+          .Margin(20, 20, 20, 20)
+          .PaperSize("A4")
+          .ProxyURL(Url.Action("Pdf_Export_Save", "TasksPublish"))
+          )
+        .Tools(tools => tools
+            .Clear()
+            .Bold().Italic().Underline().Strikethrough()
+            .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+            .InsertUnorderedList().InsertOrderedList()
+            .Outdent().Indent()
+            .CreateLink().Unlink()
+            .SubScript()
+            .SuperScript()
+            .TableEditing()
+            .ViewHtml()
+            .Formatting()
+            .CleanFormatting()
+            .FontName()
+            .FontSize()
+            .FontColor()
+            .BackColor()
+            .Print()
+            .Pdf()
+            )
+        .Value(@<text> <p>Enter your content here</p> </text>)
+        )
+    </div>
+
+    <h4>Apprenticeship Benefits</h4>
+    <div class="col-md-12" style="margin-bottom:20px">
+        @(Html.Kendo().Editor()
+        .Name("benefits")
+        .HtmlAttributes(new { style = "width: 100%;min-height:480px;margin-right:40px" })
+        .Resizable(resizable => resizable.Content(true))
+        .Pdf(pdf => pdf
+          .Margin(20, 20, 20, 20)
+          .PaperSize("A4")
+          .ProxyURL(Url.Action("Pdf_Export_Save", "TasksPublish"))
+          )
+        .Tools(tools => tools
+            .Clear()
+            .Bold().Italic().Underline().Strikethrough()
+            .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+            .InsertUnorderedList().InsertOrderedList()
+            .Outdent().Indent()
+            .CreateLink().Unlink()
+            .SubScript()
+            .SuperScript()
+            .TableEditing()
+            .ViewHtml()
+            .Formatting()
+            .CleanFormatting()
+            .FontName()
+            .FontSize()
+            .FontColor()
+            .BackColor()
+            .Print()
+            .Pdf()
+            )
+        .Value(@<text> <p>Enter your content here</p> </text>)
+        )
+    </div>
+
+    <h4>Apprenticeship Qualifications</h4>
+    <div class="col-md-12" style="margin-bottom:20px">
+        @(Html.Kendo().Editor()
+        .Name("qualifications")
+        .HtmlAttributes(new { style = "width: 100%;min-height:480px;margin-right:40px" })
+        .Resizable(resizable => resizable.Content(true))
+        .Pdf(pdf => pdf
+          .Margin(20, 20, 20, 20)
+          .PaperSize("A4")
+          .ProxyURL(Url.Action("Pdf_Export_Save", "TasksPublish"))
+          )
+        .Tools(tools => tools
+            .Clear()
+            .Bold().Italic().Underline().Strikethrough()
+            .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+            .InsertUnorderedList().InsertOrderedList()
+            .Outdent().Indent()
+            .CreateLink().Unlink()
+            .SubScript()
+            .SuperScript()
+            .TableEditing()
+            .ViewHtml()
+            .Formatting()
+            .CleanFormatting()
+            .FontName()
+            .FontSize()
+            .FontColor()
+            .BackColor()
+            .Print()
+            .Pdf()
+            )
+        .Value(@<text> <p>Enter your content here</p> </text>)
+        )
+    </div>
+
+    <div class="form-group" style="margin-top:20px">
+        <button class="btn btn-primary" name="submit" type="button" style="margin-right:5px" onclick="save()"> Save Content </button>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var editor1 = $("#description").data("kendoEditor");
+        editor1.value($("#value1").val());
+
+        var editor2 = $("#responsibilities").data("kendoEditor");
+        editor2.value($("#value2").val());
+
+        var editor3 = $("#benefits").data("kendoEditor");
+        editor3.value($("#value3").val());
+
+        var editor4 = $("#qualifications").data("kendoEditor");
+        editor4.value($("#value4").val());
+    });
+
+    function save() {
+        var enteredText1 = $("#description").data("kendoEditor").value();
+        var enteredText2 = $("#responsibilities").data("kendoEditor").value();
+        var enteredText3 = $("#benefits").data("kendoEditor").value();
+        var enteredText4 = $("#qualifications").data("kendoEditor").value();
+
+        var apprenticeshipID = $("#article").text();
+
+        alert("apprenticeshipID = " + apprenticeshipID);
+
+        var parameters = {
+            htmlText1: JSON.stringify(enteredText1),
+            htmlText2: JSON.stringify(enteredText2),
+            htmlText3: JSON.stringify(enteredText3),
+            htmlText4: JSON.stringify(enteredText4),
+            apprenticeshipId: apprenticeshipID
+        }
+
+        $.ajax({
+            url: '@Url.Action("ApprenticeshipContentSave", "TasksPublish")',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(parameters),
+            success: function (response) {
+                if (response) MessageBoxAlert(response, "Message");
+            },
+            error: function () {
+                MessageBoxAlert("Error saving content of editor", "Error");
+            }
+        });
+    };
+
+</script>

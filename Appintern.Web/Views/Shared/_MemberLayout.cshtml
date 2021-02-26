@@ -82,9 +82,10 @@
             .HtmlAttributes(new { style="width:100%" })
             .Items(items =>
             {
-                items.Add().Text("News & Events").ImageUrl(Url.Content("~/img/menu-icons/appbar.newspaper.png")).Action("RenderMemberArticles", "TasksMember");
-                items.Add().Text("Apprenticeships").ImageUrl(Url.Content("~/img/menu-icons/appbar.group.png")).Action("RenderDashboardHome", "BackEnd");
-                items.Add().Text("Job Offers").ImageUrl(Url.Content("~/img/menu-icons/appbar.home.people.png")).Action("RenderDashboardHome", "BackEnd");
+                items.Add().Text("Edit Profile").ImageUrl(Url.Content("~/img/menu-icons/appbar.user.png")).Action("RenderProfileMain", "TasksProfile");
+                items.Add().Text("News & Events").ImageUrl(Url.Content("~/img/menu-icons/appbar.newspaper.png")).Action("RenderMemberArticles", "TasksPublish");
+                items.Add().Text("Apprenticeships").ImageUrl(Url.Content("~/img/menu-icons/appbar.group.png")).Action("RenderMemberApprenticeships", "TasksPublish");
+                items.Add().Text("Job Offers").ImageUrl(Url.Content("~/img/menu-icons/appbar.home.people.png")).Action("RenderTasksMain", "TasksPublish");
                 items.Add().Text("Search Students").ImageUrl(Url.Content("~/img/menu-icons/appbar.man.suitcase.fast.png")).Enabled(false);
             })
         )

@@ -5,6 +5,19 @@
 @{
     Layout = "master.cshtml";
     Html.RequiresCss("/css/Article-List.css");
+    var loggedMember = Members.GetCurrentMember();
+    string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
 }
 
-@{ Html.RenderPartial("Partials/Content/_Apprenticeships"); }
+    @if (string.IsNullOrEmpty(memberType))
+    {
+        Response.Redirect("/login");
+    }
+    else if (memberType == "student")
+    {
+        Response.Redirect("/access-error");
+    }
+    else
+    {
+        Html.RenderPartial("Partials/Content/_Apprenticeships");
+    }

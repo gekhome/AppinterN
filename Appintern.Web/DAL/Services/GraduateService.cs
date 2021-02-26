@@ -22,20 +22,16 @@ namespace Appintern.Web.DAL.Services
             Graduates entity = new Graduates()
             {
                 MemberID = model.MemberID,
-                LoginName = model.LoginName,
-                Email = model.Email,
+                TaxNumber = model.TaxNumber,
                 FullName = model.FullName,
-                Gender = model.Gender,
                 Birthdate = model.Birthdate,
-                Address = model.Address,
-                City = model.City,
-                State = model.State,
-                Zip = model.Zip,
-                Country = model.Country,
+                Gender = model.Gender,
                 Phone = model.Phone,
-                JobSector = model.JobSector,
-                Specialty = model.Specialty,
-                School = model.School
+                Email = model.Email,
+                Country = model.Country,
+                Specialization = model.Specialization,
+                School = model.School,
+                LoginName = model.LoginName
             };
             entities.Graduates.Add(entity);
             entities.SaveChanges();
@@ -46,20 +42,16 @@ namespace Appintern.Web.DAL.Services
             var entity = new Graduates();
 
             entity.MemberID = model.MemberID;
-            entity.LoginName = model.LoginName;
-            entity.Email = model.Email;
+            entity.TaxNumber = model.TaxNumber;
             entity.FullName = model.FullName;
-            entity.Gender = model.Gender;
             entity.Birthdate = model.Birthdate;
-            entity.Address = model.Address;
-            entity.City = model.City;
-            entity.State = model.State;
-            entity.Country = model.Country;
-            entity.Zip = model.Zip;
+            entity.Gender = model.Gender;
             entity.Phone = model.Phone;
-            entity.JobSector = model.JobSector;
-            entity.Specialty = model.Specialty;
+            entity.Email = model.Email;
+            entity.Country = model.Country;
+            entity.Specialization = model.Specialization;
             entity.School = model.School;
+            entity.LoginName = model.LoginName;
 
             entities.Graduates.Attach(entity);
             entities.Entry(entity).State = EntityState.Modified;

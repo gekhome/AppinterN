@@ -1,0 +1,106 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<AmbassadorProfileModel>
+
+@*@model UmbracoArticleModel*@
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "Member Bio Summary";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    var memberId = Model.MemberId;
+}
+
+<div class="page-header" style="margin:5px auto 5px auto;width:80%">
+    <span style="margin:5px 5px 5px 5px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Business Ambassador Profile Form</font>
+    </span>
+    <span style="margin:5px 60px 5px 5px;float:right;font-family:'Segoe UI';">
+        @Html.ActionLink("Member Main Page", "RenderTasksMain", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-warning", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Profile Image", "AmbassadorImage", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Bio Document", "AmbassadorDocument", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Profile Details", "AmbassadorDetail", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+</div>
+
+<div class="container" style="margin:10px auto 5px auto;background-color:whitesmoke;">
+
+    <p id="member" style="display:none">@Model.MemberId</p>
+
+    <div class="col-md-12"><textarea id="value" style="display:none" rows="4" cols="120">@Model.BioSummary</textarea></div>
+    <h4>Bio Summary Editor</h4>
+    <div class="col-md-12">
+        @(Html.Kendo().Editor()
+        .Name("content")
+        .HtmlAttributes(new { style = "width: 100%;min-height:480px;margin-right:40px" })
+        .Resizable(resizable => resizable.Content(true))
+        .Pdf(pdf => pdf
+          .Margin(20, 20, 20, 20)
+          .PaperSize("A4")
+          .ProxyURL(Url.Action("Pdf_Export_Save", "TasksProfile"))
+          )
+        .Tools(tools => tools
+            .Clear()
+            .Bold().Italic().Underline().Strikethrough()
+            .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+            .InsertUnorderedList().InsertOrderedList()
+            .Outdent().Indent()
+            .CreateLink().Unlink()
+            .SubScript()
+            .SuperScript()
+            .TableEditing()
+            .ViewHtml()
+            .Formatting()
+            .CleanFormatting()
+            .FontName()
+            .FontSize()
+            .FontColor()
+            .BackColor()
+            .Print()
+            .Pdf()
+            )
+        .Value(@<text> <p>Test content</p> </text>)
+        )
+    </div>
+    <div class="form-group" style="margin-top:20px">
+        <button class="btn btn-primary" name="submit" type="button" style="margin-right:5px" onclick="save()"> Save </button>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var editor = $("#content").data("kendoEditor");
+        editor.value($("#value").val());
+    });
+
+    function save() {
+        var enteredText = $("#content").data("kendoEditor").value();
+        var memberID = $("#member").text();
+
+        var parameters = {
+            htmlText: JSON.stringify(enteredText),
+            memberId: memberID
+        }
+
+        $.ajax({
+            url: '@Url.Action("AmbassadorSummarySave", "TasksProfile")',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(parameters),
+            success: function (response) {
+                if (response) MessageBoxAlert(response, "Message");
+            },
+            error: function () {
+                MessageBoxAlert("Error saving content of editor", "Error");
+            }
+        });
+    };
+
+</script>

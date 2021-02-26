@@ -22,20 +22,15 @@ namespace Appintern.Web.DAL.Services
             Teachers entity = new Teachers()
             {
                 MemberID = model.MemberID,
-                LoginName = model.LoginName,
-                Email = model.Email,
+                TaxNumber = model.TaxNumber,
                 FullName = model.FullName,
-                Gender = model.Gender,
-                Address = model.Address,
-                City = model.City,
-                State = model.State,
-                Zip = model.Zip,
                 Country = model.Country,
-                Phone = model.Phone,
-                Fax = model.Fax,
-                JobSector = model.JobSector,
                 School = model.School,
-                TeachingYears = model.TeachingYears
+                SchoolAddress = model.SchoolAddress,
+                Phone = model.Phone,
+                Email = model.Email,
+                SocialMedia = model.SocialMedia,
+                LoginName = model.LoginName
             };
             entities.Teachers.Add(entity);
             entities.SaveChanges();
@@ -46,20 +41,15 @@ namespace Appintern.Web.DAL.Services
             var entity = new Teachers();
 
             entity.MemberID = model.MemberID;
-            entity.LoginName = model.LoginName;
-            entity.Email = model.Email;
+            entity.TaxNumber = model.TaxNumber;
             entity.FullName = model.FullName;
-            entity.Gender = model.Gender;
-            entity.Address = model.Address;
-            entity.City = model.City;
-            entity.State = model.State;
             entity.Country = model.Country;
-            entity.Zip = model.Zip;
-            entity.Phone = model.Phone;
-            entity.Fax = model.Fax;
-            entity.JobSector = model.JobSector;
             entity.School = model.School;
-            entity.TeachingYears = model.TeachingYears;
+            entity.SchoolAddress = model.SchoolAddress;
+            entity.Phone = model.Phone;
+            entity.Email = model.Email;
+            entity.SocialMedia = model.SocialMedia;
+            entity.LoginName = model.LoginName;
 
             entities.Teachers.Attach(entity);
             entities.Entry(entity).State = EntityState.Modified;

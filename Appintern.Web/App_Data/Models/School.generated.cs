@@ -59,13 +59,6 @@ namespace Umbraco.Web.PublishedModels
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Avatar => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("avatar");
 
 		///<summary>
-		/// City: Enter the school's city
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("city")]
-		public string City => this.Value<string>("city");
-
-		///<summary>
 		/// Contact Person: Enter the name of the contact person
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
@@ -80,25 +73,18 @@ namespace Umbraco.Web.PublishedModels
 		public string Country => this.Value<string>("country");
 
 		///<summary>
-		/// Director Name: Enter the director's name
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("directorName")]
-		public string DirectorName => this.Value<string>("directorName");
-
-		///<summary>
-		/// Fax: Enter the school's fax number
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("fax")]
-		public string Fax => this.Value<string>("fax");
-
-		///<summary>
 		/// Phone: Enter the school's phone number
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		[ImplementPropertyType("phone")]
 		public string Phone => this.Value<string>("phone");
+
+		///<summary>
+		/// School Info: Enter a short description of the school
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("schoolInfo")]
+		public global::System.Web.IHtmlString SchoolInfo => this.Value<global::System.Web.IHtmlString>("schoolInfo");
 
 		///<summary>
 		/// School Name: Enter the name of the school
@@ -108,11 +94,18 @@ namespace Umbraco.Web.PublishedModels
 		public string SchoolName => this.Value<string>("schoolName");
 
 		///<summary>
-		/// State: Enter the school's state or region
+		/// Social Media: Enter the school's social media
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("state")]
-		public string State => this.Value<string>("state");
+		[ImplementPropertyType("socialMedia")]
+		public string SocialMedia => this.Value<string>("socialMedia");
+
+		///<summary>
+		/// Tax Number: Enter the tax Number
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
+		[ImplementPropertyType("taxNumber")]
+		public string TaxNumber => this.Value<string>("taxNumber");
 
 		///<summary>
 		/// Is Approved
@@ -185,10 +178,10 @@ namespace Umbraco.Web.PublishedModels
 		public string UrlSlug => this.Value<string>("urlSlug");
 
 		///<summary>
-		/// Zip: Enter the school's postal code
+		/// Website: Enter the school's website address
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		[ImplementPropertyType("zip")]
-		public string Zip => this.Value<string>("zip");
+		[ImplementPropertyType("website")]
+		public string Website => this.Value<string>("website");
 	}
 }

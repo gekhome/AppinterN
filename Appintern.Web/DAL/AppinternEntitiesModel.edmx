@@ -10,19 +10,17 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="FullName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
           <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="SocialMedia" Type="nvarchar" MaxLength="255" />
+          <Property Name="Occupation" Type="nvarchar" MaxLength="255" />
           <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
           <Property Name="Employer" Type="nvarchar" MaxLength="255" />
-          <Property Name="WorkingYears" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Apprenticeships">
@@ -81,17 +79,18 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
-          <Property Name="TradeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
           <Property Name="ContactPerson" Type="nvarchar" MaxLength="255" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
+          <Property Name="Headquarters" Type="nvarchar" MaxLength="255" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
-          <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
+          <Property Name="JobSector1" Type="nvarchar" MaxLength="255" />
+          <Property Name="JobSector2" Type="nvarchar" MaxLength="255" />
+          <Property Name="JobSector3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="SocialMedia" Type="nvarchar" MaxLength="255" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Genders">
@@ -106,19 +105,15 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="FullName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthdate" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Specialization" Type="nvarchar" MaxLength="255" />
           <Property Name="School" Type="nvarchar" MaxLength="255" />
-          <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
-          <Property Name="Specialty" Type="nvarchar" MaxLength="255" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="JobSectors">
@@ -133,19 +128,14 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="FullName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
-          <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="OfficeAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Occupation" Type="nvarchar" MaxLength="255" />
           <Property Name="Employer" Type="nvarchar" MaxLength="255" />
-          <Property Name="WorkingYears" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MemberGroups">
@@ -160,17 +150,16 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="OrganizationName" Type="nvarchar" MaxLength="255" />
           <Property Name="ContactPerson" Type="nvarchar" MaxLength="255" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Headquarters" Type="nvarchar" MaxLength="255" />
           <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="SocialMedia" Type="nvarchar" MaxLength="255" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Schools">
@@ -178,16 +167,15 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="SchoolName" Type="nvarchar" MaxLength="255" />
           <Property Name="ContactPerson" Type="nvarchar" MaxLength="255" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="SocialMedia" Type="nvarchar" MaxLength="255" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Students">
@@ -195,19 +183,15 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="FullName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthdate" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Specialization" Type="nvarchar" MaxLength="255" />
           <Property Name="School" Type="nvarchar" MaxLength="255" />
-          <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
-          <Property Name="Specialty" Type="nvarchar" MaxLength="255" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Teachers">
@@ -215,19 +199,14 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="FullName" Type="nvarchar" MaxLength="255" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="State" Type="nvarchar" MaxLength="50" />
-          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="School" Type="nvarchar" MaxLength="255" />
-          <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
-          <Property Name="TeachingYears" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="SocialMedia" Type="nvarchar" MaxLength="255" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -239,7 +218,8 @@ warning 6002: The table/view 'AppinternWorks.dbo.rep_MembersApprenticeships' doe
           </Key>
           <Property Name="AppID" Type="int" Nullable="false" />
           <Property Name="MemberID" Type="int" Nullable="false" />
-          <Property Name="TradeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" />
           <Property Name="PostDate" Type="date" />
@@ -260,9 +240,10 @@ warning 6002: The table/view 'AppinternWorks.dbo.rep_MembersArticles' does not h
           </Key>
           <Property Name="ArticleId" Type="int" Nullable="false" />
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="FullAddress" Type="nvarchar" MaxLength="329" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
           <Property Name="ArticleDate" Type="date" />
@@ -278,8 +259,9 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="FullAddress" Type="nvarchar" MaxLength="329" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -304,7 +286,8 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
             <DefiningQuery>SELECT 
     [rep_MembersApprenticeships].[AppID] AS [AppID], 
     [rep_MembersApprenticeships].[MemberID] AS [MemberID], 
-    [rep_MembersApprenticeships].[TradeName] AS [TradeName], 
+    [rep_MembersApprenticeships].[TaxNumber] AS [TaxNumber], 
+    [rep_MembersApprenticeships].[CompanyName] AS [CompanyName], 
     [rep_MembersApprenticeships].[Phone] AS [Phone], 
     [rep_MembersApprenticeships].[Email] AS [Email], 
     [rep_MembersApprenticeships].[PostDate] AS [PostDate], 
@@ -321,9 +304,10 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
             <DefiningQuery>SELECT 
     [rep_MembersArticles].[ArticleId] AS [ArticleId], 
     [rep_MembersArticles].[MemberID] AS [MemberID], 
+    [rep_MembersArticles].[TaxNumber] AS [TaxNumber], 
     [rep_MembersArticles].[Name] AS [Name], 
     [rep_MembersArticles].[Email] AS [Email], 
-    [rep_MembersArticles].[FullAddress] AS [FullAddress], 
+    [rep_MembersArticles].[Phone] AS [Phone], 
     [rep_MembersArticles].[Country] AS [Country], 
     [rep_MembersArticles].[LoginName] AS [LoginName], 
     [rep_MembersArticles].[ArticleDate] AS [ArticleDate], 
@@ -336,8 +320,9 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
             <DefiningQuery>SELECT 
     [sql_MembersAll].[MemberID] AS [MemberID], 
     [sql_MembersAll].[Name] AS [Name], 
+    [sql_MembersAll].[TaxNumber] AS [TaxNumber], 
     [sql_MembersAll].[Email] AS [Email], 
-    [sql_MembersAll].[FullAddress] AS [FullAddress], 
+    [sql_MembersAll].[Phone] AS [Phone], 
     [sql_MembersAll].[Country] AS [Country], 
     [sql_MembersAll].[LoginName] AS [LoginName]
     FROM [dbo].[sql_MembersAll] AS [sql_MembersAll]</DefiningQuery>
@@ -389,16 +374,16 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <EntitySet Name="Genders" EntityType="Self.Genders" />
           <EntitySet Name="JobSectors" EntityType="Self.JobSectors" />
           <EntitySet Name="MemberGroups" EntityType="AppinternWorksModel.MemberGroups" />
-          <EntitySet Name="Employers" EntityType="AppinternWorksModel.Employers" />
+          <EntitySet Name="Apprenticeships" EntityType="AppinternWorksModel.Apprenticeships" />
+          <EntitySet Name="Articles" EntityType="AppinternWorksModel.Articles" />
           <EntitySet Name="Ambassadors" EntityType="AppinternWorksModel.Ambassadors" />
           <EntitySet Name="Graduates" EntityType="AppinternWorksModel.Graduates" />
           <EntitySet Name="LiaisonOfficers" EntityType="AppinternWorksModel.LiaisonOfficers" />
           <EntitySet Name="Organizations" EntityType="AppinternWorksModel.Organizations" />
+          <EntitySet Name="Schools" EntityType="AppinternWorksModel.Schools" />
           <EntitySet Name="Students" EntityType="AppinternWorksModel.Students" />
           <EntitySet Name="Teachers" EntityType="AppinternWorksModel.Teachers" />
-          <EntitySet Name="Schools" EntityType="AppinternWorksModel.Schools" />
-          <EntitySet Name="Apprenticeships" EntityType="AppinternWorksModel.Apprenticeships" />
-          <EntitySet Name="Articles" EntityType="AppinternWorksModel.Articles" />
+          <EntitySet Name="Employers" EntityType="AppinternWorksModel.Employers" />
           <EntitySet Name="rep_MembersApprenticeships" EntityType="AppinternWorksModel.rep_MembersApprenticeships" />
           <EntitySet Name="rep_MembersArticles" EntityType="AppinternWorksModel.rep_MembersArticles" />
           <EntitySet Name="sql_MembersAll" EntityType="AppinternWorksModel.sql_MembersAll" />
@@ -409,159 +394,6 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           </Key>
           <Property Name="MemberGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberGroupText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Employers">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="TradeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Ambassadors">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Employer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingYears" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Graduates">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Birthdate" Type="DateTime" Precision="0" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="School" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Specialty" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="LiaisonOfficers">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Employer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingYears" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Organizations">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Students">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Birthdate" Type="DateTime" Precision="0" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="School" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Specialty" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Teachers">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="School" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="TeachingYears" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Schools">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="SchoolName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Apprenticeships">
           <Key>
@@ -593,6 +425,138 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ArticleMemberID" Type="Int32" />
         </EntityType>
+        <EntityType Name="Ambassadors">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SocialMedia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Occupation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Graduates">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Birthdate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Specialization" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="School" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LiaisonOfficers">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Occupation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Organizations">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Headquarters" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SocialMedia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Schools">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SocialMedia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Birthdate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Specialization" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="School" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="School" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SocialMedia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Headquarters" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SocialMedia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="rep_MembersApprenticeships">
           <Key>
             <PropertyRef Name="AppID" />
@@ -600,7 +564,8 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           </Key>
           <Property Name="AppID" Type="Int32" Nullable="false" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="TradeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PostDate" Type="DateTime" Precision="0" />
@@ -619,9 +584,10 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           </Key>
           <Property Name="ArticleId" Type="Int32" Nullable="false" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FullAddress" Type="String" MaxLength="329" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ArticleDate" Type="DateTime" Precision="0" />
@@ -635,8 +601,9 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           </Key>
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="FullAddress" Type="String" MaxLength="329" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -694,167 +661,6 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employers">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Employers">
-              <MappingFragment StoreEntitySet="Employers">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
-                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ambassadors">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Ambassadors">
-              <MappingFragment StoreEntitySet="Ambassadors">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="WorkingYears" ColumnName="WorkingYears" />
-                <ScalarProperty Name="Employer" ColumnName="Employer" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Graduates">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Graduates">
-              <MappingFragment StoreEntitySet="Graduates">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="School" ColumnName="School" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LiaisonOfficers">
-            <EntityTypeMapping TypeName="AppinternWorksModel.LiaisonOfficers">
-              <MappingFragment StoreEntitySet="LiaisonOfficers">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="WorkingYears" ColumnName="WorkingYears" />
-                <ScalarProperty Name="Employer" ColumnName="Employer" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Organizations">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Organizations">
-              <MappingFragment StoreEntitySet="Organizations">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Students">
-              <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="School" ColumnName="School" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Teachers">
-              <MappingFragment StoreEntitySet="Teachers">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="TeachingYears" ColumnName="TeachingYears" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="School" ColumnName="School" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Schools">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Schools">
-              <MappingFragment StoreEntitySet="Schools">
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
-                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Apprenticeships">
             <EntityTypeMapping TypeName="AppinternWorksModel.Apprenticeships">
               <MappingFragment StoreEntitySet="Apprenticeships">
@@ -887,6 +693,146 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Ambassadors">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Ambassadors">
+              <MappingFragment StoreEntitySet="Ambassadors">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="SocialMedia" ColumnName="SocialMedia" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graduates">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Graduates">
+              <MappingFragment StoreEntitySet="Graduates">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiaisonOfficers">
+            <EntityTypeMapping TypeName="AppinternWorksModel.LiaisonOfficers">
+              <MappingFragment StoreEntitySet="LiaisonOfficers">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="OfficeAddress" ColumnName="OfficeAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Organizations">
+              <MappingFragment StoreEntitySet="Organizations">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="SocialMedia" ColumnName="SocialMedia" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
+                <ScalarProperty Name="Headquarters" ColumnName="Headquarters" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Schools">
+              <MappingFragment StoreEntitySet="Schools">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="SocialMedia" ColumnName="SocialMedia" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Teachers">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="SocialMedia" ColumnName="SocialMedia" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SchoolAddress" ColumnName="SchoolAddress" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employers">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Employers">
+              <MappingFragment StoreEntitySet="Employers">
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="SocialMedia" ColumnName="SocialMedia" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="JobSector3" ColumnName="JobSector3" />
+                <ScalarProperty Name="JobSector2" ColumnName="JobSector2" />
+                <ScalarProperty Name="JobSector1" ColumnName="JobSector1" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Headquarters" ColumnName="Headquarters" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="rep_MembersApprenticeships">
             <EntityTypeMapping TypeName="AppinternWorksModel.rep_MembersApprenticeships">
               <MappingFragment StoreEntitySet="rep_MembersApprenticeships">
@@ -900,7 +846,8 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
                 <ScalarProperty Name="PostDate" ColumnName="PostDate" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="AppID" ColumnName="AppID" />
               </MappingFragment>
@@ -915,9 +862,10 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
                 <ScalarProperty Name="ArticleDate" ColumnName="ArticleDate" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
               </MappingFragment>
@@ -928,14 +876,15 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
               <MappingFragment StoreEntitySet="sql_MembersAll">
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

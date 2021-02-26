@@ -22,20 +22,15 @@ namespace Appintern.Web.DAL.Services
             LiaisonOfficers entity = new LiaisonOfficers()
             {
                 MemberID = model.MemberID,
-                LoginName = model.LoginName,
-                Email = model.Email,
+                TaxNumber = model.TaxNumber,
                 FullName = model.FullName,
-                Gender = model.Gender,
-                Address = model.Address,
-                City = model.City,
-                State = model.State,
-                Zip = model.Zip,
                 Country = model.Country,
                 Phone = model.Phone,
-                Fax = model.Fax,
-                JobSector = model.JobSector,
+                Email = model.Email,
+                OfficeAddress = model.OfficeAddress,
+                Occupation = model.Occupation,
                 Employer = model.Employer,
-                WorkingYears = model.WorkingYears
+                LoginName = model.LoginName
             };
             entities.LiaisonOfficers.Add(entity);
             entities.SaveChanges();
@@ -46,20 +41,15 @@ namespace Appintern.Web.DAL.Services
             var entity = new LiaisonOfficers();
 
             entity.MemberID = model.MemberID;
-            entity.LoginName = model.LoginName;
-            entity.Email = model.Email;
+            entity.TaxNumber = model.TaxNumber;
             entity.FullName = model.FullName;
-            entity.Gender = model.Gender;
-            entity.Address = model.Address;
-            entity.City = model.City;
-            entity.State = model.State;
             entity.Country = model.Country;
-            entity.Zip = model.Zip;
             entity.Phone = model.Phone;
-            entity.Fax = model.Fax;
-            entity.JobSector = model.JobSector;
+            entity.Email = model.Email;
+            entity.OfficeAddress = model.OfficeAddress;
+            entity.Occupation = model.Occupation;
             entity.Employer = model.Employer;
-            entity.WorkingYears = model.WorkingYears;
+            entity.LoginName = model.LoginName;
 
             entities.LiaisonOfficers.Attach(entity);
             entities.Entry(entity).State = EntityState.Modified;

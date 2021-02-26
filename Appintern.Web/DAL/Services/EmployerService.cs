@@ -22,18 +22,20 @@ namespace Appintern.Web.DAL.Services
             Employers entity = new Employers()
             {
                 MemberID = model.MemberID,
-                LoginName = model.LoginName,
-                Email = model.Email,
-                TradeName = model.TradeName,
-                Address = model.Address,
-                City = model.City,
-                State = model.State,
-                Zip = model.Zip,
+                TaxNumber = model.TaxNumber,
+                CompanyName = model.CompanyName,
+                ContactPerson = model.ContactPerson,
+                Headquarters = model.Headquarters,
                 Country = model.Country,
+                JobSector1 = model.JobSector1,
+                JobSector2 = model.JobSector2,
+                JobSector3 = model.JobSector3,
                 Phone = model.Phone,
-                Fax = model.Fax,
-                JobSector = model.JobSector,
-                ContactPerson = model.ContactPerson
+                Email = model.Email,
+                Website = model.Website,
+                SocialMedia = model.SocialMedia,
+                LoginName = model.LoginName
+
             };
             entities.Employers.Add(entity);
             entities.SaveChanges();
@@ -44,18 +46,19 @@ namespace Appintern.Web.DAL.Services
             var entity = new Employers();
 
             entity.MemberID = model.MemberID;
-            entity.LoginName = model.LoginName;
-            entity.Email = model.Email;
-            entity.TradeName = model.TradeName;
-            entity.Address = model.Address;
-            entity.City = model.City;
-            entity.State = model.State;
-            entity.Country = model.Country;
-            entity.Zip = model.Zip;
-            entity.Phone = model.Phone;
-            entity.Fax = model.Fax;
-            entity.JobSector = model.JobSector;
+            entity.TaxNumber = model.TaxNumber;
+            entity.CompanyName = model.CompanyName;
             entity.ContactPerson = model.ContactPerson;
+            entity.Headquarters = model.Headquarters;
+            entity.Country = model.Country;
+            entity.JobSector1 = model.JobSector1;
+            entity.JobSector2 = model.JobSector2;
+            entity.JobSector3 = model.JobSector3;
+            entity.Phone = model.Phone;
+            entity.Email = model.Email;
+            entity.Website = model.Website;
+            entity.SocialMedia = model.SocialMedia;
+            entity.LoginName = model.LoginName;
 
             entities.Employers.Attach(entity);
             entities.Entry(entity).State = EntityState.Modified;

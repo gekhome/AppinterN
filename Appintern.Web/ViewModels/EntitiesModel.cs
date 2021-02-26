@@ -9,19 +9,17 @@ namespace Appintern.Web.ViewModels
     public class AmbassadorsViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string FullName { get; set; }
-        public string Gender { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
         public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
+        public string SocialMedia { get; set; }
+        public string Occupation { get; set; }
         public string JobSector { get; set; }
         public string Employer { get; set; }
-        public string WorkingYears { get; set; }
         public string LoginName { get; set; }
 
         public AmbassadorsViewModel()
@@ -31,17 +29,18 @@ namespace Appintern.Web.ViewModels
     public class EmployersViewModel
     {
         public int MemberID { get; set; }
-        public string TradeName { get; set; }
+        public string TaxNumber { get; set; }
+        public string CompanyName { get; set; }
         public string ContactPerson { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
+        public string Headquarters { get; set; }
         public string Country { get; set; }
-        public string JobSector { get; set; }
+        public string JobSector1 { get; set; }
+        public string JobSector2 { get; set; }
+        public string JobSector3 { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
+        public string SocialMedia { get; set; }
         public string LoginName { get; set; }
 
         public EmployersViewModel()
@@ -51,109 +50,89 @@ namespace Appintern.Web.ViewModels
     public class GraduatesViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string FullName { get; set; }
-        public string Gender { get; set; }
         public DateTime? Birthdate { get; set; }
+        public string Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
+        public string Specialization { get; set; }
         public string School { get; set; }
-        public string JobSector { get; set; }
-        public string Specialty { get; set; }
         public string LoginName { get; set; }
     }
 
     public class LiaisonOfficersViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string FullName { get; set; }
-        public string Gender { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
-        public string JobSector { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string OfficeAddress { get; set; }
+        public string Occupation { get; set; }
         public string Employer { get; set; }
         public string LoginName { get; set; }
-        public string WorkingYears { get; set; }
     }
 
     public class OrganizationsViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string OrganizationName { get; set; }
         public string ContactPerson { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
+        public string Headquarters { get; set; }
         public string JobSector { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
+        public string SocialMedia { get; set; }
         public string LoginName { get; set; }
     }
 
     public class SchoolsViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string SchoolName { get; set; }
         public string ContactPerson { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
+        public string SocialMedia { get; set; }
         public string LoginName { get; set; }
     }
 
     public class StudentsViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string FullName { get; set; }
-        public string Gender { get; set; }
         public DateTime? Birthdate { get; set; }
+        public string Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
+        public string Specialization { get; set; }
         public string School { get; set; }
-        public string JobSector { get; set; }
-        public string Specialty { get; set; }
         public string LoginName { get; set; }
     }
 
     public class TeachersViewModel
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string FullName { get; set; }
-        public string Gender { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
         public string School { get; set; }
-        public string JobSector { get; set; }
-        public string TeachingYears { get; set; }
+        public string SchoolAddress { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string SocialMedia { get; set; }
         public string LoginName { get; set; }
     }
 

@@ -6,6 +6,9 @@
     Layout = "master.cshtml";
     Html.RequiresCss("/css/Contact-Form-Clean.css");
     var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
+    var loggedMember = Members.GetCurrentMember();
+    string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
+
 }
 
 @section Head
@@ -36,6 +39,7 @@
 
 @Html.RenderCssHere();
 
+
 <div class="col-md-12" style="margin-top:0px">
     <div class="fluent-image" style="background-image:url('@(imageUrl)');height:400px"></div>
     <h2 class="col-md-12 search-header">@(Model.Value<string>("title"))</h2>
@@ -46,7 +50,16 @@
     <section class="container">
         <div class="row">
             <div class="col-xs-12">
-                @{ Html.RenderAction("RenderSearchForm", "Search", new { docTypeAliases = "article,clientPage,apprenticeship", fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 }); }
+                @if (memberType == "student")
+                {
+                    Html.RenderAction("RenderSearchForm", "Search", new { docTypeAliases = "article,clientPage", 
+                        fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 });
+                }
+                else
+                {
+                    Html.RenderAction("RenderSearchForm", "Search", new { docTypeAliases = "article,clientPage,apprenticeship", 
+                        fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 });
+                }
             </div>
         </div>
     </section>

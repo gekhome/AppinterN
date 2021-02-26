@@ -1,0 +1,129 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Appintern.Web.ViewModels.EmployerProfileModel>
+
+@using Umbraco.Web
+@using System.Web.Mvc
+
+@{
+    ViewBag.Title = "Employer Details";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    var member = System.Web.Security.Membership.GetUser();
+    string successMessage = ViewData["successMessage"] != null ? ViewData["successMessage"].ToString() : "";
+}
+
+<div class="page-header" style="margin:5px auto 5px auto;width:80%">
+    <span style="margin:5px 5px 5px 5px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Employer Profile Form</font>
+    </span>
+    <span style="margin:5px 60px 5px 5px;float:right;font-family:'Segoe UI';">
+        @Html.ActionLink("Member Main Page", "RenderTasksMain", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-warning", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Profile Image", "EmployerImage", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+    <span style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Company Summary", "EmployerSummary", "TasksProfile", new { memberId = Model.MemberId }, new { @class = "btn btn-info", style = "font-size:16px" })
+    </span>
+</div>
+
+<div class="container" style="margin:10px auto 5px auto;background-color:whitesmoke;">
+    @{
+        using (Html.BeginForm("SubmitEmployerDetail", "TasksProfile", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @RenderProfileForm()
+
+            <div class="form-group" style="margin-top:20px">
+                <button class="btn btn-primary" name="profile" type="submit"> Save Data </button>
+            </div>
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@Html.ValidationSummary()</strong>
+                </div>
+            }
+            if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@successMessage</strong>
+                </div>
+            }
+        }
+    }
+</div>
+
+
+@helper RenderProfileForm()
+{
+    @Html.HiddenFor(m => m.MemberId)
+
+<div style="margin-bottom:10px">
+    <div class="form-header" style="margin-bottom:20px">
+        <h4>Employer Detail Form</h4>
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.TaxNumber, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.TaxNumber, new { @class = "form-control", placeholder = "Tax Number..." })
+        @Html.ValidationMessageFor(m => m.TaxNumber)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.CompanyName, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "Company Name..." })
+        @Html.ValidationMessageFor(m => m.CompanyName)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.ContactPerson, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control", placeholder = "Contact Person..." })
+        @Html.ValidationMessageFor(m => m.ContactPerson)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Headquarters, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Headquarters, new { @class = "form-control", placeholder = "Home base location..." })
+        @Html.ValidationMessageFor(m => m.Headquarters)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-8" })
+        @Html.DropDownListFor(m => m.Country, Model.CountryList, "Select a country...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
+        @Html.ValidationMessageFor(m => m.Country)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.JobSector1, new { @class = "control-label col-md-8" })
+        @Html.DropDownListFor(m => m.JobSector1, Model.JobSectorList, "Select a job sector...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
+        @Html.ValidationMessageFor(m => m.JobSector1)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.JobSector2, new { @class = "control-label col-md-8" })
+        @Html.DropDownListFor(m => m.JobSector2, Model.JobSectorList, "Select a job sector...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
+        @Html.ValidationMessageFor(m => m.JobSector2)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.JobSector3, new { @class = "control-label col-md-8" })
+        @Html.DropDownListFor(m => m.JobSector3, Model.JobSectorList, "Select a job sector...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
+        @Html.ValidationMessageFor(m => m.JobSector3)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone number..." })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Website, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Website, new { @class = "form-control", placeholder = "Website..." })
+        @Html.ValidationMessageFor(m => m.Website)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.SocialMedia, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.SocialMedia, new { @class = "form-control", placeholder = "Social media..." })
+        @Html.ValidationMessageFor(m => m.SocialMedia)
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+
+    kendo.culture("en-GB");
+
+</script>

@@ -174,7 +174,7 @@ namespace Appintern.Web.Controllers
                         select new EmployersViewModel
                         {
                             MemberID = d.Id,
-                            TradeName = d.Name,
+                            CompanyName = d.Name,
                             Email = d.Email,
                             LoginName = d.Username,
                         }).ToList();
@@ -266,7 +266,7 @@ namespace Appintern.Web.Controllers
                     DateTime articleDate = (DateTime)item.GetProperty("articleDate").GetValue();
                     string authorName = item.GetProperty("authorName").GetValue().ToString();
                     string title = item.GetProperty("title").GetValue().ToString();
-                    string description = item.GetProperty("description").GetValue().ToString();
+                    string description = item.GetProperty("metaDescription").GetValue().ToString();
                     string country = item.GetProperty("country").GetValue().ToString();
 
                     model.Add(new ArticleViewModel(articleId, articleDate, authorName, name, title, description, country, memberId));
@@ -395,7 +395,7 @@ namespace Appintern.Web.Controllers
                 DateTime articleDate = (DateTime)item.GetProperty("articleDate").GetValue();
                 string authorName = item.GetProperty("authorName").GetValue().ToString();
                 string title = item.GetProperty("title").GetValue().ToString();
-                string description = item.GetProperty("description").GetValue().ToString();
+                string description = item.GetProperty("metaDescription").GetValue().ToString();
                 string country = item.GetProperty("country").GetValue().ToString();
 
                 int memberId = GetMemberId(item, memberTypes);
@@ -643,20 +643,18 @@ namespace Appintern.Web.Controllers
                         select new AmbassadorsViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             FullName = d.FullName,
-                            Gender = d.Gender,
                             Address = d.Address,
-                            City = d.City,
-                            State = d.State,
                             Country = d.Country,
                             Phone = d.Phone,
-                            Fax = d.Fax,
-                            Zip = d.Zip,
+                            Email = d.Email,
+                            Website = d.Website,
+                            SocialMedia = d.SocialMedia,
+                            Occupation = d.Occupation,
                             JobSector = d.JobSector,
-                            WorkingYears = d.WorkingYears,
-                            Employer = d.Employer
+                            Employer = d.Employer,
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -676,17 +674,15 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.FullName = entity.FullName;
-                model.Gender = entity.Gender;
                 model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
                 model.Country = entity.Country;
                 model.Phone = entity.Phone;
-                model.Fax = entity.Fax;
-                model.Zip = entity.Zip;
+                model.Website = entity.Website;
+                model.SocialMedia = entity.SocialMedia;
+                model.Occupation = entity.Occupation;
                 model.JobSector = entity.JobSector;
-                model.WorkingYears = entity.WorkingYears;
                 model.Employer = entity.Employer;
 
                 CreateOrUpdateAmbassador(model);
@@ -724,22 +720,23 @@ namespace Appintern.Web.Controllers
         public List<EmployersViewModel> GetEmployersFromDatabase()
         {
             var data = (from d in db.Employers
-                        orderby d.TradeName
+                        orderby d.CompanyName
                         select new EmployersViewModel
                         {
                             MemberID = d.MemberID,
                             LoginName = d.LoginName,
                             Email = d.Email,
-                            TradeName = d.TradeName,
-                            Address = d.Address,
-                            City  = d.City,
-                            State = d.State,
+                            TaxNumber = d.TaxNumber,
+                            CompanyName = d.CompanyName,
+                            ContactPerson = d.ContactPerson,
+                            Headquarters = d.Headquarters,
                             Country = d.Country,
+                            JobSector1 = d.JobSector1,
+                            JobSector2 = d.JobSector2,
+                            JobSector3 = d.JobSector3,
                             Phone = d.Phone,
-                            Fax = d.Fax,
-                            Zip = d.Zip,
-                            JobSector = d.JobSector,
-                            ContactPerson = d.ContactPerson
+                            Website = d.Website,
+                            SocialMedia = d.SocialMedia
                         }).ToList();
             return data;
         }
@@ -759,16 +756,16 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
-                model.TradeName = entity.CompanyName;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
-                model.Country = entity.Country;
-                model.Phone = entity.Phone;
-                model.Fax = entity.Fax;
-                model.Zip = entity.Zip;
-                model.JobSector = entity.JobSector;
+                model.CompanyName = entity.CompanyName;
                 model.ContactPerson = entity.ContactPerson;
+                model.Headquarters = entity.Headquarters;
+                model.Country = entity.Country;
+                model.JobSector1 = entity.JobSector1;
+                model.JobSector2 = entity.JobSector2;
+                model.JobSector3 = entity.JobSector3;
+                model.Phone = entity.Phone;
+                model.Website = entity.Website;
+                model.SocialMedia = entity.SocialMedia;
 
                 CreateOrUpdateEmployer(model);
             }
@@ -809,20 +806,16 @@ namespace Appintern.Web.Controllers
                         select new GraduatesViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             FullName = d.FullName,
-                            Gender = d.Gender,
                             Birthdate = d.Birthdate,
-                            Address = d.Address,
-                            City = d.City,
-                            State = d.State,
-                            Country = d.Country,
+                            Gender = d.Gender,
                             Phone = d.Phone,
-                            Zip = d.Zip,
-                            JobSector = d.JobSector,
-                            Specialty = d.Specialty,
-                            School = d.School
+                            Email = d.Email,
+                            Country = d.Country,
+                            Specialization = d.Specialization,
+                            School = d.School,
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -842,17 +835,13 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.FullName = entity.FullName;
-                model.Gender = entity.Gender;
                 model.Birthdate = entity.BirthDate;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
-                model.Country = entity.Country;
+                model.Gender = entity.Gender;
                 model.Phone = entity.Phone;
-                model.Zip = entity.Zip;
-                model.JobSector = entity.JobSector;
-                model.Specialty = entity.Specialty;
+                model.Country = entity.Country;
+                model.Specialization = entity.Specialization;
                 model.School = entity.School;
 
                 CreateOrUpdateGraduate(model);
@@ -894,20 +883,15 @@ namespace Appintern.Web.Controllers
                         select new LiaisonOfficersViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             FullName = d.FullName,
-                            Gender = d.Gender,
-                            Address = d.Address,
-                            City = d.City,
-                            State = d.State,
                             Country = d.Country,
                             Phone = d.Phone,
-                            Fax = d.Fax,
-                            Zip = d.Zip,
-                            JobSector = d.JobSector,
+                            Email = d.Email,
+                            OfficeAddress = d.OfficeAddress,
+                            Occupation = d.Occupation,
                             Employer = d.Employer,
-                            WorkingYears = d.WorkingYears
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -927,18 +911,13 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.FullName = entity.FullName;
-                model.Gender = entity.Gender;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
                 model.Country = entity.Country;
                 model.Phone = entity.Phone;
-                model.Fax = entity.Fax;
-                model.Zip = entity.Zip;
-                model.JobSector = entity.JobSector;
+                model.OfficeAddress = entity.OfficeAddress;
+                model.Occupation = entity.Occupation;
                 model.Employer = entity.Employer;
-                model.WorkingYears = entity.WorkingYears;
 
                 CreateOrUpdateLiaison(model);
             }
@@ -979,18 +958,17 @@ namespace Appintern.Web.Controllers
                         select new OrganizationsViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             OrganizationName = d.OrganizationName,
-                            Address = d.Address,
-                            City = d.City,
-                            State = d.State,
+                            ContactPerson = d.ContactPerson,
                             Country = d.Country,
-                            Phone = d.Phone,
-                            Fax = d.Fax,
-                            Zip = d.Zip,
+                            Headquarters = d.Headquarters,
                             JobSector = d.JobSector,
-                            ContactPerson = d.ContactPerson
+                            Phone = d.Phone,
+                            Email = d.Email,
+                            Website = d.Website,
+                            SocialMedia = d.SocialMedia,
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -1010,16 +988,15 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.OrganizationName = entity.OrganizationName;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
-                model.Country = entity.Country;
-                model.Phone = entity.Phone;
-                model.Fax = entity.Fax;
-                model.Zip = entity.Zip;
-                model.JobSector = entity.JobSector;
                 model.ContactPerson = entity.ContactPerson;
+                model.Country = entity.Country;
+                model.Headquarters = entity.Headquarters;
+                model.JobSector = entity.JobSector;
+                model.Phone = entity.Phone;
+                model.Website = entity.Website;
+                model.SocialMedia = entity.SocialMedia;
 
                 CreateOrUpdateOrganization(model);
             }
@@ -1060,17 +1037,16 @@ namespace Appintern.Web.Controllers
                         select new SchoolsViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             SchoolName = d.SchoolName,
-                            Address = d.Address,
-                            City = d.City,
-                            State = d.State,
+                            ContactPerson = d.ContactPerson,
                             Country = d.Country,
+                            Address = d.Address,
                             Phone = d.Phone,
-                            Fax = d.Fax,
-                            Zip = d.Zip,
-                            ContactPerson = d.ContactPerson
+                            Email = d.Email,
+                            Website = d.Website,
+                            SocialMedia = d.SocialMedia,
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -1090,15 +1066,14 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.SchoolName = entity.SchoolName;
                 model.ContactPerson = entity.ContactPerson;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
-                model.Zip = entity.Zip;
                 model.Country = entity.Country;
+                model.Address = entity.Address;
                 model.Phone = entity.Phone;
-                model.Fax = entity.Fax;
+                model.Website = entity.Website;
+                model.SocialMedia = entity.SocialMedia;
 
                 CreateOrUpdateSchool(model);
             }
@@ -1139,20 +1114,16 @@ namespace Appintern.Web.Controllers
                         select new StudentsViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             FullName = d.FullName,
-                            Gender = d.Gender,
                             Birthdate = d.Birthdate,
-                            Address = d.Address,
-                            City = d.City,
-                            State = d.State,
-                            Country = d.Country,
+                            Gender = d.Gender,
                             Phone = d.Phone,
-                            Zip = d.Zip,
-                            JobSector = d.JobSector,
-                            Specialty = d.Specialty,
-                            School = d.School
+                            Email = d.Email,
+                            Country = d.Country,
+                            Specialization = d.Specialization,
+                            School = d.School,
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -1172,17 +1143,13 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.FullName = entity.FullName;
-                model.Gender = entity.Gender;
                 model.Birthdate = entity.BirthDate;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
-                model.Country = entity.Country;
+                model.Gender = entity.Gender;
                 model.Phone = entity.Phone;
-                model.Zip = entity.Zip;
-                model.JobSector = entity.JobSector;
-                model.Specialty = entity.Specialty;
+                model.Country = entity.Country;
+                model.Specialization = entity.Specialization;
                 model.School = entity.School;
 
                 CreateOrUpdateStudent(model);
@@ -1224,20 +1191,15 @@ namespace Appintern.Web.Controllers
                         select new TeachersViewModel
                         {
                             MemberID = d.MemberID,
-                            LoginName = d.LoginName,
-                            Email = d.Email,
+                            TaxNumber = d.TaxNumber,
                             FullName = d.FullName,
-                            Gender = d.Gender,
-                            Address = d.Address,
-                            City = d.City,
-                            State = d.State,
                             Country = d.Country,
-                            Phone = d.Phone,
-                            Fax = d.Fax,
-                            Zip = d.Zip,
-                            JobSector = d.JobSector,
                             School = d.School,
-                            TeachingYears = d.TeachingYears
+                            SchoolAddress = d.SchoolAddress,
+                            Phone = d.Phone,
+                            Email = d.Email,
+                            SocialMedia = d.SocialMedia,
+                            LoginName = d.LoginName
                         }).ToList();
             return data;
         }
@@ -1257,17 +1219,13 @@ namespace Appintern.Web.Controllers
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
                 model.Email = user.Email;
+                model.TaxNumber = entity.TaxNumber;
                 model.FullName = entity.FullName;
-                model.Gender = entity.Gender;
-                model.Address = entity.Address;
-                model.City = entity.City;
-                model.State = entity.State;
                 model.Country = entity.Country;
-                model.Phone = entity.Phone;
-                model.Zip = entity.Zip;
-                model.JobSector = entity.JobSector;
                 model.School = entity.School;
-                model.TeachingYears = entity.TeachingYears;
+                model.SchoolAddress = entity.SchoolAddress;
+                model.Phone = entity.Phone;
+                model.SocialMedia = entity.SocialMedia;
 
                 CreateOrUpdateTeacher(model);
             }

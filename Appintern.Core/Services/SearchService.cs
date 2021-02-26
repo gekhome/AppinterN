@@ -60,8 +60,7 @@ namespace Appintern.Core.Services
 
                 var searcher = index.GetSearcher();
                 var criteria = searcher.CreateQuery(searchType);
-                var query = criteria.GroupedNot(new string[] { "umbracoNaviHide" },
-                    new string[] { "1" });
+                var query = criteria.GroupedNot(new string[] { "umbracoNaviHide" }, new string[] { "1" });
 
                 if (terms != null && terms.Any())
                 {

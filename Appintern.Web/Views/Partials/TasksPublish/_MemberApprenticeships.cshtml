@@ -1,0 +1,96 @@
+﻿
+@using Appintern.Web.ViewModels
+
+@{
+    ViewBag.Title = "Apprenticeships";
+    Layout = "~/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="page-header" style="margin:5px 60px 5px 60px;width:100%">
+    <span style="margin:5px 5px 5px 5px;font-family:'Segoe UI';font-size:large;text-shadow:1px 1px #000000">
+        <font style="color:#494949;float:left;font-family:'Segoe UI'">Apprenticeships</font>
+    </span>
+    <span style="margin:5px 60px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px">
+        @Html.ActionLink("Return to Main", "RenderTasksMain", "TasksPublish", null, new { @class = "btn btn-warning", style = "font-size:14px" })
+    </span>
+    <button class="btn btn-info" style="margin:5px 5px 5px 5px;float:right;font-family:'Segoe UI';font-size:14px" onclick="RefreshGrid()">Refresh</button>
+</div>
+
+<div class="body-content" style="margin:20px 60px 5px 60px;">
+    @(Html.Kendo().Grid<UmbracoApprenticeshipModel>()
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.ApprenticeshipId).Width(15).Filterable(false);
+            columns.Bound(c => c.ApprenticeshipName).Width(40);
+            columns.Bound(c => c.PostDate).Width(25);
+            columns.Bound(c => c.StartDate).Width(25);
+            columns.Bound(c => c.EndDate).Width(25);
+            columns.Bound(c => c.Title).Width(40);  
+            columns.Bound(c => c.MetaName).Width(40);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(35);
+            columns.Template(@<text></text>)
+            .ClientTemplate(
+            "<a class=\"k-button k-button-icontext\" href='" + Url.Action("ApprenticeshipDetail", "TasksPublish") + "?apprenticeshipId=#=ApprenticeshipId#' target = _blank>Content Forms</a>"
+            ).Width(25);
+        })
+        .ToolBar(toolBar =>
+        {
+            toolBar.Create();
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Navigatable()
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(5))
+        .Filterable()
+        .HtmlAttributes(new { style = "display: block;font-size:14px" })
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+        .Scrollable(scr => scr.Height(500))
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Model(model =>
+        {
+            model.Id(p => p.ApprenticeshipId);
+            model.Field(p => p.ApprenticeshipId).Editable(false);
+        })
+        .Read(read => read.Action("Apprenticeship_Read", "TasksPublish"))
+        .Create(create => create.Action("Apprenticeship_Create", "TasksPublish"))
+        .Update(update => update.Action("Apprenticeship_Update", "TasksPublish"))
+        .Destroy(destroy => destroy.Action("Apprenticeship_Destroy", "TasksPublish"))
+        .Events(events => events.Error("error_handler"))
+        )
+        )
+</div>
+
+<script type="text/javascript">
+    //set current to the "en-GB" culture script. Required!
+    kendo.culture("en-GB");
+</script>
+
+<script type="text/javascript">
+
+    function RefreshGrid(e) {
+        var grid = $("#Grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+        $("#Grid").data("kendoGrid").dataSource.read();
+    }
+
+</script>

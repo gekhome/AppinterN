@@ -27,9 +27,9 @@
             columns.Bound(c => c.Phone).Width(20).Groupable(false);
             columns.Bound(c => c.Email).Width(20).Groupable(false);
             columns.Bound(c => c.Country).Width(20);
-            columns.Bound(c => c.JobSector).Width(30).Title("Job Sector");
+            columns.Bound(c => c.TaxNumber).Width(20);
             columns.Bound(c => c.School).Width(30);
-            columns.Bound(c => c.Specialty).Width(30);
+            columns.Bound(c => c.Specialization).Width(30);
         })
         .Pageable(pageable => pageable
         .Refresh(true)

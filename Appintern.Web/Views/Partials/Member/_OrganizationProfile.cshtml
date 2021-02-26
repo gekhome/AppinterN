@@ -53,61 +53,50 @@
         @*<hr class="form-line" />*@
     </div>
     <div class="col-md-12">
+        @Html.LabelFor(m => m.TaxNumber, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.TaxNumber, new { @class = "form-control", placeholder = "Tax Number..." })
+        @Html.ValidationMessageFor(m => m.TaxNumber)
+    </div>
+    <div class="col-md-12">
         @Html.LabelFor(m => m.OrganizationName, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control", placeholder = "Organization Name" })
+        @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control", placeholder = "Organization Name..." })
         @Html.ValidationMessageFor(m => m.OrganizationName)
     </div>
     <div class="col-md-12">
-        @Html.LabelFor(m => m.DirectorName, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.DirectorName, new { @class = "form-control", placeholder = "Director Name" })
-        @Html.ValidationMessageFor(m => m.DirectorName)
-    </div>
-    <div class="col-md-12">
         @Html.LabelFor(m => m.ContactPerson, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control", placeholder = "Contact Person Name" })
+        @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control", placeholder = "Contact Person..." })
         @Html.ValidationMessageFor(m => m.ContactPerson)
     </div>
     <div class="col-md-12">
-        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-3" })
-        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone number" })
-        @Html.ValidationMessageFor(m => m.Phone)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Fax, new { @class = "control-label col-md-3" })
-        @Html.TextBoxFor(m => m.Fax, new { @class = "form-control", placeholder = "Fax number" })
-        @Html.ValidationMessageFor(m => m.Fax)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Address, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address" })
-        @Html.ValidationMessageFor(m => m.Address)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.City, new { @class = "control-label col-md-3" })
-        @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City" })
-        @Html.ValidationMessageFor(m => m.City)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.State, new { @class = "control-label col-md-3" })
-        @Html.TextBoxFor(m => m.State, new { @class = "form-control", placeholder = "State" })
-        @Html.ValidationMessageFor(m => m.State)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Zip, new { @class = "control-label col-md-3" })
-        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control", placeholder = "Postcode" })
-        @Html.ValidationMessageFor(m => m.Zip)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-3" })
+        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-8" })
         @Html.DropDownListFor(m => m.Country, Model.CountryList, "Select a country...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
         @Html.ValidationMessageFor(m => m.Country)
     </div>
     <div class="col-md-12">
-        @Html.LabelFor(m => m.JobSector, new { @class = "control-label col-md-3" })
+        @Html.LabelFor(m => m.Headquarters, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Headquarters, new { @class = "form-control", placeholder = "Home base location..." })
+        @Html.ValidationMessageFor(m => m.Headquarters)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.JobSector, new { @class = "control-label col-md-8" })
         @Html.DropDownListFor(m => m.JobSector, Model.JobSectorList, "Select a job sector...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
         @Html.ValidationMessageFor(m => m.JobSector)
     </div>
-
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone number..." })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Website, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Website, new { @class = "form-control", placeholder = "Website..." })
+        @Html.ValidationMessageFor(m => m.Website)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.SocialMedia, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.SocialMedia, new { @class = "form-control", placeholder = "Social media..." })
+        @Html.ValidationMessageFor(m => m.SocialMedia)
+    </div>
     <div class="form-group">
         <button class="btn btn-primary" name="profile" type="submit">submit </button>
         <button class="btn btn-success" type="reset" onclick="refreshPage()">reset </button>

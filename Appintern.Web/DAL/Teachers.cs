@@ -15,19 +15,14 @@ namespace Appintern.Web.DAL
     public partial class Teachers
     {
         public int MemberID { get; set; }
+        public string TaxNumber { get; set; }
         public string FullName { get; set; }
-        public string Gender { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Country { get; set; }
         public string School { get; set; }
-        public string JobSector { get; set; }
-        public string TeachingYears { get; set; }
+        public string SchoolAddress { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string SocialMedia { get; set; }
         public string LoginName { get; set; }
     }
 }

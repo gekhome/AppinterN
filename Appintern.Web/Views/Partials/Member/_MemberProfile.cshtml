@@ -46,44 +46,49 @@
 {
     @Html.HiddenFor(m => m.MemberId)
 
-    <div id="user-login">
-        <div class="form-header" style="margin-bottom:20px">
-            <img src="~/Images/user-circle-gray.png" width="100" height="70" style="margin:10px 20px 10px 10px" />
-            <font class="form-title">Member profile data</font>
-            @*<hr class="form-line" />*@
-        </div>
-        <div class="col-md-12">
-            @Html.LabelFor(m => m.FullName, new { @class = "control-label col-md-8" })
-            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Full name" })
-            @Html.ValidationMessageFor(m => m.FullName)
-        </div>
-        <div class="col-md-12">
-            @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-3" })
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone" })
-            @Html.ValidationMessageFor(m => m.Phone)
-        </div>
-
-        <div class="col-md-12">
-            @Html.LabelFor(m => m.Address, new { @class = "control-label col-md-8" })
-            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address" })
-            @Html.ValidationMessageFor(m => m.Address)
-        </div>
-        <div class="col-md-12">
-            @Html.LabelFor(m => m.Occupation, new { @class = "control-label col-md-3" })
-            @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control", placeholder = "Occupation" })
-            @Html.ValidationMessageFor(m => m.Occupation)
-        </div>
-        <div class="col-md-12">
-            @Html.LabelFor(m => m.JobSector, new { @class = "control-label col-md-3" })
-            @Html.DropDownListFor(m => m.JobSector, Model.JobSectorList, "Select a job sector...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
-        </div>
-
-        <div class="form-group">
-            <button class="btn btn-primary" name="profile" type="submit">submit </button>
-            <button class="btn btn-success" type="reset" onclick="refreshPage()">reset </button>
-            <a class="btn btn-warning" href="/" style="margin-top:16px">Return to Home Page</a>
-        </div>
+<div id="user-login">
+    <div class="form-header" style="margin-bottom:20px">
+        <img src="~/Images/user-circle-gray.png" width="100" height="70" style="margin:10px 20px 10px 10px" />
+        <font class="form-title">Member profile data</font>
+        @*<hr class="form-line" />*@
     </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.TaxNumber, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.TaxNumber, new { @class = "form-control", placeholder = "Tax Number..." })
+        @Html.ValidationMessageFor(m => m.TaxNumber)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.FullName, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Full name..." })
+        @Html.ValidationMessageFor(m => m.FullName)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-8" })
+        @Html.DropDownListFor(m => m.Country, Model.CountryList, "Select a country...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
+        @Html.ValidationMessageFor(m => m.Country)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone number..." })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.SocialMedia, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.SocialMedia, new { @class = "form-control", placeholder = "Social media..." })
+        @Html.ValidationMessageFor(m => m.SocialMedia)
+    </div>
+    <div class="col-md-12">
+        @Html.LabelFor(m => m.Occupation, new { @class = "control-label col-md-8" })
+        @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control", placeholder = "Occupation..." })
+        @Html.ValidationMessageFor(m => m.Occupation)
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" name="profile" type="submit">submit </button>
+        <button class="btn btn-success" type="reset" onclick="refreshPage()">reset </button>
+        <a class="btn btn-warning" href="/" style="margin-top:16px">Return to Home Page</a>
+    </div>
+</div>
 }
 
 <script type="text/javascript">
