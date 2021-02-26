@@ -5,11 +5,15 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence.Querying;
+using Umbraco.Core.Services;
+using Umbraco.Web;
 using Umbraco.Web.Mvc;
+using Umbraco.Web.PublishedModels;
 using CM = Umbraco.Web.PublishedModels;
 
 namespace Appintern.Web.Controllers
@@ -19,11 +23,13 @@ namespace Appintern.Web.Controllers
         private readonly Utilities utilities = new Utilities();
         private readonly ILogger _logger;
         private readonly IDataTypeValueService _dataTypeValueService;
+        private readonly IMemberService _memberService;
 
-        public ProfilesController(ILogger logger, IDataTypeValueService dataTypeValueService)
+        public ProfilesController(ILogger logger, IDataTypeValueService dataTypeValueService, IMemberService memberService)
         {
             _logger = logger;
             _dataTypeValueService = dataTypeValueService;
+            _memberService = memberService;
         }
 
         private string GetMemberViewPath(string name)
@@ -514,10 +520,19 @@ namespace Appintern.Web.Controllers
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
             IEnumerable<SelectListItem> jobsectors = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Job Sectors", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Ambassador member = Members.GetById(memberProfile.Id) as Ambassador;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+            string fileUrl = member.BioAttachment != null ? member.BioAttachment.Url() : "";
+            string filename = member.BioAttachment != null ? member.BioAttachment.Name : "";
+
             AmbassadorProfileModel memberModel = new AmbassadorProfileModel()
             {
                 MemberId = memberProfile.Id,
-                FullName = memberProfile.Name,
+                Name = memberProfile.Name,
+                Email = user.Email,
+                FullName = memberProfile.FullName,
                 TaxNumber = memberProfile.TaxNumber,
                 Address = memberProfile.Address,
                 Country = memberProfile.Country,
@@ -527,10 +542,13 @@ namespace Appintern.Web.Controllers
                 Occupation = memberProfile.Occupation,
                 JobSector = memberProfile.JobSector,
                 Employer = memberProfile.Employer,
+                BioSummary = (HtmlString)memberProfile.BioSummary,
+                BioFileUrl = fileUrl,
+                BioFileName = filename,
+                AvatarUrl = mediaUrl,
                 CountryList = countries,
                 JobSectorList = jobsectors
             };
-
             return memberModel;
         }
 
@@ -540,10 +558,17 @@ namespace Appintern.Web.Controllers
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
             IEnumerable<SelectListItem> jobsectors = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Job Sectors", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Employer member = Members.GetById(memberProfile.Id) as Employer;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             EmployerProfileModel memberModel = new EmployerProfileModel()
             {
                 MemberId = memberProfile.Id,
-                CompanyName = memberProfile.Name,
+                Name = memberProfile.Name,
+                Email = user.Email,
+                CompanyName = memberProfile.CompanyName,
                 TaxNumber = memberProfile.TaxNumber,
                 ContactPerson = memberProfile.ContactPerson,
                 Headquarters = memberProfile.Headquarters,
@@ -554,10 +579,11 @@ namespace Appintern.Web.Controllers
                 Phone = memberProfile.Phone,
                 Website = memberProfile.Website,
                 SocialMedia = memberProfile.SocialMedia,
+                CompanyInfo = (HtmlString)memberProfile.CompanyInfo,
+                AvatarUrl = mediaUrl,
                 CountryList = countries,
                 JobSectorList = jobsectors
             };
-
             return memberModel;
         }
 
@@ -568,10 +594,19 @@ namespace Appintern.Web.Controllers
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
             IEnumerable<SelectListItem> eidikotites = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Specializations", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Graduate member = Members.GetById(memberProfile.Id) as Graduate;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+            string fileUrl = member.BioAttachment != null ? member.BioAttachment.Url() : "";
+            string filename = member.BioAttachment != null ? member.BioAttachment.Name : "";
+
             GraduateProfileModel memberModel = new GraduateProfileModel()
             {
                 MemberId = memberProfile.Id,
-                FullName = memberProfile.Name,
+                Name = memberProfile.Name,
+                Email = user.Email,
+                FullName = memberProfile.FullName,
                 TaxNumber = memberProfile.TaxNumber,
                 BirthDate = memberProfile.BirthDate,
                 Gender = memberProfile.Gender,
@@ -579,11 +614,14 @@ namespace Appintern.Web.Controllers
                 Country = memberProfile.Country,
                 Specialization = memberProfile.Specialization,
                 School = memberProfile.School,
+                BioSummary = (HtmlString)memberProfile.BioSummary,
+                BioFileUrl = fileUrl,
+                BioFileName = filename,
+                AvatarUrl = mediaUrl,
                 GenderList = genders,
                 CountryList = countries,
                 SpecializationList = eidikotites
             };
-
             return memberModel;
         }
 
@@ -592,19 +630,27 @@ namespace Appintern.Web.Controllers
             // Get data source for dropdown list in the partial View
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Liaison member = Members.GetById(memberProfile.Id) as Liaison;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             LiaisonProfileModel memberModel = new LiaisonProfileModel()
             {
                 MemberId = memberProfile.Id,
-                FullName = memberProfile.Name,
+                Name = memberProfile.Name,
+                Email = user.Email,
+                FullName = memberProfile.FullName,
                 TaxNumber = memberProfile.TaxNumber,
                 Country = memberProfile.Country,
                 Phone = memberProfile.Phone,
                 OfficeAddress = memberProfile.OfficeAddress,
                 Occupation = memberProfile.Occupation,
                 Employer = memberProfile.Employer,
+                BioSummary = (HtmlString)memberProfile.BioSummary,
+                AvatarUrl = mediaUrl,
                 CountryList = countries
             };
-
             return memberModel;
         }
 
@@ -614,11 +660,18 @@ namespace Appintern.Web.Controllers
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
             IEnumerable<SelectListItem> jobsectors = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Job Sectors", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Organization member = Members.GetById(memberProfile.Id) as Organization;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             OrganizationProfileModel memberModel = new OrganizationProfileModel()
             {
                 MemberId = memberProfile.Id,
+                Name = memberProfile.Name,
+                Email = user.Email,
                 TaxNumber = memberProfile.TaxNumber,
-                OrganizationName = memberProfile.Name,
+                OrganizationName = memberProfile.OrganizationName,
                 ContactPerson = memberProfile.ContactPerson,
                 Country = memberProfile.Country,
                 Headquarters = memberProfile.Headquarters,
@@ -626,6 +679,8 @@ namespace Appintern.Web.Controllers
                 Phone = memberProfile.Phone,
                 Website = memberProfile.Website,
                 SocialMedia = memberProfile.SocialMedia,
+                OrganizationInfo = (HtmlString)memberProfile.OrganizationInfo,
+                AvatarUrl = mediaUrl,
                 CountryList = countries,
                 JobSectorList = jobsectors
             };
@@ -638,17 +693,26 @@ namespace Appintern.Web.Controllers
             // Get data source for dropdown list in the partial View
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            School member = Members.GetById(memberProfile.Id) as School;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             SchoolProfileModel memberModel = new SchoolProfileModel()
             {
                 MemberId = memberProfile.Id,
+                Name = memberProfile.Name,
+                Email = user.Email,
                 TaxNumber = memberProfile.TaxNumber,
-                SchoolName = memberProfile.Name,
+                SchoolName = memberProfile.SchoolName,
                 ContactPerson = memberProfile.ContactPerson,
                 Address = memberProfile.Address,
                 Country = memberProfile.Country,
                 Phone = memberProfile.Phone,
                 Website = memberProfile.Website,
                 SocialMedia = memberProfile.SocialMedia,
+                SchoolInfo = (HtmlString)memberProfile.SchoolInfo,
+                AvatarUrl = mediaUrl,
                 CountryList = countries
             };
 
@@ -662,17 +726,26 @@ namespace Appintern.Web.Controllers
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
             IEnumerable<SelectListItem> eidikotites = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Specializations", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Student member = Members.GetById(memberProfile.Id) as Student;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             StudentProfileModel memberModel = new StudentProfileModel()
             {
                 MemberId = memberProfile.Id,
+                Name = memberProfile.Name,
+                Email = user.Email,
                 TaxNumber = memberProfile.TaxNumber,
-                FullName = memberProfile.Name,
+                FullName = memberProfile.FullName,
                 BirthDate = memberProfile.BirthDate,
                 Gender = memberProfile.Gender,
                 Phone = memberProfile.Phone,
                 Country = memberProfile.Country,
                 Specialization = memberProfile.Specialization,
                 School = memberProfile.School,
+                BioSummary = (HtmlString)memberProfile.BioSummary,
+                AvatarUrl = mediaUrl,
                 GenderList = genders,
                 CountryList = countries,
                 SpecializationList = eidikotites
@@ -686,16 +759,25 @@ namespace Appintern.Web.Controllers
             // Get data source for dropdown list in the partial View
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            Teacher member = Members.GetById(memberProfile.Id) as Teacher;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             TeacherProfileModel memberModel = new TeacherProfileModel()
             {
                 MemberId = memberProfile.Id,
+                Name = memberProfile.Name,
+                Email = user.Email,
                 TaxNumber = memberProfile.TaxNumber,
-                FullName = memberProfile.Name,
+                FullName = memberProfile.FullName,
                 Country = memberProfile.Country,
                 School = memberProfile.School,
                 SchoolAddress = memberProfile.SchoolAddress,
                 Phone = memberProfile.Phone,
                 SocialMedia = memberProfile.SocialMedia,
+                BioSummary = (HtmlString)memberProfile.BioSummary,
+                AvatarUrl = mediaUrl,
                 CountryList = countries
             };
 
@@ -707,15 +789,24 @@ namespace Appintern.Web.Controllers
             // Get data source for dropdown list in the partial View
             IEnumerable<SelectListItem> countries = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Countries", null);
 
+            var user = _memberService.GetById(memberProfile.Id);
+
+            CM.Member member = Members.GetById(memberProfile.Id) as CM.Member;
+            string mediaUrl = member.Avatar != null ? member.Avatar.Url() : "";
+
             MemberProfileModel memberModel = new MemberProfileModel()
             {
                 MemberId = memberProfile.Id,
+                Name = memberProfile.Name,
+                Email = user.Email,
                 TaxNumber = memberProfile.TaxNumber,
                 FullName = memberProfile.FullName,
                 Country = memberProfile.Country,
                 Phone = memberProfile.Phone,
                 SocialMedia = memberProfile.SocialMedia,
                 Occupation = memberProfile.Occupation,
+                BioSummary = (HtmlString)memberProfile.BioSummary,
+                AvatarUrl = mediaUrl,
                 CountryList = countries
             };
 

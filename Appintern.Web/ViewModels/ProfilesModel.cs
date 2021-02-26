@@ -15,6 +15,9 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
 
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Display(Name = "Firstname Lastname")]
         [Required(ErrorMessage = "Full name cannot be blank")]
         public string FullName { get; set; }
@@ -28,6 +31,9 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Display(Name = "Website")]
         public string Website { get; set; }
@@ -45,14 +51,23 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Employer")]
         public string Employer { get; set; }
 
-        [Display(Name = "Bio Summary")]
+        [Display(Name = "Bio Summary:")]
         public HtmlString BioSummary { get; set; }
 
         [Display(Name = "Bio Attachment")]
         public HttpPostedFileBase BioAttachment { get; set; }
 
+        [Display(Name = "Bio Filename")]
+        public string BioFileName { get; set; }
+
+        [Display(Name = "Bio File Attachment:")]
+        public string BioFileUrl { get; set; }
+
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -67,6 +82,9 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
+
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Display(Name = "Company Name")]
         [Required(ErrorMessage = "Company name cannot be blank")]
@@ -95,17 +113,23 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Display(Name = "Website")]
         public string Website { get; set; }
 
         [Display(Name = "Social Media")]
         public string SocialMedia { get; set; }
 
-        [Display(Name = "Company Information")]
+        [Display(Name = "Company Information:")]
         public HtmlString CompanyInfo { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -118,6 +142,9 @@ namespace Appintern.Web.ViewModels
     {
         public int MemberId { get; set; }
 
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
 
@@ -127,7 +154,7 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/ΜΜ/yyyy}")]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Gender")]
@@ -136,6 +163,9 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Display(Name = "Country")]
         [Required(ErrorMessage = "Country cannot be blank")]
@@ -147,14 +177,23 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "School")]
         public string School { get; set; }
 
-        [Display(Name = "Bio Summary")]
+        [Display(Name = "Bio Summary:")]
         public HtmlString BioSummary { get; set; }
 
         [Display(Name = "Bio Attachment")]
         public HttpPostedFileBase BioAttachment { get; set; }
 
+        [Display(Name = "Bio Filename")]
+        public string BioFileName { get; set; }
+
+        [Display(Name = "Bio File Attachment:")]
+        public string BioFileUrl { get; set; }
+
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -167,6 +206,9 @@ namespace Appintern.Web.ViewModels
     {
         public int MemberId { get; set; }
 
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
 
@@ -181,6 +223,9 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Display(Name = "Office Address")]
         public string OfficeAddress { get; set; }
 
@@ -190,11 +235,14 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Employer")]
         public string Employer { get; set; }
 
-        [Display(Name = "Bio Summary")]
+        [Display(Name = "Bio Summary:")]
         public HtmlString BioSummary { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -205,6 +253,9 @@ namespace Appintern.Web.ViewModels
     public class OrganizationProfileModel
     {
         public int MemberId { get; set; }
+
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
@@ -230,17 +281,23 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Display(Name = "Website")]
         public string Website { get; set; }
 
         [Display(Name = "Social Media")]
         public string SocialMedia { get; set; }
 
-        [Display(Name = "Organization Information")]
+        [Display(Name = "Organization Summary:")]
         public HtmlString OrganizationInfo { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -252,6 +309,9 @@ namespace Appintern.Web.ViewModels
     public class SchoolProfileModel
     {
         public int MemberId { get; set; }
+
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
@@ -274,17 +334,23 @@ namespace Appintern.Web.ViewModels
         [Required(ErrorMessage = "Phone number cannot be blank")]
         public string Phone { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Display(Name = "Website")]
         public string Website { get; set; }
 
         [Display(Name = "Social Media")]
         public string SocialMedia { get; set; }
 
-        [Display(Name = "School Information")]
+        [Display(Name = "School Summary:")]
         public HtmlString SchoolInfo { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -296,6 +362,9 @@ namespace Appintern.Web.ViewModels
     {
         public int MemberId { get; set; }
 
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
 
@@ -305,7 +374,7 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/ΜΜ/yyyy}")]
+        //[DisplayFormat(DataFormatString = "{0:dd/ΜΜ/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Gender")]
@@ -314,6 +383,9 @@ namespace Appintern.Web.ViewModels
 
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Display(Name = "Country")]
         [Required(ErrorMessage = "Country cannot be blank")]
@@ -325,11 +397,14 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "School")]
         public string School { get; set; }
 
-        [Display(Name = "Bio Summary")]
+        [Display(Name = "Bio Summary:")]
         public HtmlString BioSummary { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -341,6 +416,9 @@ namespace Appintern.Web.ViewModels
     public class TeacherProfileModel
     {
         public int MemberId { get; set; }
+
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
@@ -362,14 +440,20 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Display(Name = "Social Media")]
         public string SocialMedia { get; set; }
 
-        [Display(Name = "Bio Summary")]
+        [Display(Name = "Bio Summary:")]
         public HtmlString BioSummary { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 
@@ -379,6 +463,9 @@ namespace Appintern.Web.ViewModels
     public class MemberProfileModel
     {
         public int MemberId { get; set; }
+
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Display(Name = "Tax Number")]
         public string TaxNumber { get; set; }
@@ -394,6 +481,9 @@ namespace Appintern.Web.ViewModels
         [Display(Name = "Phone number")]
         public string Phone { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Display(Name = "Social Media")]
         public string SocialMedia { get; set; }
 
@@ -401,11 +491,14 @@ namespace Appintern.Web.ViewModels
         [Required(ErrorMessage ="Occupation cannot be blank")]
         public string Occupation { get; set; }
 
-        [Display(Name = "Bio Summary")]
+        [Display(Name = "Bio Summary:")]
         public HtmlString BioSummary { get; set; }
 
         [Display(Name = "Profile image")]
         public HttpPostedFileBase Avatar { get; set; }
+
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
 

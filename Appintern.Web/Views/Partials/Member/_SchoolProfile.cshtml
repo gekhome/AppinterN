@@ -5,106 +5,63 @@
 
 @{
     var member = System.Web.Security.Membership.GetUser();
-
-    string successMessage = "";
-    if (ViewData["successMessage"] != null)
-    {
-        successMessage = ViewData["successMessage"].ToString();
-    }
+    string imageUrl = !string.IsNullOrEmpty(Model.AvatarUrl) ? Model.AvatarUrl : "/img/user.png";
 }
 
-@*<div class="contact-clean">*@
-    <div class="container">
-        @{
-            using (Html.BeginUmbracoForm("SubmitSchoolForm", "Profiles", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-
-                @RenderProfileForm()
-
-                if (!ViewData.ModelState.IsValid)
-                {
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>@Html.ValidationSummary()</strong>
-                    </div>
-                }
-                if (!string.IsNullOrEmpty(successMessage))
-                {
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>@successMessage</strong>
-                    </div>
-                }
-            }
-        }
+<div class="container" style="background-color:white">
+    <div style="margin: 0px auto 20px auto">
+        <img src="@(imageUrl)" width="120" height="120" style="margin:10px 20px 10px 10px;object-fit:cover" />
+        <font class="form-title">@Model.Name</font>
+        @Html.HiddenFor(m => m.MemberId)
     </div>
-@*</div>*@
-
-
-@helper RenderProfileForm()
-{
-    @Html.HiddenFor(m => m.MemberId)
-
-<div id="user-login">
-    <div class="form-header" style="margin-bottom:20px">
-        <img src="~/Images/user-circle-gray.png" width="100" height="70" style="margin:10px 20px 10px 10px" />
-        <font class="form-title">VET School profile data</font>
-        @*<hr class="form-line" />*@
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.TaxNumber, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.TaxNumber, new { @class = "form-control", placeholder = "Tax Number..." })
-        @Html.ValidationMessageFor(m => m.TaxNumber)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.SchoolName, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.SchoolName, new { @class = "form-control", placeholder = "School Name..." })
-        @Html.ValidationMessageFor(m => m.SchoolName)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.ContactPerson, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control", placeholder = "Contact Person..." })
-        @Html.ValidationMessageFor(m => m.ContactPerson)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Address, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address..." })
-        @Html.ValidationMessageFor(m => m.Address)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-8" })
-        @Html.DropDownListFor(m => m.Country, Model.CountryList, "Select a country...", new { @class = "form-control", style = "font-size:16px;min-width:200px;padding:1px" })
-        @Html.ValidationMessageFor(m => m.Country)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone number..." })
-        @Html.ValidationMessageFor(m => m.Phone)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.Website, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.Website, new { @class = "form-control", placeholder = "Website..." })
-        @Html.ValidationMessageFor(m => m.Website)
-    </div>
-    <div class="col-md-12">
-        @Html.LabelFor(m => m.SocialMedia, new { @class = "control-label col-md-8" })
-        @Html.TextBoxFor(m => m.SocialMedia, new { @class = "form-control", placeholder = "Social media..." })
-        @Html.ValidationMessageFor(m => m.SocialMedia)
-    </div>
-
-    <div class="form-group">
-        <button class="btn btn-primary" name="profile" type="submit">submit </button>
-        <button class="btn btn-success" type="reset" onclick="refreshPage()">reset </button>
-        <a class="btn btn-warning" href="/" style="margin-top:16px">Return to Home Page</a>
+    <div style="margin:10px auto 10px auto;font-size:18px">
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.TaxNumber, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.TaxNumber, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.SchoolName, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.SchoolName, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.ContactPerson, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.ContactPerson, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Address, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.Address, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.Country, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.Phone, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.Email, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.Website, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.Website, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.SocialMedia, new { @class = "control-label col-md-4" })
+            @Html.DisplayFor(m => m.SocialMedia, new { @class = "form-control" })
+        </div>
+        <div class="col-md-12">
+            @Html.LabelFor(m => m.SchoolInfo, new { @class = "control-label col-md-4" })
+        </div>
+        <div class="col-md-10" style="margin-bottom:20px;margin-left:20px">
+            @Html.Raw(Model.SchoolInfo)
+        </div>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray" />
     </div>
 </div>
-}
+
 
 <script type="text/javascript">
-
-    function refreshPage() {
-        window.location.reload(true);
-    }
 
 </script>
