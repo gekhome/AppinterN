@@ -18,6 +18,7 @@
 {
     foreach (var member in Model)
     {
+
         <div class="list-group">
             @RenderBoxedItem(member)
         </div>
@@ -25,7 +26,9 @@
 }
 
 <div class="pager">
-    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount))
+    @*@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount))*@
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("type", GetMemberType()))
+
     Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
 </div>
 
@@ -44,4 +47,22 @@
             </tr>
         </table>
     </div>
+}
+
+@functions {
+
+    public string GetMemberType()
+    {
+        string res = "" ;
+        foreach (var member in Model)
+        {
+            if (member.Type.Equals("ambassadors"))
+            {
+                res = "Business Ambassadors";
+            }
+            res = "Business Ambassadors";
+
+        }
+        return res;
+    }
 }

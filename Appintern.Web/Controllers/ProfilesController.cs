@@ -151,6 +151,20 @@ namespace Appintern.Web.Controllers
 
             return RenderListResults(model.ProfileResults);
         }
+        [HttpGet]
+        public ActionResult SubmitMemberListForm(string type, int? page)
+        {
+        
+            var categoryName = type;
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            var productsByCategory = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
+            MemberListModel model = new MemberListModel();
+
+            model.ProfileResults = productsByCategory;
+
+            return RenderListResults(model.ProfileResults);
+        }
 
         public ActionResult RenderListResults(IPagedList<MemberTypeProfile> model)
         {
