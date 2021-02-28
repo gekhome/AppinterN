@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.Models;
+using MvcPaging;
 
 namespace Appintern.Web.ViewModels
 {
@@ -18,7 +19,7 @@ namespace Appintern.Web.ViewModels
 
         public IEnumerable<IMember> ListResults { get; set; }
 
-        public List<MemberTypeProfile> ProfileResults { get; set; }
+        public IPagedList<MemberTypeProfile> ProfileResults { get; set; }
 
         public bool HasResults { get { return ListResults != null && ListResults.Count() > 0; } }
 

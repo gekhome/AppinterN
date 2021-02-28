@@ -16,7 +16,7 @@ using Umbraco.Web;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.PublishedModels;
 using CM = Umbraco.Web.PublishedModels;
-
+using MvcPaging;
 namespace Appintern.Web.Controllers
 {
     public class ProfilesController : SurfaceController
@@ -131,24 +131,28 @@ namespace Appintern.Web.Controllers
             model.MemberTypes = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Member Types", null);
 
             //model.ListResults = utilities.GetAllMembers1();
-            model.ProfileResults = GetMemberProfilesByType();
+            model.ProfileResults = GetMemberProfilesByType().ToPagedList(0, 3);
 
             return PartialView(GetMemberViewPath("_MemberListForm"), model);
         }
 
         [HttpPost]
-        public ActionResult SubmitMemberListForm(MemberListModel model)
+        public ActionResult SubmitMemberListForm(MemberListModel model, int? page)
         {
             string memberType = model.MemberType;
+            var categoryName = memberType;
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            //model.ListResults = GetMemberListByType(memberType);
-
-            model.ProfileResults = GetMemberProfilesByType(memberType);
+            var productsByCategory = GetMemberProfilesByType(memberType).ToPagedList(currentPageIndex, 3);
+            model.ProfileResults = productsByCategory;
+            //ViewBag.CategoryName = new SelectList(this.allCategories, categoryName);
+            //ViewBag.CategoryDisplayName = categoryName;
+            //return PartialView("ProductsByCategory", productsByCategory);
 
             return RenderListResults(model.ProfileResults);
         }
 
-        public ActionResult RenderListResults(List<MemberTypeProfile> model)
+        public ActionResult RenderListResults(IPagedList<MemberTypeProfile> model)
         {
             return PartialView(GetMemberViewPath("_MemberListResults"), model);
         }
