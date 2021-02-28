@@ -245,7 +245,7 @@ namespace Appintern.Web.ViewModels
         public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
-
+        
         public IEnumerable<SelectListItem> CountryList { get; set; }
 
     }
@@ -456,7 +456,7 @@ namespace Appintern.Web.ViewModels
         public string AvatarUrl { get; set; }
 
         public string UrlSlug { get; set; }
-
+        
         public IEnumerable<SelectListItem> CountryList { get; set; }
     }
 

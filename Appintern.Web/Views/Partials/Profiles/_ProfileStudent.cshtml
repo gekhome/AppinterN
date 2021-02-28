@@ -1,0 +1,62 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Appintern.Web.ViewModels.StudentProfileModel>
+
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+    var member = System.Web.Security.Membership.GetUser();
+    string imageUrl = !string.IsNullOrEmpty(Model.AvatarUrl) ? Model.AvatarUrl : "/img/user.png";
+}
+
+<div class="contact-clean" style="margin-top:20px">
+    <div class="container" style="background-color:white">
+        <div style="margin: 0px auto 20px auto">
+            <img src="@(imageUrl)" width="120" height="120" style="margin:10px 20px 10px 10px;object-fit:cover" />
+            <font class="form-title">@Model.Name</font>
+            @Html.HiddenFor(m => m.MemberId)
+        </div>
+        <div style="margin:10px auto 10px auto;font-size:18px">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.TaxNumber, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.TaxNumber, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.FullName, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.FullName, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.BirthDate, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Gender, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.Gender, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.Country, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.Phone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Specialization, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.Specialization, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.School, new { @class = "control-label col-md-4" })
+                @Html.DisplayFor(m => m.School, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.BioSummary, new { @class = "control-label col-md-4" })
+            </div>
+            <div class="col-md-10" style="margin-bottom:20px;margin-left:20px">
+                @Html.Raw(Model.BioSummary)
+            </div>
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+        </div>
+    </div>
+</div>

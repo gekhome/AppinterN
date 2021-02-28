@@ -238,7 +238,9 @@ namespace Appintern.Web.Library
         [Umbraco.Web.WebApi.UmbracoAuthorize]
         public IEnumerable<IMember> GetAllMembers1()
         {
-            return _serviceContext.MemberService.GetAllMembers();
+            var members = _serviceContext.MemberService.GetAllMembers();
+
+            return members;
         }
 
         public IList<UMember> GetAllMembers()

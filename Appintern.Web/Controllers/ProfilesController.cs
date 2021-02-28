@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Logging;
+using Umbraco.Core.Models;
 using Umbraco.Core.Persistence.Querying;
 using Umbraco.Core.Services;
 using Umbraco.Web;
@@ -37,6 +38,11 @@ namespace Appintern.Web.Controllers
             return $"~/Views/Partials/Member/{name}.cshtml";
         }
 
+        private string GetProfileViewPath(string name)
+        {
+            return $"~/Views/Partials/Profiles/{name}.cshtml";
+        }
+
         // Need this, otherwise throws exception 'action not found'
         // Alterantively, omitting the tag defaults to both
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
@@ -44,7 +50,7 @@ namespace Appintern.Web.Controllers
         {
             string memberForm;
 
-            if (memberType == "member")
+            if (memberType == "member" || memberType == "Member")
             {
                 MemberProfileModel memberModel;
                 memberForm = "_MemberProfile";
@@ -113,6 +119,218 @@ namespace Appintern.Web.Controllers
                 memberForm = "_MemberProfile";
                 memberModel = GetMemberProfileModel(memberAlias);
                 return PartialView(GetMemberViewPath(memberForm), memberModel);
+            }
+        }
+
+        #region MEMBERS LIST & PROFILES
+
+        public ActionResult MemberListForm()
+        {
+            MemberListModel model = new MemberListModel();
+
+            model.MemberTypes = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Member Types", null);
+
+            //model.ListResults = utilities.GetAllMembers1();
+            model.ProfileResults = GetMemberProfilesByType();
+
+            return PartialView(GetMemberViewPath("_MemberListForm"), model);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitMemberListForm(MemberListModel model)
+        {
+            string memberType = model.MemberType;
+
+            //model.ListResults = GetMemberListByType(memberType);
+
+            model.ProfileResults = GetMemberProfilesByType(memberType);
+
+            return RenderListResults(model.ProfileResults);
+        }
+
+        public ActionResult RenderListResults(List<MemberTypeProfile> model)
+        {
+            return PartialView(GetMemberViewPath("_MemberListResults"), model);
+        }
+
+        #endregion
+
+        public IEnumerable<IMember> GetMemberListByType(string memberType)
+        {
+            if (memberType == "Business Ambassadors")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "ambassador");
+            else if (memberType == "Employers")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "employer");
+            else if (memberType == "Graduates")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "graduate");
+            else if(memberType == "Liaison Officers")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "liaison");
+            else if(memberType == "Social Partners")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "organization");
+            else if (memberType == "Schools")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "school");
+            else if (memberType == "Students")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "student");
+            else if(memberType == "Teachers")
+                return utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "teacher");
+            else
+                return utilities.GetAllMembers1();
+        }
+
+        public List<MemberTypeProfile> GetMemberProfilesByType(string memberType = null)
+        {
+            List<MemberTypeProfile> data = new List<MemberTypeProfile>();
+
+            if (memberType == "Business Ambassadors")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "ambassador").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Ambassador _member = Members.GetById(member.Id) as Ambassador;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "ambassador", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Employers")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "employer").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Employer _member = Members.GetById(member.Id) as Employer;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "employer", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Graduates")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "graduate").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Graduate _member = Members.GetById(member.Id) as Graduate;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "graduate", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Liaison Officers")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "liaison").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Liaison _member = Members.GetById(member.Id) as Liaison;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "liaison", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Social Partners")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "organization").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Organization _member = Members.GetById(member.Id) as Organization;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "organization", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Schools")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "school").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    School _member = Members.GetById(member.Id) as School;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "school", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Students")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "student").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Student _member = Members.GetById(member.Id) as Student;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "student", _member.UrlSlug));
+                }
+            }
+            else if (memberType == "Teachers")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "teacher").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Teacher _member = Members.GetById(member.Id) as Teacher;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "teacher", _member.UrlSlug));
+                }
+            }
+            else
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "Member").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    CM.Member _member = Members.GetById(member.Id) as CM.Member;
+                    data.Add(new MemberTypeProfile(_member.Name, member.Email, "Member", _member.UrlSlug));
+                }
+            }
+            return data;
+        }
+
+        public ActionResult RenderProfileForm(string memberAlias, string memberType)
+        {
+            string memberForm;
+
+            if (memberType == "ambassador")
+            {
+                AmbassadorProfileModel ambassadorModel;
+                memberForm = "_ProfileAmbassador";
+                ambassadorModel = GetAmbassadorProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), ambassadorModel);
+            }
+            else if (memberType == "employer")
+            {
+                EmployerProfileModel employerModel;
+                memberForm = "_ProfileEmployer";
+                employerModel = GetEmployerProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), employerModel);
+            }
+            else if (memberType == "graduate")
+            {
+                GraduateProfileModel graduateModel;
+                memberForm = "_ProfileGraduate";
+                graduateModel = GetGraduateProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), graduateModel);
+            }
+            else if (memberType == "liaison")
+            {
+                LiaisonProfileModel liaisonModel;
+                memberForm = "_ProfileLiaison";
+                liaisonModel = GetLiaisonProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), liaisonModel);
+            }
+            else if (memberType == "organization")
+            {
+                OrganizationProfileModel organizationModel;
+                memberForm = "_ProfileOrganization";
+                organizationModel = GetOrganizationProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), organizationModel);
+            }
+            else if (memberType == "school")
+            {
+                SchoolProfileModel schoolModel;
+                memberForm = "_ProfileSchool";
+                schoolModel = GetSchoolProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), schoolModel);
+            }
+            else if (memberType == "student")
+            {
+                StudentProfileModel studentModel;
+                memberForm = "_ProfileStudent";
+                studentModel = GetStudentProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), studentModel);
+            }
+            else if (memberType == "teacher")
+            {
+                TeacherProfileModel teacherModel;
+                memberForm = "_ProfileTeacher";
+                teacherModel = GetTeacherProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), teacherModel);
+            }
+            else
+            {
+                MemberProfileModel memberModel;
+                memberForm = "_ProfileMember";
+                memberModel = GetMemberProfileModel(memberAlias);
+                return PartialView(GetProfileViewPath(memberForm), memberModel);
             }
         }
 

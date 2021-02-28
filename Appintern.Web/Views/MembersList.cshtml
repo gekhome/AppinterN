@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using ClientDependency.Core.Mvc
+
+@{
+    Layout = "master.cshtml";
+    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
+    var loggedMember = Members.GetCurrentMember();
+    string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
+}
+
+@section Head
+{
+    <style>
+        button.current {
+            font-weight: 700;
+        }
+
+        .search-header {
+            text-align: center;
+            font-weight: 700;
+            margin-top: 10px;
+            color: #808080;
+        }
+
+        div.fluent-image {
+            color: #fff;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-bottom: 0;
+        }
+    </style>
+}
+
+@Html.RenderCssHere();
+
+
+<div class="col-md-12" style="margin-top:0px">
+    <div class="fluent-image" style="background-image:url('@(imageUrl)');height:400px"></div>
+    <h2 class="col-md-12 search-header">@(Model.Value<string>("title"))</h2>
+    <h4 class="col-md-12" style="text-align:center;color:#808080">@Html.Raw(Model.Value("description"))</h4>
+</div>
+
+@{
+    Html.RenderAction("MemberListForm", "Profiles");
+}
+
+@section ScriptsBottom
+{
+    <!--You may not want to reference jQuery here if you already have it in your master template-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/scripts/jquery.validate.min.js"></script>
+    <script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).on("click", "#submit-button", function (e) {
+            e.preventDefault();
+            var form = $(this).closest('form');
+            $(form).submit();
+        })
+
+    </script>
+}

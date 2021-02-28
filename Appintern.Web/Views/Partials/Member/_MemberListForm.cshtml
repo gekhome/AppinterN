@@ -1,0 +1,33 @@
+﻿@model MemberListModel
+@using Appintern.Web.ViewModels
+
+@using (Ajax.BeginForm("SubmitMemberListForm", "Profiles", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list-results"
+}))
+{
+    <div class="container">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(m => m.MemberType, new { @class = "control-label col-md-5" })
+                    @Html.DropDownListFor(m => m.MemberType, Model.MemberTypes, "Select a member type...", new { @class = "form-control", style = "font-size:16px;padding:1px;max-height:34px" })
+                </div>
+                <div class="col-md-12" style="margin-top:10px">
+                    <button class="btn btn-primary" id="submit-button">Browse <i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <aside class="sidebar">
+                <div class="row" id="list-results" style="margin-left:2px">
+                    @{ Html.RenderAction("RenderListResults", "Profiles", new { Model = Model.ProfileResults }); }
+                </div>
+            </aside>
+        </div>
+    </div>
+}
+

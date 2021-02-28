@@ -1,0 +1,50 @@
+﻿
+@using ClientDependency.Core.Mvc
+
+@{
+    Html.RequiresCss("/css/bootstrap.min.css");
+    Html.RequiresCss("/css/bootstrap-theme.min.css");
+    Html.RequiresCss("/css/style.css");
+    Html.RequiresCss("/css/simple-line-icons.css");
+
+    Html.RequiresCss("/css/Contact-Form-Clean.css");
+
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js");
+}
+
+@Html.RenderCssHere();
+@Html.RenderJsHere();
+
+@RenderHeader()
+
+<main>
+    @RenderBody()
+</main>
+
+@RenderFooter()
+
+
+@helper RenderHeader()
+{
+    <nav class="navbar navbar-dark navbar-fixed-top" style="background-color:#292929;max-height:40px">
+        <h3 style="margin:10px auto 5px auto;color:white;text-align:center">Member Profile Page</h3>
+    </nav>
+}
+
+@helper RenderFooter()
+{
+    <div class="footer-basic">
+        <footer id="fh5co-footer" role="contentinfo" style="max-height:260px;background-color:#292929">
+            <div class="row text-center">
+                <a href="http://www.oaed.gr" target="_blank"><img src="~/Images/logo-oaed.png" style="margin-right:5px" height="80" /></a>
+                <a href="https://www.iky.gr/en/" target="_blank"><img src="~/Images/logo-iky.png" style="margin-right:5px" height="80" /></a>
+                <a href="https://ec.europa.eu/programmes/erasmus-plus/node_en" target="_blank"><img src="~/Images/logo-erasmus.png" style="margin-right:5px" height="80" /></a>
+            </div>
+            <div class="container-fluid" style="margin-top:10px">
+                <p style="color:whitesmoke;text-align:center">AppInterN Starter Site - Copyright © @DateTime.Now.Year Georgios Kyriakakis &amp; Christos Ghiokas for OAED.</p>
+            </div>
+        </footer>
+    </div>
+}
+

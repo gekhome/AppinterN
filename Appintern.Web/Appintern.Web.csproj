@@ -360,6 +360,9 @@
     <Content Include="Images\metro\orderedList7.png" />
     <Content Include="Images\metro\orderedList8.png" />
     <Content Include="Images\metro\orderedList9.png" />
+    <Content Include="Images\oaed-logo.png" />
+    <Content Include="Images\Picture2.png" />
+    <Content Include="Images\Picture3.png" />
     <Content Include="img\error-page.png" />
     <Content Include="img\user.png" />
     <Content Include="img\apprenticeship.jpg" />
@@ -1666,6 +1669,7 @@
     <Compile Include="App_Data\Models\Member.generated.cs" />
     <Compile Include="App_Data\Models\MemberProfile.generated.cs" />
     <Compile Include="App_Data\Models\Members.generated.cs" />
+    <Compile Include="App_Data\Models\MembersList.generated.cs" />
     <Compile Include="App_Data\Models\MetaDataControls.generated.cs" />
     <Compile Include="App_Data\Models\NavigationControls.generated.cs" />
     <Compile Include="App_Data\Models\Organization.generated.cs" />
@@ -1815,6 +1819,7 @@
     <Compile Include="Reports\MembersArticles.Designer.cs">
       <DependentUpon>MembersArticles.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MemberListModel.cs" />
     <Compile Include="ViewModels\UmbracoEntitiesModel.cs" />
     <Compile Include="ViewModels\ProfilesModel.cs" />
     <Compile Include="ViewModels\FaqModel.cs" />
@@ -2037,6 +2042,19 @@
     <Content Include="Views\Partials\TasksPublish\_ApprenticeshipImage.cshtml" />
     <Content Include="Views\Partials\TasksPublish\_ApprenticeshipContent.cshtml" />
     <Content Include="Views\InvalidProfile.cshtml" />
+    <Content Include="Views\MembersList.cshtml" />
+    <Content Include="Views\Partials\Member\_MemberListForm.cshtml" />
+    <Content Include="Views\Partials\Member\_MemberListResults.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileAmbassador.cshtml" />
+    <Content Include="Views\Shared\_ProfileLayout.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileEmployer.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileGraduate.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileLiaison.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileMember.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileOrganization.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileSchool.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileStudent.cshtml" />
+    <Content Include="Views\Partials\Profiles\_ProfileTeacher.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

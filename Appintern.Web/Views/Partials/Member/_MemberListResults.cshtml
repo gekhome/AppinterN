@@ -1,0 +1,32 @@
+﻿@model List<MemberTypeProfile>
+@using Appintern.Web.ViewModels
+
+<h4>This is a test results page which displays all members of the selected type in this area</h4>
+
+@if (Model.Count > 0)
+{
+    foreach (var member in Model)
+    {
+        <div class="list-group">
+            @RenderBoxedItem(member)
+        </div>
+    }
+}
+
+
+@helper RenderBoxedItem(MemberTypeProfile member)
+{
+    <div class="list-group-item col-md-12">
+        <table>
+            <tr>
+                <td>
+                    <img src='@Url.Content("~/Images/44.jpg")' height="60" width="80" />
+                </td>
+                <td>
+                    <a href='@Url.Action("RenderProfileForm", "Profiles", new { memberAlias = member.UrlSlug, memberType = member.Type })' title="View profile for @member.Name" target="_blank">@member.Name</a><br />
+                    @member.Email
+                </td>
+            </tr>
+        </table>
+    </div>
+}

@@ -1,12 +1,16 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Appintern.Web.ViewModels.AmbassadorProfileModel>
 
+@using Appintern.Web.ViewModels;
+
 @using Umbraco.Web
 @using System.Web.Mvc
+@using ClientDependency.Core.Mvc
 
 @{
     var member = System.Web.Security.Membership.GetUser();
     string imageUrl = !string.IsNullOrEmpty(Model.AvatarUrl) ? Model.AvatarUrl : "/img/user.png";
 }
+
 
 <div class="container" style="background-color:white">
     <div style="margin: 0px auto 20px auto">
@@ -72,6 +76,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script type="text/javascript">

@@ -8,7 +8,6 @@
     var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
     var loggedMember = Members.GetCurrentMember();
     string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
-
 }
 
 @section Head
