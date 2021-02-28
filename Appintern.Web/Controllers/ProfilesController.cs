@@ -136,6 +136,7 @@ namespace Appintern.Web.Controllers
             return PartialView(GetMemberViewPath("_MemberListForm"), model);
         }
 
+        //HTTP POST gia to initial request. Edw fortwnei to model opws prin kai kanei to ToPagedList gia na kanei to paging
         [HttpPost]
         public ActionResult SubmitMemberListForm(MemberListModel model, int? page)
         {
@@ -148,6 +149,24 @@ namespace Appintern.Web.Controllers
             //ViewBag.CategoryName = new SelectList(this.allCategories, categoryName);
             //ViewBag.CategoryDisplayName = categoryName;
             //return PartialView("ProductsByCategory", productsByCategory);
+
+            return RenderListResults(model.ProfileResults);
+        }
+
+        //HTTP GET kanei to Paging otan patas to link tou page. Edw 8eloume to type san string gia na er8ei pisw me th GET
+        // kai na xsanatrexsei h GetMemberProfilesByType. 
+        //Prospa8hsa me diaforous tropous na epistrefw model pisw de mou vghke an ginete teleia 8a paixsei k mono me ena action.
+        [HttpGet]
+        public ActionResult SubmitMemberListForm(string type, int? page)
+        {
+        
+            var categoryName = type;
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            var productsByCategory = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
+            MemberListModel model = new MemberListModel();
+
+            model.ProfileResults = productsByCategory;
 
             return RenderListResults(model.ProfileResults);
         }

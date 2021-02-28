@@ -18,6 +18,7 @@
 {
     foreach (var member in Model)
     {
+
         <div class="list-group">
             @RenderBoxedItem(member)
         </div>
@@ -25,7 +26,10 @@
 }
 
 <div class="pager">
-    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount))
+    @*@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount))*@
+    @*Edw to option einai o tropos to Pager na pernas arguments sto link. Kalw to parakatw function gia na kanw extract to type*@
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("type", GetMemberType()))
+
     Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
 </div>
 
@@ -44,4 +48,28 @@
             </tr>
         </table>
     </div>
+}
+
+@functions {
+
+    //Auth h hackia metratrepei to filiko lektiko se pragmatiko type, gia na mpei sto link to pager. 
+
+    //Edw 8elw input gt 8a paixsei kai me to na kanw ena megalo if else edw 8a paixsei alla den einai kompsh lysh. 
+    // 8eloume eite kapws na exoume to type sto MemberTypeProfile, h na vre8ei kapoios tropos na pernaei to model object pisw.
+
+    // To loop einai epishs axrhasto kanonika 8elei FirstOrDefault.
+    public string GetMemberType()
+    {
+        string res = "" ;
+        foreach (var member in Model)
+        {
+            if (member.Type.Equals("ambassadors"))
+            {
+                res = "Business Ambassadors";
+            }
+            res = "Business Ambassadors";
+
+        }
+        return res;
+    }
 }
