@@ -1,6 +1,16 @@
 ﻿@model List<MemberTypeProfile>
 @using Appintern.Web.ViewModels
 
+<head>
+    <style>
+        /*yeap blue bakground fix input here also*/
+        .dropdown-menu > .active > a {
+            background-image: none;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
 <h4>This is a test results page which displays all members of the selected type in this area</h4>
 
 @if (Model.Count > 0)
