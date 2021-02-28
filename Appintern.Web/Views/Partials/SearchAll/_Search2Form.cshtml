@@ -13,10 +13,21 @@
     @Html.HiddenFor(m => m.PageSize)
     @Html.HiddenFor(m => m.PagingGroupSize)
 
+<head>
+    <style>
+        /*yeap blue bakground fix input here also*/
+        .dropdown-menu > .active > a {
+            background-image: none;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
 <div class="container">
     <div class="col-md-4">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12"> 
+               
                 @Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "Search...", @class = "form-control col-md-8", style = "max-height:34px" })
             </div>
             <div class="col-md-12">
