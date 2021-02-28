@@ -136,6 +136,7 @@ namespace Appintern.Web.Controllers
             return PartialView(GetMemberViewPath("_MemberListForm"), model);
         }
 
+        //HTTP POST gia to initial request. Edw fortwnei to model opws prin kai kanei to ToPagedList gia na kanei to paging
         [HttpPost]
         public ActionResult SubmitMemberListForm(MemberListModel model, int? page)
         {
@@ -151,6 +152,10 @@ namespace Appintern.Web.Controllers
 
             return RenderListResults(model.ProfileResults);
         }
+
+        //HTTP GET kanei to Paging otan patas to link tou page. Edw 8eloume to type san string gia na er8ei pisw me th GET
+        // kai na xsanatrexsei h GetMemberProfilesByType. 
+        //Prospa8hsa me diaforous tropous na epistrefw model pisw de mou vghke an ginete teleia 8a paixsei k mono me ena action.
         [HttpGet]
         public ActionResult SubmitMemberListForm(string type, int? page)
         {
