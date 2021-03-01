@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appintern.Web", "Appintern.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appintern.Core", "Appintern.Core\Appintern.Core.csproj", "{6BE23FBE-3C14-444A-AAD1-2A4BCE4218CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging", "..\MvcPaging\src\MvcPaging\MvcPaging.csproj", "{AAF30968-1118-4937-B392-E9863EA8D76D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6BE23FBE-3C14-444A-AAD1-2A4BCE4218CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE23FBE-3C14-444A-AAD1-2A4BCE4218CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE23FBE-3C14-444A-AAD1-2A4BCE4218CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
