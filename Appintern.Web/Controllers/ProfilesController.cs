@@ -155,8 +155,6 @@ namespace Appintern.Web.Controllers
         [HttpGet]
         public ActionResult SubmitMemberListForm(string type, int? page)
         {
-        
-            var categoryName = type;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
             var listResults = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
