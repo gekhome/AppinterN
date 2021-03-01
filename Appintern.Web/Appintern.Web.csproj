@@ -1811,14 +1811,6 @@
     <Compile Include="Library\DataAccess.cs" />
     <Compile Include="Library\HtmlUtilities.cs" />
     <Compile Include="Library\Utilities.cs" />
-    <Compile Include="MvcPaging\IPagedList.cs" />
-    <Compile Include="MvcPaging\PagedList.cs" />
-    <Compile Include="MvcPaging\Pager.cs" />
-    <Compile Include="MvcPaging\PagerOptions.cs" />
-    <Compile Include="MvcPaging\PagerOptionsBuilder.cs" />
-    <Compile Include="MvcPaging\PaginationModel.cs" />
-    <Compile Include="MvcPaging\PagingExtensions.cs" />
-    <Compile Include="MvcPaging\RouteValueDictionaryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

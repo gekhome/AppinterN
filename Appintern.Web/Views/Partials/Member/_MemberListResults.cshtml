@@ -9,21 +9,56 @@
             background-image: none;
             background-color: whitesmoke;
         }
+        .pager {
+            margin: 8px 3px;
+            padding: 3px;
+        }
+
+        .pager .disabled {
+            border: 1px solid #ddd;
+            color: #999;
+            margin-top: 4px;
+            padding: 3px;
+            text-align: center;
+        }
+
+        .pager .current {
+            background-color: #6ea9bf;
+            border: 1px solid #6e99aa;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 4px;
+            padding: 3px 5px;
+            text-align: center;
+        }
+
+        .pager span, .pager a {
+            margin: 4px 3px;
+        }
+
+        .pager a {
+            border: 1px solid #aaa;
+            padding: 3px 5px;
+            text-align: center;
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <h4>This is a test results page which displays all members of the selected type in this area</h4>
 
-@if (Model.Count() > 0)
-{
-    foreach (var member in Model)
+<div style="margin-bottom:20px">
+    @if (Model.Count() > 0)
     {
+        foreach (var member in Model)
+        {
 
-        <div class="list-group">
-            @RenderBoxedItem(member)
-        </div>
+            <div class="list-group">
+                @RenderBoxedItem(member)
+            </div>
+        }
     }
-}
+</div>
 
 <div class="pager">
     @*@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount))*@
@@ -63,7 +98,7 @@
         string res = "" ;
         foreach (var member in Model)
         {
-            if (member.Type.Equals("ambassadors"))
+            if (member.Type.Equals("ambassador"))
             {
                 res = "Business Ambassadors";
             }

@@ -141,14 +141,10 @@ namespace Appintern.Web.Controllers
         public ActionResult SubmitMemberListForm(MemberListModel model, int? page)
         {
             string memberType = model.MemberType;
-            var categoryName = memberType;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            var productsByCategory = GetMemberProfilesByType(memberType).ToPagedList(currentPageIndex, 3);
-            model.ProfileResults = productsByCategory;
-            //ViewBag.CategoryName = new SelectList(this.allCategories, categoryName);
-            //ViewBag.CategoryDisplayName = categoryName;
-            //return PartialView("ProductsByCategory", productsByCategory);
+            var listResults = GetMemberProfilesByType(memberType).ToPagedList(currentPageIndex, 3);
+            model.ProfileResults = listResults;
 
             return RenderListResults(model.ProfileResults);
         }
@@ -163,10 +159,10 @@ namespace Appintern.Web.Controllers
             var categoryName = type;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            var productsByCategory = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
+            var listResults = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
             MemberListModel model = new MemberListModel();
 
-            model.ProfileResults = productsByCategory;
+            model.ProfileResults = listResults;
 
             return RenderListResults(model.ProfileResults);
         }
