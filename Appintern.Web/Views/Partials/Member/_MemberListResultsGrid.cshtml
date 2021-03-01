@@ -12,6 +12,14 @@
     }
 }
 
+<div class="pager">
+    @*Edw to option einai o tropos to Pager na pernas arguments sto link. Kalw to parakatw function gia na kanw extract to type*@
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions { UpdateTargetId = "results-container" }).Options(o => o.AddRouteValue("type", GetMemberType()))
+
+    Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
+</div>
+
+
 @helper RenderBoxedItem(MemberTypeProfile member)
 {
     <div class="list-group-item col-md-12">
@@ -27,4 +35,29 @@
             </tr>
         </table>
     </div>
+}
+
+@functions {
+
+    public string GetMemberType()
+    {
+        if (Model.Where(x => x.Type.Equals("ambassador")).FirstOrDefault() != null)
+            return "Business Ambassadors";
+        else if (Model.Where(x => x.Type.Equals("graduate")).FirstOrDefault() != null)
+            return "Graduates";
+        else if (Model.Where(x => x.Type.Equals("employer")).FirstOrDefault() != null)
+            return "Employers";
+        else if (Model.Where(x => x.Type.Equals("liaison")).FirstOrDefault() != null)
+            return "Liaison Officers";
+        else if (Model.Where(x => x.Type.Equals("organization")).FirstOrDefault() != null)
+            return "Social Partners";
+        else if (Model.Where(x => x.Type.Equals("school")).FirstOrDefault() != null)
+            return "Schools";
+        else if (Model.Where(x => x.Type.Equals("student")).FirstOrDefault() != null)
+            return "Students";
+        else if (Model.Where(x => x.Type.Equals("teacher")).FirstOrDefault() != null)
+            return "Teachers";
+        else
+            return "Members";
+    }
 }

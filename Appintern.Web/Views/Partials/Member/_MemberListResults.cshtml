@@ -61,12 +61,12 @@
 </div>
 
 <!-- need some spacing between results and buttons. How? -->
-<div class="pager">
+<!--<div class="pager">-->
     @*Edw to option einai o tropos to Pager na pernas arguments sto link. Kalw to parakatw function gia na kanw extract to type*@
-    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions { UpdateTargetId = "results-container" }).Options(o => o.AddRouteValue("type", GetMemberType()))
+    <!--@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions { UpdateTargetId = "results-container" }).Options(o => o.AddRouteValue("type", GetMemberType()))
 
     Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
-</div>
+</div>-->
 
 @helper RenderBoxedItem(MemberTypeProfile member)
 {
