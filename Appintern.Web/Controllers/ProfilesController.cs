@@ -159,7 +159,7 @@ namespace Appintern.Web.Controllers
             MemberListModel model = new MemberListModel();
             model.ProfileResults = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
 
-            return RenderListResults(model.ProfileResults);
+            return PartialView(GetMemberViewPath("_MemberListResultsGrid"), model.ProfileResults);
         }
 
         public ActionResult RenderListResults(IPagedList<MemberTypeProfile> model)

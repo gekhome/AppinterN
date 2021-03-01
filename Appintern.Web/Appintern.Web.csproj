@@ -2059,6 +2059,7 @@
     <Content Include="Views\Partials\Profiles\_ProfileSchool.cshtml" />
     <Content Include="Views\Partials\Profiles\_ProfileStudent.cshtml" />
     <Content Include="Views\Partials\Profiles\_ProfileTeacher.cshtml" />
+    <Content Include="Views\Partials\Member\_MemberListResultsGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
