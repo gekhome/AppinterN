@@ -38,7 +38,7 @@
         .DataSource(dataSource => dataSource
         .Ajax()
         .PageSize(60)
-        .ServerOperation(false)
+        .ServerOperation(true)
         .Model(model =>
         {
             model.Id(p => p.MemberID);
@@ -63,6 +63,7 @@
             columns.Bound(c => c.Commitment).Width(20);
             columns.Bound(c => c.Compensation).Width(25);
             columns.Bound(c => c.JobSector).Width(30).Title("Job Sectors");
+            columns.Bound(c => c.Status).Width(20);
             columns.Bound(c => c.Country).Width(20);
         })
         .Pageable(pageable => pageable

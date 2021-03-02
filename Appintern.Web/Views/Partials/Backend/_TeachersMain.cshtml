@@ -42,8 +42,8 @@
         .Scrollable(scr => scr.Height(540))
         .DataSource(dataSource => dataSource
         .Ajax()
-        .PageSize(20)
-        .ServerOperation(false)
+        .PageSize(40)
+        .ServerOperation(true)
         .Model(model =>
         {
             model.Id(p => p.MemberID);

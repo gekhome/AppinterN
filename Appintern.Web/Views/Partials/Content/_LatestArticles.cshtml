@@ -82,14 +82,14 @@
 
 @helper RenderArticle(IPublishedContent item)
 {
-    string imageUrl = item.Value<IPublishedContent>("mainImage")?.GetCropUrl(720, 455) ?? "/img/news-banner.jpg";
+    string imageUrl = item.Value<IPublishedContent>("mainImage")?.GetCropUrl(600, 380) ?? "/img/news-banner.jpg";
     string title = item.HasValue("title") ? item.Value<string>("title") : item.Name;
     string description = item.Value<string>("metaDescription");
 
     <div class="col-md-4 col-sm-6 item">
         <a href="@item.Url()"><img class="img-responsive" src="@imageUrl"></a>
         <h3 class="name"><a href="@item.Url()">@title</a></h3>
-        <p class="description">@description</p>
+        @*<p class="description">@description</p>*@
         <p><a href="@item.Url()" class="btn btn-primary btn-outline with-arrow">Read More <i class="icon-arrow-right"></i></a></p>
     </div>
 }

@@ -45,28 +45,12 @@
     </style>
 </head>
 
-<h4>This is a test results page which displays all members of the selected type in this area</h4>
+<h4>This page displays all members of the selected type (role) in this area</h4>
 
 <div id="results-container">
     @Html.Partial("~/Views/Partials/Member/_MemberListResultsGrid.cshtml", Model)
-    @*@if (Model.Count() > 0)
-    {
-        foreach (var member in Model)
-        {
-            <div class="list-group">
-                @RenderBoxedItem(member)
-            </div>
-        }
-    }*@
 </div>
 
-<!-- need some spacing between results and buttons. How? -->
-<!--<div class="pager">-->
-    @*Edw to option einai o tropos to Pager na pernas arguments sto link. Kalw to parakatw function gia na kanw extract to type*@
-    <!--@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions { UpdateTargetId = "results-container" }).Options(o => o.AddRouteValue("type", GetMemberType()))
-
-    Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
-</div>-->
 
 @helper RenderBoxedItem(MemberTypeProfile member)
 {
@@ -83,60 +67,4 @@
             </tr>
         </table>
     </div>
-}
-
-@functions {
-    //Auth h hackia metratrepei to filiko lektiko se pragmatiko type, gia na mpei sto link to pager. 
-
-    //Edw 8elw input gt 8a paixsei kai me to na kanw ena megalo if else edw 8a paixsei alla den einai kompsh lysh. 
-    // 8eloume eite kapws na exoume to type sto MemberTypeProfile, h na vre8ei kapoios tropos na pernaei to model object pisw.
-
-    // To loop einai epishs axrhasto kanonika 8elei FirstOrDefault.
-    // Giorgos:
-    //*** Can we do it without the loop? ***//
-    public string GetMemberType2()
-    {
-        foreach (var member in Model)
-        {
-            if (member.Type.Equals("ambassador"))
-                return "Business Ambassadors";
-            else if (member.Type.Equals("graduate"))
-                return "Graduates";
-            else if (member.Type.Equals("employer"))
-                return "Employers";
-            else if (member.Type.Equals("liaison"))
-                return "Liaison Officers";
-            else if (member.Type.Equals("organization"))
-                return "Social Partners";
-            else if (member.Type.Equals("school"))
-                return "Schools";
-            else if (member.Type.Equals("student"))
-                return "Students";
-            else if (member.Type.Equals("teacher"))
-                return "Teachers";
-        }
-        return "Members";
-    }
-
-    public string GetMemberType()
-    {
-        if (Model.Where(x => x.Type.Equals("ambassador")).FirstOrDefault() != null)
-            return "Business Ambassadors";
-        else if (Model.Where(x => x.Type.Equals("graduate")).FirstOrDefault() != null)
-            return "Graduates";
-        else if (Model.Where(x => x.Type.Equals("employer")).FirstOrDefault() != null)
-            return "Employers";
-        else if (Model.Where(x => x.Type.Equals("liaison")).FirstOrDefault() != null)
-            return "Liaison Officers";
-        else if (Model.Where(x => x.Type.Equals("organization")).FirstOrDefault() != null)
-            return "Social Partners";
-        else if (Model.Where(x => x.Type.Equals("school")).FirstOrDefault() != null)
-            return "Schools";
-        else if (Model.Where(x => x.Type.Equals("student")).FirstOrDefault() != null)
-            return "Students";
-        else if (Model.Where(x => x.Type.Equals("teacher")).FirstOrDefault() != null)
-            return "Teachers";
-        else
-            return "Members";
-    }
 }

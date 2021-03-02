@@ -143,7 +143,7 @@ namespace Appintern.Web.Controllers
             string memberType = model.MemberType;
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            model.ProfileResults = GetMemberProfilesByType(memberType).ToPagedList(currentPageIndex, 3);
+            model.ProfileResults = GetMemberProfilesByType(memberType).ToPagedList(currentPageIndex, pageSize: 5);
 
             return RenderListResults(model.ProfileResults);
         }
@@ -157,7 +157,7 @@ namespace Appintern.Web.Controllers
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
             MemberListModel model = new MemberListModel();
-            model.ProfileResults = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, 3);
+            model.ProfileResults = GetMemberProfilesByType(type).ToPagedList(currentPageIndex, pageSize: 5);
 
             return PartialView(GetMemberViewPath("_MemberListResultsGrid"), model.ProfileResults);
         }

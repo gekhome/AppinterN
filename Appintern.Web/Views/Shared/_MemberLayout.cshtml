@@ -86,7 +86,12 @@
                 items.Add().Text("News & Events").ImageUrl(Url.Content("~/img/menu-icons/appbar.newspaper.png")).Action("RenderMemberArticles", "TasksPublish");
                 items.Add().Text("Apprenticeships").ImageUrl(Url.Content("~/img/menu-icons/appbar.group.png")).Action("RenderMemberApprenticeships", "TasksPublish");
                 items.Add().Text("Job Offers").ImageUrl(Url.Content("~/img/menu-icons/appbar.home.people.png")).Action("RenderTasksMain", "TasksPublish");
-                items.Add().Text("Search Students").ImageUrl(Url.Content("~/img/menu-icons/appbar.man.suitcase.fast.png")).Enabled(false);
+                items.Add().Text("Registry").ImageUrl(Url.Content("~/img/menu-icons/appbar.man.suitcase.fast.png"))
+                .Items(children =>
+                {
+                    children.Add().Text("Browse students").Action("BrowseStudents", "TasksPublish");
+                    children.Add().Text("Browse graduates").Action("BrowseGraduates", "TasksPublish");
+                });
             })
         )
     </div>

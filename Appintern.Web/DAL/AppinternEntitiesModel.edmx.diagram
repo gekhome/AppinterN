@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="AppinternWorksModel.Genders" Width="1.5" PointX="10.625" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AppinternWorksModel.JobSectors" Width="1.5" PointX="10.625" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AppinternWorksModel.MemberGroups" Width="1.5" PointX="12.375" PointY="2.125" />
-        <EntityTypeShape EntityType="AppinternWorksModel.Apprenticeships" Width="1.5" PointX="11.125" PointY="4.25" />
         <EntityTypeShape EntityType="AppinternWorksModel.Articles" Width="1.5" PointX="12.875" PointY="4.25" />
         <EntityTypeShape EntityType="AppinternWorksModel.Ambassadors" Width="1.5" PointX="0.625" PointY="0.5" />
         <EntityTypeShape EntityType="AppinternWorksModel.Graduates" Width="1.5" PointX="4.5" PointY="0.5" />
@@ -24,6 +23,7 @@
         <EntityTypeShape EntityType="AppinternWorksModel.rep_MembersApprenticeships" Width="2.25" PointX="6.375" PointY="4.375" />
         <EntityTypeShape EntityType="AppinternWorksModel.rep_MembersArticles" Width="1.875" PointX="8.875" PointY="4.375" />
         <EntityTypeShape EntityType="AppinternWorksModel.sql_MembersAll" Width="1.5" PointX="14.625" PointY="4.25" />
+        <EntityTypeShape EntityType="AppinternWorksModel.Apprenticeships" Width="1.5" PointX="11.125" PointY="4.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

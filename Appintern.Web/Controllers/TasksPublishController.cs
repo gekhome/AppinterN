@@ -113,7 +113,7 @@ namespace Appintern.Web.Controllers
         {
             string memberType = loggedMember.MemberType;
 
-            bool deny = memberType == "graduate" || memberType == "student" || memberType == "teacher" || memberType == "school";
+            bool deny = memberType == "graduate" || memberType == "student" || memberType == "teacher";
 
             if (deny)
                 return RedirectToAction("AccessDenied", "TasksPublish");
@@ -482,9 +482,9 @@ namespace Appintern.Web.Controllers
         public ActionResult RenderMemberApprenticeships()
         {
             string memberType = loggedMember.MemberType;
-            bool deny = memberType == "graduate" || memberType == "student" || memberType == "teacher" || memberType == "school";
+            bool allow = memberType == "employer" || memberType == "Member";
 
-            if (deny)
+            if (!allow)
                 return RedirectToAction("AccessDenied", "TasksPublish");
 
             return PartialView(GetTasksViewPath("_MemberApprenticeships"));
@@ -875,6 +875,79 @@ namespace Appintern.Web.Controllers
         #endregion
 
         #endregion MEMBER APPRENTICESHIPS
+
+        #region REGISTRY STUDENTS, GRADUATES
+
+        public ActionResult BrowseStudents()
+        {
+            //return View();
+            return PartialView(GetTasksViewPath("_BrowseStudents"));
+        }
+
+        public ActionResult Students_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var data = GetStudentsFromDatabase();
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<StudentsViewModel> GetStudentsFromDatabase()
+        {
+            var data = (from d in db.Students
+                        orderby d.FullName
+                        select new StudentsViewModel
+                        {
+                            MemberID = d.MemberID,
+                            TaxNumber = d.TaxNumber,
+                            FullName = d.FullName,
+                            Birthdate = d.Birthdate,
+                            Gender = d.Gender,
+                            Phone = d.Phone,
+                            Email = d.Email,
+                            Country = d.Country,
+                            Specialization = d.Specialization,
+                            School = d.School,
+                            LoginName = d.LoginName
+                        }).ToList();
+            return data;
+        }
+
+
+        public ActionResult BrowseGraduates()
+        {
+            //return View();
+            return PartialView(GetTasksViewPath("_BrowseGraduates"));
+        }
+
+        public ActionResult Graduates_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var data = GetGraduatesFromDatabase();
+
+            return Json(data.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public List<GraduatesViewModel> GetGraduatesFromDatabase()
+        {
+            var data = (from d in db.Graduates
+                        orderby d.FullName
+                        select new GraduatesViewModel
+                        {
+                            MemberID = d.MemberID,
+                            TaxNumber = d.TaxNumber,
+                            FullName = d.FullName,
+                            Birthdate = d.Birthdate,
+                            Gender = d.Gender,
+                            Phone = d.Phone,
+                            Email = d.Email,
+                            Country = d.Country,
+                            Specialization = d.Specialization,
+                            School = d.School,
+                            LoginName = d.LoginName
+                        }).ToList();
+            return data;
+        }
+
+        #endregion
 
         public ActionResult AccessDenied()
         {

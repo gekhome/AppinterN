@@ -42,6 +42,7 @@ namespace Appintern.Web.ViewModels
         public string Website { get; set; }
         public string SocialMedia { get; set; }
         public string LoginName { get; set; }
+        public string JobSectors { get; set; }
 
         public EmployersViewModel()
         { }
@@ -148,6 +149,9 @@ namespace Appintern.Web.ViewModels
         public string Compensation { get; set; }
         public string JobSector { get; set; }
         public string Country { get; set; }
+        public string Status { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
@@ -159,7 +163,7 @@ namespace Appintern.Web.ViewModels
         { }
 
         public ApprenticeshipViewModel(int apprId, string name, string title, DateTime? postDate, string duration, string commitment, string compensation,
-                                       string jobSector, string country, int employerId, string description = null)
+                                       string jobSector, string country, int employerId, string description, string status, DateTime? startDate, DateTime? endDate)
         {
             ApprenticeshipID = apprId;
             Name = name;
@@ -172,6 +176,9 @@ namespace Appintern.Web.ViewModels
             JobSector = jobSector;
             EmployerID = employerId;
             Description = description;
+            Status = status;
+            StartDate = startDate;
+            EndDate = endDate;
         }
     }
 

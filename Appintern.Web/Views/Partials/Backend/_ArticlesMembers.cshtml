@@ -41,7 +41,7 @@
         .DataSource(dataSource => dataSource
         .Ajax()
         .PageSize(60)
-        .ServerOperation(false)
+        .ServerOperation(true)
         .Model(model =>
         {
             model.Id(p => p.Id);

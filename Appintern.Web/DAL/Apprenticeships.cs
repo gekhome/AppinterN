@@ -24,7 +24,9 @@ namespace Appintern.Web.DAL
         public string Compensation { get; set; }
         public string JobSector { get; set; }
         public string Country { get; set; }
-        public string Requirements { get; set; }
+        public string Status { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<int> EmployerID { get; set; }
     }
 }

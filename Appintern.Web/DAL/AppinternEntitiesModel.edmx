@@ -37,7 +37,9 @@
           <Property Name="Compensation" Type="nvarchar" MaxLength="50" />
           <Property Name="JobSector" Type="nvarchar" MaxLength="255" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
-          <Property Name="Requirements" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
           <Property Name="EmployerID" Type="int" />
         </EntityType>
         <EntityType Name="Articles">
@@ -374,7 +376,6 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <EntitySet Name="Genders" EntityType="Self.Genders" />
           <EntitySet Name="JobSectors" EntityType="Self.JobSectors" />
           <EntitySet Name="MemberGroups" EntityType="AppinternWorksModel.MemberGroups" />
-          <EntitySet Name="Apprenticeships" EntityType="AppinternWorksModel.Apprenticeships" />
           <EntitySet Name="Articles" EntityType="AppinternWorksModel.Articles" />
           <EntitySet Name="Ambassadors" EntityType="AppinternWorksModel.Ambassadors" />
           <EntitySet Name="Graduates" EntityType="AppinternWorksModel.Graduates" />
@@ -387,6 +388,7 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <EntitySet Name="rep_MembersApprenticeships" EntityType="AppinternWorksModel.rep_MembersApprenticeships" />
           <EntitySet Name="rep_MembersArticles" EntityType="AppinternWorksModel.rep_MembersArticles" />
           <EntitySet Name="sql_MembersAll" EntityType="AppinternWorksModel.sql_MembersAll" />
+          <EntitySet Name="Apprenticeships" EntityType="AppinternWorksModel.Apprenticeships" />
         </EntityContainer>
         <EntityType Name="MemberGroups">
           <Key>
@@ -394,23 +396,6 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           </Key>
           <Property Name="MemberGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberGroupText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Apprenticeships">
-          <Key>
-            <PropertyRef Name="ApprenticeshipID" />
-          </Key>
-          <Property Name="ApprenticeshipID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="PostDate" Type="DateTime" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DurationMonths" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Commitment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Compensation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Requirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmployerID" Type="Int32" />
         </EntityType>
         <EntityType Name="Articles">
           <Key>
@@ -607,6 +592,25 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Apprenticeships">
+          <Key>
+            <PropertyRef Name="ApprenticeshipID" />
+          </Key>
+          <Property Name="ApprenticeshipID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DurationMonths" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Commitment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Compensation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobSector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployerID" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -658,24 +662,6 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
               <MappingFragment StoreEntitySet="MemberGroups">
                 <ScalarProperty Name="MemberGroupText" ColumnName="MemberGroupText" />
                 <ScalarProperty Name="MemberGroupID" ColumnName="MemberGroupID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Apprenticeships">
-            <EntityTypeMapping TypeName="AppinternWorksModel.Apprenticeships">
-              <MappingFragment StoreEntitySet="Apprenticeships">
-                <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
-                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
-                <ScalarProperty Name="Compensation" ColumnName="Compensation" />
-                <ScalarProperty Name="Commitment" ColumnName="Commitment" />
-                <ScalarProperty Name="DurationMonths" ColumnName="DurationMonths" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ApprenticeshipID" ColumnName="ApprenticeshipID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -881,6 +867,26 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
                 <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apprenticeships">
+            <EntityTypeMapping TypeName="AppinternWorksModel.Apprenticeships">
+              <MappingFragment StoreEntitySet="Apprenticeships">
+                <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="JobSector" ColumnName="JobSector" />
+                <ScalarProperty Name="Compensation" ColumnName="Compensation" />
+                <ScalarProperty Name="Commitment" ColumnName="Commitment" />
+                <ScalarProperty Name="DurationMonths" ColumnName="DurationMonths" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ApprenticeshipID" ColumnName="ApprenticeshipID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

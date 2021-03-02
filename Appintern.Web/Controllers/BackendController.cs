@@ -208,11 +208,13 @@ namespace Appintern.Web.Controllers
                     string compensation = item.GetProperty("compensation").GetValue().ToString();
                     string country = item.GetProperty("country").GetValue().ToString();
                     DateTime postDate = (DateTime)item.GetProperty("postDate").GetValue();
+                    DateTime startDate = (DateTime)item.GetProperty("startDate").GetValue();
+                    DateTime endDate = (DateTime)item.GetProperty("endDate").GetValue();
+                    string status = item.GetProperty("status").GetValue().ToString();
+                    string jobSector = item.GetProperty("jobSector").GetValue().ToString();
+                    string description = item.GetProperty("metaDescription").GetValue().ToString();
 
-                    string[] jobSectors = item.GetProperty("jobSector").GetValue() as string[];
-                    string jobCategories = utilities.ConcatenateStringArray(jobSectors);
-
-                    model.Add(new ApprenticeshipViewModel(apprenticeshipId, name, title, postDate, duration, commitment, compensation, jobCategories, country, employerId));
+                    model.Add(new ApprenticeshipViewModel(apprenticeshipId, name, title, postDate, duration, commitment, compensation, jobSector, country, employerId, description, status, startDate, endDate));
                 }
             }
             return model;
@@ -567,9 +569,11 @@ namespace Appintern.Web.Controllers
                             Description = d.Description,
                             Commitment = d.Commitment,
                             Compensation = d.Compensation,
-                            Requirements = d.Requirements,
                             Country = d.Country,
                             JobSector = d.JobSector,
+                            Status = d.Status,
+                            StartDate = d.StartDate,
+                            EndDate = d.EndDate,
                             EmployerID = d.EmployerID ?? 0
                         }).ToList();
             return data;
@@ -594,13 +598,16 @@ namespace Appintern.Web.Controllers
                 string country = item.GetProperty("country").GetValue().ToString();
                 DateTime postDate = (DateTime)item.GetProperty("postDate").GetValue();
                 Employer employer = item.GetProperty("employer").GetValue() as Employer;
+                string jobSector = item.GetProperty("jobSector").GetValue().ToString();
+                string description = item.GetProperty("metaDescription").GetValue().ToString();
+                string status = item.GetProperty("status").GetValue().ToString();
+                DateTime startDate = (DateTime)item.GetProperty("startDate").GetValue();
+                DateTime endDate = (DateTime)item.GetProperty("endDate").GetValue();
 
-                string[] jobSectors = item.GetProperty("jobSector").GetValue() as string[];
-                string jobCategories = utilities.ConcatenateStringArray(jobSectors);
 
-                string description = HtmlUtilities.ConvertToPlainText(item.GetProperty("description").GetValue().ToString());
+                //string description = HtmlUtilities.ConvertToPlainText(item.GetProperty("description").GetValue().ToString());
 
-                data.Add(new ApprenticeshipViewModel(apprenticeshipId, name, title, postDate, duration, commitment, compensation, jobCategories, country, employer.Id, description));
+                data.Add(new ApprenticeshipViewModel(apprenticeshipId, name, title, postDate, duration, commitment, compensation, jobSector, country, employer.Id, description, status, startDate, endDate));
             }
             foreach (ApprenticeshipViewModel model in data)
             {
@@ -752,6 +759,7 @@ namespace Appintern.Web.Controllers
                 EmployersViewModel model = new EmployersViewModel();
 
                 Employer entity = Members.GetById(user.Id) as Employer;
+                string[] temp = new string[] { entity.JobSector1, entity.JobSector2, entity.JobSector3 };
 
                 model.MemberID = user.Id;
                 model.LoginName = user.Username;
@@ -766,6 +774,7 @@ namespace Appintern.Web.Controllers
                 model.Phone = entity.Phone;
                 model.Website = entity.Website;
                 model.SocialMedia = entity.SocialMedia;
+                model.JobSectors = utilities.ConcatenateStringArray(temp);
 
                 CreateOrUpdateEmployer(model);
             }

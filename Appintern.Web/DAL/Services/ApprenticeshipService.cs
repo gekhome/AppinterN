@@ -30,8 +30,10 @@ namespace Appintern.Web.DAL.Services
                 Country = model.Country,
                 Commitment = model.Commitment,
                 Compensation = model.Compensation,
-                Requirements = model.Requirements,
                 JobSector = model.JobSector,
+                Status = model.Status,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
                 EmployerID = model.EmployerID
             };
             entities.Apprenticeships.Add(entity);
@@ -51,8 +53,10 @@ namespace Appintern.Web.DAL.Services
             entity.Country = model.Country;
             entity.Commitment = model.Commitment;
             entity.Compensation = model.Compensation;
-            entity.Requirements = model.Requirements;
             entity.JobSector = model.JobSector;
+            entity.Status = model.Status;
+            entity.StartDate = model.StartDate;
+            entity.EndDate = model.EndDate;
             entity.EmployerID = model.EmployerID;
 
             entities.Apprenticeships.Attach(entity);
