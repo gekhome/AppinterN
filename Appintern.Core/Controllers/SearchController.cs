@@ -86,7 +86,7 @@ namespace Appintern.Core.Controllers
 
         #endregion
 
-        #region Search From with criterion Category
+        #region Search Form with criterion Category
 
         private List<SearchGroup> GetSearch2Groups(Search2ViewModel model)
         {
@@ -142,6 +142,87 @@ namespace Appintern.Core.Controllers
         public ActionResult RenderSearch2Results(SearchResultsModel model)
         {
             return PartialView(PartialViewPath("_Search2Results"), model);
+        }
+
+        #endregion
+
+        #region Search Form Apprenticeships with multiple criteria
+
+        private List<SearchGroup> GetSearch3Groups(Search3ViewModel model)
+        {
+            List<SearchGroup> searchGroups = null;
+            if (!string.IsNullOrEmpty(model.FieldPropertyAliases))
+            {
+                searchGroups = new List<SearchGroup>();
+                searchGroups.Add(new SearchGroup(model.FieldPropertyAliases.Split(','), model.SearchTerm.Split(' ')));
+            }
+            return searchGroups;
+        }
+
+        public ActionResult RenderSearch3Form(string query, string docTypeAliases, string fieldPropertyAliases, int pageSize, int pagingGroupSize)
+        {
+            IEnumerable<SelectListItem> jobSectors = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Job Sectors", null);
+            IEnumerable<SelectListItem> durations = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Duration", null);
+            IEnumerable<SelectListItem> commitments = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Commitment", null);
+            IEnumerable<SelectListItem> compensations = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Compensation", null);
+            IEnumerable<SelectListItem> statuses = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Status", null);
+
+            Search3ViewModel model = new Search3ViewModel();
+
+            model.JobSectors = jobSectors;
+            model.Durations = durations;
+            model.Commitments = commitments;
+            model.Compensations = compensations;
+            model.Statuses = statuses;
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                model.SearchTerm = query;
+                model.JobSector = "";
+                model.Duration = "";
+                model.Commitment = "";
+                model.Compensation = "";
+                model.Status = "";
+                model.DocTypeAliases = docTypeAliases;
+                model.FieldPropertyAliases = fieldPropertyAliases;
+                model.PageSize = pageSize;
+                model.PagingGroupSize = pagingGroupSize;
+                model.SearchGroups = GetSearch3Groups(model);
+                model.SearchResults = _searchHelper.GetSearch3Results(model, Request.Form.AllKeys);
+            }
+            return PartialView(PartialViewPath("_Search3Form"), model);
+        }
+
+        public ActionResult SubmitSearch3Form(Search3ViewModel model)
+        {
+            IEnumerable<SelectListItem> jobSectors = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Job Sectors", null);
+            IEnumerable<SelectListItem> durations = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Duration", null);
+            IEnumerable<SelectListItem> commitments = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Commitment", null);
+            IEnumerable<SelectListItem> compensations = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Compensation", null);
+            IEnumerable<SelectListItem> statuses = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Status", null);
+
+            model.JobSectors = jobSectors;
+            model.Durations = durations;
+            model.Commitments = commitments;
+            model.Compensations = compensations;
+            model.Statuses = statuses;
+
+            if (ModelState.IsValid)
+            {
+                if (!string.IsNullOrEmpty(model.SearchTerm))
+                {
+                    model.SearchTerm = model.SearchTerm;
+                    model.SearchGroups = GetSearch3Groups(model);
+                    model.SearchResults = _searchHelper.GetSearch3Results(model, Request.Form.AllKeys);
+                }
+                return RenderSearch3Results(model.SearchResults);
+            }
+            return null;
+        }
+
+        public ActionResult RenderSearch3Results(SearchResultsModel model)
+        {
+            return PartialView(PartialViewPath("_Search3Results"), model);
         }
 
         #endregion

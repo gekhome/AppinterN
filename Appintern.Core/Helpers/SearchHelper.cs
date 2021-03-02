@@ -169,6 +169,76 @@ namespace Appintern.Core.Helpers
         }
 
 
+        public SearchResultsModel GetSearch3Results(Search3ViewModel searchModel, string[] allKeys)
+        {
+            SearchResultsModel resultsModel = new SearchResultsModel();
+            resultsModel.SearchTerm = searchModel.SearchTerm;
+            resultsModel.PageNumber = GetPageNumber(allKeys);
+
+            ISearchResults allResults = Search3UsingExamine(searchModel.DocTypeAliases.Split(','), 
+                                        searchModel.SearchGroups, searchModel.JobSector, searchModel.Duration, searchModel.Commitment, searchModel.Compensation, searchModel.Status);
+            resultsModel.TotalItemCount = (int)allResults.TotalItemCount;
+            resultsModel.Results = GetResultsForThisPage(allResults, resultsModel.PageNumber, searchModel.PageSize);
+
+            resultsModel.PageCount = Convert.ToInt32(Math.Ceiling((decimal)resultsModel.TotalItemCount / (decimal)searchModel.PageSize));
+            resultsModel.PagingBounds = GetPagingBounds(resultsModel.PageCount, resultsModel.PageNumber, searchModel.PagingGroupSize);
+            return resultsModel;
+        }
+
+        public Examine.ISearchResults Search3UsingExamine(string[] documentTypes, List<SearchGroup> searchGroups, string jobSector, string duration, string commitment, string compensation, string status)
+        {
+            if (!ExamineManager.Instance.TryGetIndex("ExternalIndex", out var index))
+                throw new InvalidOperationException($"No index found by name 'External Index'");
+
+            var searcher = index.GetSearcher();
+
+            var searchCriteria = searcher.CreateQuery(IndexTypes.Content);
+
+            //only shows results for visible documents.
+            IBooleanOperation queryNodes = searchCriteria.GroupedOr(new string[] { "umbracoNaviHide" }, "0", "");
+
+            if (documentTypes != null && documentTypes.Length > 0)
+            {
+                //only get results for documents of a certain type - changed And() to Or()
+                queryNodes = queryNodes.And().GroupedOr(new string[] { _docTypeAliasFieldName }, documentTypes);
+            }
+
+            if (searchGroups != null && searchGroups.Any())
+            {
+                //in each search group it looks for a match where the specified fields contain any of the specified search terms
+                //usually would only have 1 search group, unless you want to filter out further, i.e. using categories as well as search terms
+                foreach (SearchGroup searchGroup in searchGroups)
+                {
+                    queryNodes = queryNodes.And().GroupedOr(searchGroup.FieldsToSearchIn, searchGroup.SearchTerms);
+                }
+            }
+            // This is wehere we add additional criteria
+            if (!string.IsNullOrWhiteSpace(jobSector))
+            {
+                queryNodes.And().Field("stringJobSector", jobSector);
+            }
+            if (!string.IsNullOrWhiteSpace(duration))
+            {
+                queryNodes.And().Field("stringDuration", duration);
+            }
+            if (!string.IsNullOrWhiteSpace(commitment))
+            {
+                queryNodes.And().Field("stringCommitment", commitment);
+            }
+            if (!string.IsNullOrWhiteSpace(compensation))
+            {
+                queryNodes.And().Field("stringCompensation", compensation);
+            }
+            if (!string.IsNullOrWhiteSpace(status))
+            {
+                queryNodes.And().Field("stringStatus", status);
+            }
+
+            //return the results of the search
+            return queryNodes.Execute();
+        }
+
+
         //-----------------------------------------------------
 
         /// <summary>

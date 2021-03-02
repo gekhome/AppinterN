@@ -354,6 +354,8 @@
     <Content Include="Images\access-denied-01.jpg" />
     <Content Include="Images\access-denied-02.jpg" />
     <Content Include="Images\apprenticeship-logo-1.jpg" />
+    <Content Include="Images\11.jpg" />
+    <Content Include="Images\22.jpg" />
     <Content Include="Images\metro\orderedList0.png" />
     <Content Include="Images\metro\orderedList1.png" />
     <Content Include="Images\metro\orderedList2.png" />
@@ -1686,7 +1688,8 @@
     <Compile Include="App_Data\Models\Schools.generated.cs" />
     <Compile Include="App_Data\Models\Search.generated.cs" />
     <Compile Include="App_Data\Models\SearchAll.generated.cs" />
-    <Compile Include="App_Data\Models\SearchCustom1.generated.cs" />
+    <Compile Include="App_Data\Models\SearchApprenticeships.generated.cs" />
+    <Compile Include="App_Data\Models\SearchCustom.generated.cs" />
     <Compile Include="App_Data\Models\SearchPage.generated.cs" />
     <Compile Include="App_Data\Models\Services.generated.cs" />
     <Compile Include="App_Data\Models\ServicesMainItem.generated.cs" />
@@ -2000,7 +2003,6 @@
     <Content Include="Views\Partials\Search\_SearchHeader.cshtml" />
     <Content Include="Views\SearchPage.cshtml" />
     <Content Include="Views\Partials\SearchAll\_Search2Form.cshtml" />
-    <Content Include="Views\SearchCustom1.cshtml" />
     <Content Include="Views\Partials\SearchAll\_Search2Results.cshtml" />
     <Content Include="Views\Shared\_MemberLayout.cshtml" />
     <Content Include="Views\MemberBase.cshtml" />
@@ -2062,6 +2064,10 @@
     <Content Include="Views\Partials\Member\_MemberListResultsGrid.cshtml" />
     <Content Include="Views\Partials\TasksPublish\_BrowseGraduates.cshtml" />
     <Content Include="Views\Partials\TasksPublish\_BrowseStudents.cshtml" />
+    <Content Include="Views\SearchCustom.cshtml" />
+    <Content Include="Views\SearchApprenticeships.cshtml" />
+    <Content Include="Views\Partials\SearchAll\_Search3Form.cshtml" />
+    <Content Include="Views\Partials\SearchAll\_Search3Results.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

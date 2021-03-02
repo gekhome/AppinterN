@@ -19,26 +19,26 @@ using Umbraco.ModelsBuilder.Embedded;
 
 namespace Umbraco.Web.PublishedModels
 {
-	/// <summary>Search Custom 1</summary>
-	[PublishedModel("searchCustom1")]
-	public partial class SearchCustom1 : PublishedContentModel, IContentControls, INavigationControls
+	/// <summary>Search Custom</summary>
+	[PublishedModel("searchCustom")]
+	public partial class SearchCustom : PublishedContentModel, IContentControls, INavigationControls
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		public new const string ModelTypeAlias = "searchCustom1";
+		public new const string ModelTypeAlias = "searchCustom";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
 		public new static IPublishedContentType GetModelContentType()
 			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.10.1")]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<SearchCustom1, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<SearchCustom, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 #pragma warning restore 0109
 
 		// ctor
-		public SearchCustom1(IPublishedContent content)
+		public SearchCustom(IPublishedContent content)
 			: base(content)
 		{ }
 

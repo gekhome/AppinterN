@@ -46,6 +46,44 @@ namespace Appintern.Core.Models
 
     }
 
+    public class Search3ViewModel
+    {
+        public string SearchTerm { get; set; }
+
+        [Display(Name = "Job Sector")]
+        public string JobSector { get; set; }
+
+        [Display(Name = "Duration")]
+        public string Duration { get; set; }
+
+        [Display(Name = "Commitment")]
+        public string Commitment { get; set; }
+
+        [Display(Name = "Compensation")]
+        public string Compensation { get; set; }
+
+        [Display(Name = "Status")]
+        public string Status { get; set; }
+
+        public string DocTypeAliases { get; set; }
+
+        public string FieldPropertyAliases { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int PagingGroupSize { get; set; }
+
+        public List<SearchGroup> SearchGroups { get; set; }
+
+        public SearchResultsModel SearchResults { get; set; }
+
+        public IEnumerable<SelectListItem> JobSectors { get; set; }
+        public IEnumerable<SelectListItem> Durations { get; set; }
+        public IEnumerable<SelectListItem> Commitments { get; set; }
+        public IEnumerable<SelectListItem> Compensations { get; set; }
+        public IEnumerable<SelectListItem> Statuses { get; set; }
+    }
+
 
     public class SearchGroup
     {

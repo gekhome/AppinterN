@@ -9,32 +9,29 @@
     var loggedMember = Members.GetCurrentMember();
     string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
 }
+<style>
+    button.current {
+        font-weight: 700;
+    }
 
-@section Head
-{
-    <style>
-        button.current {
-            font-weight: 700;
-        }
+    .search-header {
+        text-align: center;
+        font-weight: 700;
+        margin-top: 10px;
+        color: #808080;
+    }
 
-        .search-header {
-            text-align: center;
-            font-weight: 700;
-            margin-top: 10px;
-            color: #808080;
-        }
+    div.fluent-image {
+        color: #fff;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0;
+    }
+</style>
 
-        div.fluent-image {
-            color: #fff;
-            text-align: center;
-            background-size: cover;
-            background-position: center;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            margin-bottom: 0;
-        }
-    </style>
-}
 
 @Html.RenderCssHere()
 
@@ -45,24 +42,18 @@
     <h4 class="col-md-12" style="text-align:center;color:#808080">@Html.Raw(Model.Value("description"))</h4>
 </div>
 
-<div class="contact-clean">
-    <section class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                @if (memberType == "student")
-                {
-                    Html.RenderAction("RenderSearchForm", "Search", new { docTypeAliases = "article,clientPage", 
-                        fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 });
-                }
-                else
-                {
-                    Html.RenderAction("RenderSearchForm", "Search", new { docTypeAliases = "article,clientPage,apprenticeship", 
-                        fieldPropertyAliases = "nodeName,title,description,metaDescription,contentGrid", pageSize = 6, pagingGroupSize = 3 });
-                }
-            </div>
-        </div>
-    </section>
-</div>
+@if (string.IsNullOrEmpty(memberType))
+{
+    Response.Redirect("/login");
+}
+else if (memberType == "student")
+{
+    Response.Redirect("/access-error");
+}
+else
+{
+    Html.RenderAction("RenderSearch3Form", "Search", new { docTypeAliases = "apprenticeship", fieldPropertyAliases = "nodeName,title,description,metaDescription,metaName", pageSize = 6, pagingGroupSize = 3 });
+}
 
 
 @section ScriptsBottom
@@ -100,9 +91,7 @@
             e.preventDefault();
             var form = $(e.target).closest('form');
             $(form).submit();
-        }, 300))
+        }, 600))
 
     </script>
-
 }
-
