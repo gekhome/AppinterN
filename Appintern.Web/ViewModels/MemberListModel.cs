@@ -22,7 +22,6 @@ namespace Appintern.Web.ViewModels
         public IPagedList<MemberTypeProfile> ProfileResults { get; set; }
 
         public bool HasResults { get { return ListResults != null && ListResults.Count() > 0; } }
-
     }
 
     public class MemberTypeProfile
@@ -33,16 +32,38 @@ namespace Appintern.Web.ViewModels
 
         public string Type { get; set; }
 
+        public string Specialty { get; set; }
+
         public string UrlSlug { get; set; }
 
-        public MemberTypeProfile(string name, string email, string type, string urlSlug)
+        public MemberTypeProfile(string name, string email, string type, string urlSlug, string specialty = null)
         {
             Name = name;
             Email = email;
             Type = type;
             UrlSlug = urlSlug;
+            Specialty = specialty;
         }
-
     }
+
+    public class TraineeListModel
+    {
+        [Display(Name = "Trainee Type")]
+        public string MemberType { get; set; }
+
+        [Display(Name = "Specialization")]
+        public string Specialty { get; set; }
+
+        public IEnumerable<SelectListItem> MemberTypes { get; set; }
+
+        public IEnumerable<SelectListItem> Specialties { get; set; }
+
+        public IEnumerable<IMember> ListResults { get; set; }
+
+        public IPagedList<MemberTypeProfile> ProfileResults { get; set; }
+
+        public bool HasResults { get { return ListResults != null && ListResults.Count() > 0; } }
+    }
+
 
 }

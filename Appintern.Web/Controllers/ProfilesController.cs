@@ -131,7 +131,7 @@ namespace Appintern.Web.Controllers
             model.MemberTypes = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Member Types", null);
 
             //model.ListResults = utilities.GetAllMembers1();
-            model.ProfileResults = GetMemberProfilesByType().ToPagedList(0, 3);
+            model.ProfileResults = GetMemberProfilesByType().ToPagedList(pageIndex:0, pageSize:5);
 
             return PartialView(GetMemberViewPath("_MemberListForm"), model);
         }
@@ -348,6 +348,79 @@ namespace Appintern.Web.Controllers
             }
         }
 
+
+        #region GRADUATES,STUDENTS LIST FILTERED BY SPECIALTY
+
+        public ActionResult TraineeListForm()
+        {
+            TraineeListModel model = new TraineeListModel();
+
+            model.MemberTypes = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Member Types", null)
+                                .Where(x => x.Value == "Students" || x.Value == "Graduates");
+
+            model.Specialties = _dataTypeValueService.GetItemsFromValueListDataType("Dropdown Specializations", null);
+
+            model.ProfileResults = GetTraineeProfilesBySpecialty().ToPagedList(pageIndex: 0, pageSize: 5);
+
+            return PartialView(GetMemberViewPath("_TraineeListForm"), model);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitTraineeListForm(TraineeListModel model, int? page)
+        {
+            string memberType = model.MemberType;
+            string specialty = model.Specialty;
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            model.ProfileResults = GetTraineeProfilesBySpecialty(memberType, specialty).ToPagedList(currentPageIndex, pageSize: 5);
+
+            return RenderTraineeResults(model.ProfileResults);
+        }
+
+        [HttpGet]
+        public ActionResult SubmitTraineeListForm(string type, string specialty, int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            TraineeListModel model = new TraineeListModel();
+            model.ProfileResults = GetTraineeProfilesBySpecialty(type, specialty).ToPagedList(currentPageIndex, pageSize: 5);
+
+            return PartialView(GetMemberViewPath("_TraineeListResultsGrid"), model.ProfileResults);
+        }
+
+        public List<MemberTypeProfile> GetTraineeProfilesBySpecialty(string memberType = null, string specialty = null)
+        {
+            List<MemberTypeProfile> data = new List<MemberTypeProfile>();
+
+            if (memberType == "Graduates")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "graduate").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Graduate _member = Members.GetById(member.Id) as Graduate;
+                    if (_member.Specialization == specialty)
+                        data.Add(new MemberTypeProfile(_member.Name, member.Email, "graduate", _member.UrlSlug, _member.Specialization));
+                }
+            }
+            else if (memberType == "Students")
+            {
+                var members = utilities.GetAllMembers1().Where(x => x.ContentTypeAlias == "student").OrderBy(x => x.Name);
+                foreach (var member in members)
+                {
+                    Student _member = Members.GetById(member.Id) as Student;
+                    if (_member.Specialization == specialty)
+                        data.Add(new MemberTypeProfile(_member.Name, member.Email, "student", _member.UrlSlug, _member.Specialization));
+                }
+            }
+            return data;
+        }
+
+        public ActionResult RenderTraineeResults(IPagedList<MemberTypeProfile> model)
+        {
+            return PartialView(GetMemberViewPath("_TraineeListResults"), model);
+        }
+
+        #endregion
 
         #region SUBMIT FORMS
 
