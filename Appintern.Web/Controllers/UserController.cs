@@ -116,7 +116,7 @@ namespace Appintern.Web.Controllers
                     }
                     else
                     {
-                        return Redirect("/");
+                        return Redirect("~/");
                     }
                 }
                 else
@@ -139,7 +139,7 @@ namespace Appintern.Web.Controllers
             Session.Clear();
             FormsAuthentication.SignOut();
 
-            return Redirect("/");
+            return Redirect("~/");
         }
 
 

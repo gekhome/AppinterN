@@ -380,9 +380,11 @@
     <Content Include="Media\03lpelvg\woman-cap.jpg" />
     <Content Include="Media\03nikt20\site-logo-box.png" />
     <Content Include="Media\0oifek1a\picture2.png" />
+    <Content Include="Media\0s1fweam\dummy-cv-document.pdf" />
     <Content Include="Media\1c5f3qnh\home-graduates-banner.jpg" />
     <Content Include="Media\1s5lqpwn\home-students-banner.jpg" />
     <Content Include="Media\1xhjdrep\apprenticeship-image-04.jpg" />
+    <Content Include="Media\24hlanbt\project-presentation_kick-off-meeting_07_12_2020.pdf" />
     <Content Include="Media\2pnfilmj\groups-meeting-light-icon.png" />
     <Content Include="Media\2qnffhky\apprenticeship-image-03.jpg" />
     <Content Include="Media\2u3jc1kw\blonde-woman-avatar.jpg" />
@@ -391,6 +393,7 @@
     <Content Include="Media\3wjhogzn\slide2.jpg" />
     <Content Include="Media\4lalyuwo\inner-students.jpg" />
     <Content Include="Media\50ej2utq\faq-banner.jpg" />
+    <Content Include="Media\55jmr41h\student-male2.png" />
     <Content Include="Media\5sbobysh\apprenticeship_image.jpg" />
     <Content Include="Media\abxjuehu\abstract-business-people.jpg" />
     <Content Include="Media\aceo5vd2\carousel-slide-5a.jpg" />
@@ -401,6 +404,7 @@
     <Content Include="Media\c0kbscbe\home-liaisons-banner-02.jpg" />
     <Content Include="Media\cvrf5yku\teacher-avatar-male.png" />
     <Content Include="Media\d01p4dmh\01-abstract02.png" />
+    <Content Include="Media\dawfu4uq\cedefop_apprenticeship_schemes_db_greece.pdf" />
     <Content Include="Media\dr2midkp\01-abstract01.png" />
     <Content Include="Media\dttfpzrx\home-liaisons-banner.jpg" />
     <Content Include="Media\dyohc5rm\course-creator-01.png" />
@@ -433,6 +437,8 @@
     <Content Include="Media\lj3ccvst\services-02.jpg" />
     <Content Include="Media\mbnkcjj1\navigation.jpg" />
     <Content Include="Media\md5p4ern\home-liaisons-banner.jpg" />
+    <Content Include="Media\mz5pfxlg\kickoff-meeting-2-kyriakakis.pdf" />
+    <Content Include="Media\nd0jk4l4\dummy-cv-document-2.pdf" />
     <Content Include="Media\njadtnq4\picture0002.jpg" />
     <Content Include="Media\nvqbe33r\home-ambassadors-banner-02.jpg" />
     <Content Include="Media\nwsf3fff\students-banner.jpg" />
@@ -440,10 +446,12 @@
     <Content Include="Media\o2wf34rm\carousel-slide-1.jpg" />
     <Content Include="Media\oasfow5l\apprenticeship-01.jpg" />
     <Content Include="Media\om1nloqy\user-female.jpg" />
+    <Content Include="Media\oohcocya\student-male.jpg" />
     <Content Include="Media\otshptqt\apprenticeship-image-02.jpg" />
     <Content Include="Media\oxgle4y4\teacher-avatar-female.png" />
     <Content Include="Media\pm5hcxpc\inner-ambassadors.jpg" />
     <Content Include="Media\pnpcufbo\carousel.jpg" />
+    <Content Include="Media\q3mhcwlt\students-banner-02.jpg" />
     <Content Include="Media\qaqi31l4\01-user.png" />
     <Content Include="Media\r0hh4q0e\home-ambassadors-banner.jpg" />
     <Content Include="Media\rx1duezh\25-512.png" />
@@ -462,6 +470,7 @@
     <Content Include="Media\vmtnx1xx\01-artemis2.png" />
     <Content Include="Media\wb1db25d\home-employers-banner.jpg" />
     <Content Include="Media\wdce3vpn\business-people-banner.jpg" />
+    <Content Include="Media\Web.config" />
     <Content Include="Media\wq5n2lsy\carousel-slide-4.jpg" />
     <Content Include="Media\xcvdfkla\01-praxis.png" />
     <Content Include="Media\xiljaumc\student-41-339203.png" />
@@ -1698,12 +1707,6 @@
     <Content Include="scripts\b4\bootstrap.js" />
     <Content Include="scripts\b4\bootstrap.min.js" />
     <Content Include="Content\jquery-ui-1.12.1.custom\package.json" />
-    <Content Include="Media\0s1fweam\dummy-cv-document.pdf" />
-    <Content Include="Media\24hlanbt\project-presentation_kick-off-meeting_07_12_2020.pdf" />
-    <Content Include="Media\dawfu4uq\cedefop_apprenticeship_schemes_db_greece.pdf" />
-    <Content Include="Media\mz5pfxlg\kickoff-meeting-2-kyriakakis.pdf" />
-    <Content Include="Media\nd0jk4l4\dummy-cv-document-2.pdf" />
-    <Content Include="Media\Web.config" />
     <None Include="scripts\b4\jquery-3.3.1.intellisense.js" />
     <Content Include="scripts\b4\jquery-3.3.1.js" />
     <Content Include="scripts\b4\jquery-3.3.1.min.js" />
@@ -2195,6 +2198,7 @@
     <Folder Include="Media\hwrhqg4u\" />
     <Folder Include="Media\kivj3d0m\" />
     <Folder Include="Media\lanjyysn\" />
+    <Folder Include="Media\msbfilqw\" />
     <Folder Include="Media\uhgeamkc\" />
     <Folder Include="Media\wkajz5rs\" />
     <Folder Include="Media\x2zmvqsx\" />

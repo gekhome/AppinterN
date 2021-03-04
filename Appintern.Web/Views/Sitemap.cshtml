@@ -16,6 +16,11 @@
 @Html.RenderCssHere()
 
 <style>
+    .dropdown-menu > .active > a {
+        background-image: none;
+        background-color: whitesmoke;
+    }
+
     ul.sitemap {
         list-style-type: none;
     }
@@ -35,8 +40,8 @@
                 @if (Model.HasValue("description"))
                 {
                     <h4 class="text-center">Description</h4>
-                    <p class="text-center" style="font-size:14px;font-family:Tahoma">
-                        @(Model.Value<string>("description"))
+                    <p class="text-center" style="align-content:center">
+                        @Html.Raw(Model.Value("description"))
                     </p>
                 }
                 <div class="text" style="font-size:14px;font-family:Tahoma">
