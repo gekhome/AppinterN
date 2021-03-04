@@ -6,9 +6,14 @@
     var resultSet = ApprenticeshipService.GetLatestApprenticeships(Model, Request);
 }
 
-<link href="~/css/style.css" rel="stylesheet">
+<link href="@Url.Content("~/css/style.css")" rel="stylesheet">
 
 <style>
+    .dropdown-menu > .active > a {
+        background-image: none;
+        background-color: whitesmoke;
+    }
+
     div.box-shadow {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
         margin-top:20px;

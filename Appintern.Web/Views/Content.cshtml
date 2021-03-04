@@ -4,7 +4,9 @@
 
 @{
     Layout = "master.cshtml";
-    Html.RequiresCss("/css/Article-Clean.css");
+    Html.RequiresCss(Url.Content("~/css/Article-Clean.css"));
 }
+
+@Html.RenderCssHere()
 
 @{ Html.RenderPartial("Content/_ArticleContent"); }

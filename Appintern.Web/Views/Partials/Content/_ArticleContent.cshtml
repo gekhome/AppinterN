@@ -3,6 +3,15 @@
 @{
     string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? "";
 }
+<head>
+    <style>
+        /*yeap blue bakground fix input here also*/
+        .dropdown-menu > .active > a {
+            background-image: none;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
 
 <div class="article-clean">
     <div class="container">

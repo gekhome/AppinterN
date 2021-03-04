@@ -5,7 +5,7 @@
 
 @{
     var member = System.Web.Security.Membership.GetUser();
-    string imageUrl = !string.IsNullOrEmpty(Model.AvatarUrl) ? Model.AvatarUrl : "/img/user.png";
+    string imageUrl = !string.IsNullOrEmpty(Model.AvatarUrl) ? Model.AvatarUrl : Url.Content("~/img/user.png");
 }
 
 <div class="container" style="background-color:white">

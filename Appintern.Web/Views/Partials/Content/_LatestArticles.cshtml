@@ -8,7 +8,7 @@
     var resultSet = ArticleService.GetLatestArticles(Model, Request);
 }
 
-<link href="~/css/style.css" rel="stylesheet">
+<link href="@Url.Content("~/css/style.css")" rel="stylesheet">
 
 
 @if (resultSet != null && resultSet.Results != null && resultSet.Results.Any())

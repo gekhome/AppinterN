@@ -9,18 +9,19 @@
     Html.EnableClientValidation();
     Html.EnableUnobtrusiveJavaScript();
 
-    Html.RequiresCss("/css/Contact-Form-Clean.css");
-    Html.RequiresJs("/scripts/jquery.validate.min.js");
-    Html.RequiresJs("/scripts/jquery.validate.unobtrusive.min.js");
-    Html.RequiresJs("/scripts/jquery.unobtrusive-ajax.min.js");
-    Html.RequiresJs("/scripts/jquery.unobtrusive-ajax.min.js");
+    Html.RequiresCss(Url.Content("~/css/Contact-Form-Clean.css"));
+    Html.RequiresJs(Url.Content("~/scripts/jquery.validate.min.js"));
+    Html.RequiresJs(Url.Content("~/scripts/jquery.validate.unobtrusive.min.js"));
+    Html.RequiresJs(Url.Content("~/scripts/jquery.unobtrusive-ajax.min.js"));
+    Html.RequiresJs(Url.Content("~/scripts/jquery.unobtrusive-ajax.min.js"));
 
-    @Html.RenderCssHere()
 }
+
+@Html.RenderCssHere()
 
 <body>
 
-    @Html.RenderJsHere();
+    @Html.RenderJsHere()
 
     <div class="contact-clean">
         @{ Html.RenderAction("RenderTitleControls", "Content"); }

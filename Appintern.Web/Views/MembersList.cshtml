@@ -5,7 +5,7 @@
 
 @{
     Layout = "master.cshtml";
-    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    Html.RequiresCss(Url.Content("~/css/Contact-Form-Clean.css"));
     var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
     var loggedMember = Members.GetCurrentMember();
     string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
@@ -54,9 +54,9 @@
 {
     <!--You may not want to reference jQuery here if you already have it in your master template-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/scripts/jquery.validate.min.js"></script>
-    <script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="/scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Url.Content("~/scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
 
     <script type="text/javascript">
 

@@ -8,10 +8,10 @@
     string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? "";
     var homePage = Model.AncestorOrSelf<Home>();
 
-    Html.RequiresCss("/css/bootstrap.min.css");
-    Html.RequiresCss("/css/bootstrap-theme.min.css");
-    Html.RequiresCss("/css/style.css");
-    Html.RequiresCss("/css/Article-Clean.css");
+    Html.RequiresCss(Url.Content("~/css/bootstrap.min.css"));
+    Html.RequiresCss(Url.Content("~/css/bootstrap-theme.min.css"));
+    Html.RequiresCss(Url.Content("~/css/style.css"));
+    Html.RequiresCss(Url.Content("~/css/Article-Clean.css"));
 
     @Html.RenderCssHere()
 }

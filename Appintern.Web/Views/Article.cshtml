@@ -2,11 +2,11 @@
 
 @using ClientDependency.Core.Mvc
 
-@{
+@{ 
     Layout = "Master.cshtml";
-    Html.RequiresCss("/css/Article-Clean.css");
-
-    Html.RenderCssHere();
+    Html.RequiresCss(Url.Content("~/css/Article-Clean.css")); 
 }
+
+@Html.RenderCssHere()
 
 @{ Html.RenderPartial("Content/_ArticleContent"); }

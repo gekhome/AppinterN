@@ -4,10 +4,12 @@
 @using ClientDependency.Core.Mvc
 @{
     Layout = "master.cshtml";
-    Html.RequiresCss("/css/Article-List.css");
+    Html.RequiresCss(Url.Content("~/css/Article-List.css"));
     var loggedMember = Members.GetCurrentMember();
     string memberType = loggedMember != null ? loggedMember.ContentType.Alias.ToString() : "";
 }
+
+@Html.RenderCssHere()
 
     @if (string.IsNullOrEmpty(memberType))
     {

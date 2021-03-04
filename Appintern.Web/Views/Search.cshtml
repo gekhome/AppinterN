@@ -5,10 +5,12 @@
 
 @{ 
     Layout = "Master.cshtml";
-    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    Html.RequiresCss(Url.Content("~/css/Contact-Form-Clean.css"));
     var imageUrl = Model.HasValue(alias: "mainImage") ? Model.Value<IPublishedContent>(alias: "mainImage").GetCropUrl(1920, 400) : null;
     var searchQuery = Request.QueryString["q"]; 
 }
+
+@Html.RenderCssHere()
 
 <style>
     .search-header {

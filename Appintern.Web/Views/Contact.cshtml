@@ -2,21 +2,23 @@
 
 @using ClientDependency.Core.Mvc
 
-
 @{
     Layout = "Master.cshtml";
 
     Html.EnableClientValidation();
     Html.EnableUnobtrusiveJavaScript();
 
-    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    Html.RequiresCss(Url.Content("~/css/Contact-Form-Clean.css"));
     Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js");
     Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js");
-    Html.RequiresJs("/scripts/jquery.validate.min.js");
-    Html.RequiresJs("/scripts/jquery.validate.unobtrusive.min.js");
-    Html.RequiresJs("/scripts/jquery.unobtrusive-ajax.min.js");
-    Html.RequiresJs("/scripts/contactForm.js");
+    Html.RequiresJs(Url.Content("~/scripts/jquery.validate.min.js"));
+    Html.RequiresJs(Url.Content("~/scripts/jquery.validate.unobtrusive.min.js"));
+    Html.RequiresJs(Url.Content("~/scripts/jquery.unobtrusive-ajax.min.js"));
+    Html.RequiresJs(Url.Content("~/scripts/contactForm.js"));
 }
+
+@Html.RenderCssHere()
+@Html.RenderJsHere()
 
 <div class="contact-clean">
     @{ Html.RenderAction("RenderTitleControls", "Content"); }

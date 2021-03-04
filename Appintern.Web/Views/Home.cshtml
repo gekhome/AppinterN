@@ -4,10 +4,11 @@
 
 @{ 
     Layout = "master.cshtml";
-    Html.RequiresCss("/css/Article-List.css");
-    Html.RequiresCss("/css/Carousel-Hero.css");
+    Html.RequiresCss(Url.Content("~/css/Article-List.css"));
+    Html.RequiresCss(Url.Content("~/css/Carousel-Hero.css"));
 }
 
+@Html.RenderCssHere()
 
 @Html.CachedPartial("Partials/Content/_MainCarousel", Model, 3600)
 

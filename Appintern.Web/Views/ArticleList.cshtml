@@ -4,7 +4,9 @@
 
 @{ 
     Layout = "Master.cshtml";
-    Html.RequiresCss("/css/Article-List.css"); 
+    Html.RequiresCss(Url.Content("~/css/Article-List.css")); 
 }
+
+@Html.RenderCssHere()
 
 @{ Html.RenderPartial("Partials/Content/_LatestArticles"); }

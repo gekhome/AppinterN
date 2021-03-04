@@ -10,8 +10,10 @@
     Layout = "master.cshtml";
     string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? "";
     var homePage = Model.AncestorOrSelf<Home>();
-    Html.RequiresCss("/css/Article-Clean.css");
+    Html.RequiresCss(Url.Content("~/css/Article-Clean.css"));
 }
+
+@Html.RenderCssHere()
 
 <style>
     ul.sitemap {
