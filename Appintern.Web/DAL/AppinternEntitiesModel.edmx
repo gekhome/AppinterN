@@ -212,6 +212,19 @@
           <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'AppinternWorks.dbo.chartCountMembers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="chartCountMembers">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="MemberType" />
+          </Key>
+          <Property Name="RowID" Type="bigint" Nullable="false" />
+          <Property Name="MemberType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="Percentage" Type="decimal" Precision="23" Scale="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'AppinternWorks.dbo.rep_MembersApprenticeships' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="rep_MembersApprenticeships">
           <Key>
@@ -284,6 +297,15 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <EntitySet Name="Schools" EntityType="Self.Schools" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chartCountMembers" EntityType="Self.chartCountMembers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [chartCountMembers].[RowID] AS [RowID], 
+    [chartCountMembers].[MemberType] AS [MemberType], 
+    [chartCountMembers].[Number] AS [Number], 
+    [chartCountMembers].[Total] AS [Total], 
+    [chartCountMembers].[Percentage] AS [Percentage]
+    FROM [dbo].[chartCountMembers] AS [chartCountMembers]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="rep_MembersApprenticeships" EntityType="Self.rep_MembersApprenticeships" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [rep_MembersApprenticeships].[AppID] AS [AppID], 
@@ -389,6 +411,7 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <EntitySet Name="rep_MembersArticles" EntityType="AppinternWorksModel.rep_MembersArticles" />
           <EntitySet Name="sql_MembersAll" EntityType="AppinternWorksModel.sql_MembersAll" />
           <EntitySet Name="Apprenticeships" EntityType="AppinternWorksModel.Apprenticeships" />
+          <EntitySet Name="chartCountMembers" EntityType="AppinternWorksModel.chartCountMembers" />
         </EntityContainer>
         <EntityType Name="MemberGroups">
           <Key>
@@ -610,6 +633,17 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="EmployerID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="chartCountMembers">
+          <Key>
+            <PropertyRef Name="RowID" />
+            <PropertyRef Name="MemberType" />
+          </Key>
+          <Property Name="RowID" Type="Int64" Nullable="false" />
+          <Property Name="MemberType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="Percentage" Type="Decimal" Precision="23" Scale="7" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -887,6 +921,17 @@ warning 6002: The table/view 'AppinternWorks.dbo.sql_MembersAll' does not have a
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ApprenticeshipID" ColumnName="ApprenticeshipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chartCountMembers">
+            <EntityTypeMapping TypeName="AppinternWorksModel.chartCountMembers">
+              <MappingFragment StoreEntitySet="chartCountMembers">
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="MemberType" ColumnName="MemberType" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

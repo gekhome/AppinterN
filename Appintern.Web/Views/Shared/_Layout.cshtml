@@ -1,7 +1,12 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
 
+@using Appintern.Web.Library
+
 @{
     var member = System.Web.Security.Membership.GetUser();
+    int HOME_PAGE_ID = 1080;
+    int hits = Utilities.HitCounter.GetViewCount(HOME_PAGE_ID);
+    string hitsDisplay = string.Format("{0:0000000}", hits);
 }
 
 <!DOCTYPE html>
@@ -67,6 +72,7 @@
             @if (member != null && Umbraco.MemberIsLoggedOn())
             {
                 <span style="float:right;margin-left:20px;margin-right:20px;color:whitesmoke;font-size:18px">
+                    <i style="font-size:16px">[Number of site visits: @hitsDisplay]</i> &nbsp;&nbsp;&nbsp; 
                     Logged user: &nbsp;
                     <strong><i class="fa fa-user-circle-o" aria-hidden="true"></i> @member.UserName</strong>
                 </span>

@@ -1852,6 +1852,9 @@
     <Compile Include="DAL\Articles.cs">
       <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\chartCountMembers.cs">
+      <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Commitments.cs">
       <DependentUpon>AppinternEntitiesModel.tt</DependentUpon>
     </Compile>
@@ -1928,6 +1931,7 @@
     <Compile Include="Reports\MembersArticles.Designer.cs">
       <DependentUpon>MembersArticles.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MemberCountModel.cs" />
     <Compile Include="ViewModels\MemberListModel.cs" />
     <Compile Include="ViewModels\UmbracoEntitiesModel.cs" />
     <Compile Include="ViewModels\ProfilesModel.cs" />

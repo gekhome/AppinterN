@@ -1,11 +1,20 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
 
 @using ClientDependency.Core.Mvc
+@using Appintern.Web.Library
 
 @{ 
     Layout = "master.cshtml";
     Html.RequiresCss(Url.Content("~/css/Article-List.css"));
     Html.RequiresCss(Url.Content("~/css/Carousel-Hero.css"));
+
+    int nodeId = Umbraco.AssignedContentItem.Id;
+    string cookieName = String.Format("PageView_{0}", nodeId);
+    if (Session[cookieName] == null)
+    {
+        Utilities.HitCounter.RecordView(nodeId);
+        Session[cookieName] = 1;
+    }
 }
 
 @Html.RenderCssHere()

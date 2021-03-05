@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
@@ -301,6 +303,39 @@ namespace Appintern.Web.Library
         }
 
         #endregion
+
+        public static class HitCounter
+        {
+            public static void RecordView(int nodeId)
+            {
+                using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["AppinternWorks"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_record_view", conn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add("node_id", System.Data.SqlDbType.Int).Value = nodeId;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            public static int GetViewCount(int nodeId)
+            {
+                int viewCount = 0;
+                using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["AppinternWorks"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_get_view_count", conn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add("node_id", System.Data.SqlDbType.Int).Value = nodeId;
+                        conn.Open();
+                        viewCount = (int)cmd.ExecuteScalar();
+                    }
+                }
+                return viewCount;
+            }
+        }
 
     }
 

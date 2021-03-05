@@ -105,7 +105,8 @@ namespace Appintern.Web.Controllers
         // This a telerik View outside Umbraco frame
         public ActionResult RenderDashboard()
         {
-            return PartialView(GetBackendViewPath("_Dashboard"));
+            IEnumerable<MemberCountModel> model = MemberCountBreakdown();
+            return PartialView(GetBackendViewPath("_Dashboard"), model);
         }
 
         public ActionResult RenderDashboardHome()
@@ -1323,6 +1324,28 @@ namespace Appintern.Web.Controllers
             //return View();
             return PartialView(GetPrintViewPath("_MembersArticlesPrint"));
         }
+
+        #endregion
+
+        #region PIE CHART DATA
+
+        public IEnumerable<MemberCountModel> MemberCountBreakdown()
+        {
+            var data = (from d in db.chartCountMembers orderby d.MemberType select d).ToList();
+            var length = (from d in db.chartCountMembers orderby d.MemberType select d).Count();
+
+            string[] colors = new string[] { "#9de219", "#90cc38", "#068c35", "#006634", "#004d38", "#033939", "#42a7ff", "#666666" };
+            MemberCountModel[] model = new MemberCountModel[length];
+
+            int i = 0;
+            foreach(var item in data)
+            {
+                model[i] = new MemberCountModel(item.MemberType, Math.Round((decimal)item.Percentage,0, MidpointRounding.AwayFromZero), colors[i]);
+                i++;
+            }
+            return model;
+        }
+
 
         #endregion
 

@@ -116,7 +116,6 @@
             IEnumerable<IPublishedContent> childItems = item.Children.Where(x => x.IsVisible());
             bool textOnly = item.Value<bool>("textOnlyInNavigation");
                 <li class="dropdown">
-                    @*<a class="dropdown-toggle @(textOnly ? "textonly" : null)" data-toggle="dropdown" aria-expanded="false" href="@prettyLink.Url">@prettyLink.Name <span class="caret"></span></a>*@
                     <a class="dropdown-toggle @(textOnly ? "textonly" : null) @(Umbraco.AssignedContentItem.Url() == item.Url() ? "active" : null) navlink" data-toggle="dropdown" aria-expanded="false" href="@prettyLink.Url">@prettyLink.Name <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @RenderChildren(childItems)
@@ -126,7 +125,6 @@
             else
             {
                 <li role="presentation">
-                    @*<a href="@prettyLink.Url" target="@prettyLink.Target">@prettyLink.Name</a>*@
                     <a class="@(Umbraco.AssignedContentItem.Url() == item.Url() ? "active" : null) navlink" href="@prettyLink.Url" target="@prettyLink.Target">@prettyLink.Name</a>
 
                 </li>
@@ -153,7 +151,6 @@
     else
     {
         <li role="presentation" class="@(isActive ? "active" : null)">
-            @*<a href="@item.Url()">@item.Name</a>*@
             <a class="@(Umbraco.AssignedContentItem.Url() == item.Url() ? "active" : null) navlink" href="@item.Url()">@item.Name</a>
 
         </li>
@@ -188,7 +185,6 @@
                 alert("Error accessing requested page.");
             }
         });
-
     }
 
 </script>

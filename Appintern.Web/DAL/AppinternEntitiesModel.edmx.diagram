@@ -24,6 +24,7 @@
         <EntityTypeShape EntityType="AppinternWorksModel.rep_MembersArticles" Width="1.875" PointX="8.875" PointY="4.375" />
         <EntityTypeShape EntityType="AppinternWorksModel.sql_MembersAll" Width="1.5" PointX="14.625" PointY="4.25" />
         <EntityTypeShape EntityType="AppinternWorksModel.Apprenticeships" Width="1.5" PointX="11.125" PointY="4.25" />
+        <EntityTypeShape EntityType="AppinternWorksModel.chartCountMembers" Width="1.875" PointX="12.875" PointY="7.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

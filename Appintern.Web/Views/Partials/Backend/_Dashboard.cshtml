@@ -1,4 +1,7 @@
-﻿<style>
+﻿@model IEnumerable<MemberCountModel>
+
+@using Appintern.Web.ViewModels;
+<style>
     img.box-shadow {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     }
@@ -55,7 +58,7 @@
 
         <div class="col-md-4">
             <div class="demo-section k-content wide">
-                @(Html.Kendo().Chart()
+                @(Html.Kendo().Chart(Model)
                 .Name("chart")
                 .Title(title => title
                 .Text("Share of Internet Population Growth, 2007 - 2012")
@@ -64,26 +67,20 @@
                 .Visible(false))
                 .ChartArea(chart => chart
                 .Background("transparent"))
-                .HtmlAttributes(new { style="background: center no-repeat url(" + @Url.Content("~/Images/world-map.png")})
+                .HtmlAttributes(new { style = "background: center no-repeat url(" + @Url.Content("~/Images/world-map.png") })
                 .Series(series => {
-                    series.Pie(new dynamic[] {
-                    new {category="Asia",value=53.8,color="#9de219"},
-                    new {category="Europe",value=16.1,color="#90cc38"},
-                    new {category="LatinAmerica",value=11.3,color="#068c35"},
-                    new {category="Africa",value=9.6,color="#006634"},
-                    new {category="MiddleEast",value=5.2,color="#004d38"},
-                    new {category="NorthAmerica",value=3.6,color="#033939"}
-                })
-                .Labels(labels => labels
+                    series.Pie(
+                        model => model.Percentage,
+                        model => model.MemberType,
+                        model => model.Color,
+                        model => model.Explode)
+                    .Labels(labels => labels
                     .Template("#= category #: \n #= value#%")
                     .Background("transparent")
-                    .Visible(true)
-                )
-                .StartAngle(150);
+                    .Visible(true))
+                    .StartAngle(150);
                 })
-                .Tooltip(tooltip => tooltip
-                    .Visible(true)
-                    .Format("{0}%"))
+                .Tooltip(tooltip => tooltip.Visible(true).Format("{0}%"))
                 )
             </div>
         </div>
