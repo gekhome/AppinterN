@@ -1,6 +1,14 @@
 ﻿@model IEnumerable<MemberCountModel>
 
 @using Appintern.Web.ViewModels;
+@using Appintern.Web.Library
+
+@{
+    int HOME_PAGE_ID = 1080;
+    int hits = HitCounter.GetViewCount(HOME_PAGE_ID);
+}
+
+
 <style>
     img.box-shadow {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
@@ -61,13 +69,13 @@
                 @(Html.Kendo().Chart(Model)
                 .Name("chart")
                 .Title(title => title
-                .Text("Share of Internet Population Growth, 2007 - 2012")
+                .Text("Distribution of Registered Member Types")
                 .Position(ChartTitlePosition.Bottom))
                 .Legend(legend => legend
                 .Visible(false))
                 .ChartArea(chart => chart
                 .Background("transparent"))
-                .HtmlAttributes(new { style = "background: center no-repeat url(" + @Url.Content("~/Images/world-map.png") })
+                //.HtmlAttributes(new { style = "background: center no-repeat url(" + @Url.Content("~/Images/world-map.png") })
                 .Series(series => {
                     series.Pie(
                         model => model.Percentage,
@@ -88,30 +96,34 @@
             <div id="gauge-container" style="margin-top:20px">
                 @(Html.Kendo().RadialGauge()
                 .Name("gauge")
-                .Pointer(pointer => pointer.Value(65))
+                .Pointer(pointer => pointer.Value(hits))
                 .Scale(scale => scale
                     .MinorUnit(5)
                     .StartAngle(-30)
                     .EndAngle(210)
-                    .Max(180)
+                    .Max(5*hits)
                     .Labels(labels => labels
                         .Position(GaugeRadialScaleLabelsPosition.Inside)
                     )
                     .Ranges(ranges => {
-                        ranges.Add().From(80).To(120).Color("#ffc700");
-                        ranges.Add().From(120).To(150).Color("#ff7a00");
-                        ranges.Add().From(150).To(180).Color("#c20000");
+                        ranges.Add().From(2*hits).To(3*hits).Color("#ffc700");
+                        ranges.Add().From(3*hits).To(4*hits).Color("#ff7a00");
+                        ranges.Add().From(4*hits).To(5*hits).Color("#c20000");
                     })
                     )
                 )
+            </div>
+            <div>
+                <label style="margin-top:10px;float:right;margin-right:200px;background-color:transparent">Current number of site visits</label>
             </div>
             <div id="gauge-container2" style="margin-top:0px;float:right;margin-right:200px;background-color:transparent">
                 @(Html.Kendo().Slider()
                 .Name("gauge-value")
                 .HtmlAttributes(new { style="max-width:80px"})
-                .Value(65)
+                .Value(hits)
                 .Min(0)
-                .Max(180)
+                .Max(5*hits)
+                .TickPlacement(SliderTickPlacement.None)
                 .ShowButtons(false)
                 .Events(e => e.Change("change"))
                 .HtmlAttributes(new { title = "slider" })
