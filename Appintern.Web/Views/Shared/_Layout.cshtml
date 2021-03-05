@@ -5,7 +5,7 @@
 @{
     var member = System.Web.Security.Membership.GetUser();
     int HOME_PAGE_ID = 1080;
-    int hits = Utilities.HitCounter.GetViewCount(HOME_PAGE_ID);
+    int hits = HitCounter.GetViewCount(HOME_PAGE_ID);
     string hitsDisplay = string.Format("{0:0000000}", hits);
 }
 

@@ -12,7 +12,7 @@
     string cookieName = String.Format("PageView_{0}", nodeId);
     if (Session[cookieName] == null)
     {
-        Utilities.HitCounter.RecordView(nodeId);
+        HitCounter.RecordView(nodeId);
         Session[cookieName] = 1;
     }
 }
