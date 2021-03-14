@@ -88,12 +88,16 @@ namespace Appintern.Web.Controllers
         /// <returns>model with Id, Name and member Type</returns>
         public LoggedMemberModel GetLoggedMember()
         {
+            string memberType = "";
+            int memberId = 0;
+            string memberName = "";
             IPublishedContent loggedMember = Members.GetCurrentMember();
-            string memberType = loggedMember.ContentType.Alias.ToString();
-
-            int memberId = loggedMember.Id;
-            string memberName = loggedMember.Name;
-
+            if (loggedMember != null)
+            {
+                memberType = loggedMember.ContentType.Alias.ToString();
+                memberId = loggedMember.Id;
+                memberName = loggedMember.Name;
+            }
             LoggedMemberModel model = new LoggedMemberModel()
             {
                 MemberId = memberId,
@@ -113,7 +117,7 @@ namespace Appintern.Web.Controllers
         {
             string memberType = loggedMember.MemberType;
 
-            bool deny = memberType == "graduate" || memberType == "student" || memberType == "teacher";
+            bool deny = memberType == "graduate" || memberType == "student" || memberType == "teacher" || memberType == "";
 
             if (deny)
                 return RedirectToAction("AccessDenied", "TasksPublish");

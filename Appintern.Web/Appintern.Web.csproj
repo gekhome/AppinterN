@@ -356,6 +356,8 @@
     <Content Include="Images\apprenticeship-logo-1.jpg" />
     <Content Include="Images\11.jpg" />
     <Content Include="Images\22.jpg" />
+    <Content Include="Images\login1.png" />
+    <Content Include="Images\login2.jpg" />
     <Content Include="Images\metro\orderedList0.png" />
     <Content Include="Images\metro\orderedList1.png" />
     <Content Include="Images\metro\orderedList2.png" />
@@ -2180,6 +2182,7 @@
     <Content Include="Views\Partials\Member\_TraineeListResults.cshtml" />
     <Content Include="Views\Partials\Member\_TraineeListResultsGrid.cshtml" />
     <Content Include="Views\TraineesList.cshtml" />
+    <Content Include="Views\Partials\TasksProfile\_AccessLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

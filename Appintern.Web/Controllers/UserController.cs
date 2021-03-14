@@ -106,7 +106,7 @@ namespace Appintern.Web.Controllers
             {
                 if (Membership.ValidateUser(model.Username, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.Username, createPersistentCookie: false);
+                    FormsAuthentication.SetAuthCookie(model.Username, createPersistentCookie: true);
 
                     UrlHelper myHelper = new UrlHelper(HttpContext.Request.RequestContext);
 

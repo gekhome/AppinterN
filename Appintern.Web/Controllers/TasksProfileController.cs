@@ -67,12 +67,16 @@ namespace Appintern.Web.Controllers
 
         public LoggedMemberModel GetLoggedMember()
         {
+            string memberType = "";
+            int memberId = 0;
+            string memberName = "";
             IPublishedContent loggedMember = Members.GetCurrentMember();
-            string memberType = loggedMember.ContentType.Alias.ToString();
-
-            int memberId = loggedMember.Id;
-            string memberName = loggedMember.Name;
-
+            if (loggedMember != null)
+            {
+                memberType = loggedMember.ContentType.Alias.ToString();
+                memberId = loggedMember.Id;
+                memberName = loggedMember.Name;
+            }
             LoggedMemberModel model = new LoggedMemberModel()
             {
                 MemberId = memberId,
@@ -121,9 +125,13 @@ namespace Appintern.Web.Controllers
             {
                 return RedirectToAction("TeacherDetail", "TasksProfile");
             }
-            else
+            else if (loggedMember.MemberType == "Member")
             {
                 return RedirectToAction("MemberDetail", "TasksProfile");
+            }
+            else
+            {
+                return RedirectToAction("AccessLogin", "TasksProfile");
             }
         }
 
@@ -131,6 +139,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult AmbassadorDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Ambassador memberProfile = Members.GetById(loggedMember.MemberId) as Ambassador;
             AmbassadorProfileModel model = GetAmbassadorModel(memberProfile);
 
@@ -288,6 +299,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult EmployerDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Employer memberProfile = Members.GetById(loggedMember.MemberId) as Employer;
             EmployerProfileModel model = GetEmployerModel(memberProfile);
 
@@ -401,6 +415,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult GraduateDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Graduate memberProfile = Members.GetById(loggedMember.MemberId) as Graduate;
             GraduateProfileModel model = GetGraduateModel(memberProfile);
 
@@ -557,6 +574,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult LiaisonDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Liaison memberProfile = Members.GetById(loggedMember.MemberId) as Liaison;
             LiaisonProfileModel model = GetLiaisonModel(memberProfile);
 
@@ -664,6 +684,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult OrganizationDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Organization memberProfile = Members.GetById(loggedMember.MemberId) as Organization;
             OrganizationProfileModel model = GetOrganizationModel(memberProfile);
 
@@ -775,6 +798,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult SchoolDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             School memberProfile = Members.GetById(loggedMember.MemberId) as School;
             SchoolProfileModel model = GetSchoolModel(memberProfile);
 
@@ -883,6 +909,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult StudentDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Student memberProfile = Members.GetById(loggedMember.MemberId) as Student;
             StudentProfileModel model = GetStudentModel(memberProfile);
 
@@ -995,6 +1024,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult TeacherDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             Teacher memberProfile = Members.GetById(loggedMember.MemberId) as Teacher;
             TeacherProfileModel model = GetTeacherModel(memberProfile);
 
@@ -1102,6 +1134,9 @@ namespace Appintern.Web.Controllers
 
         public ActionResult MemberDetail()
         {
+            if (!(loggedMember.MemberId > 0))
+                return RedirectToAction("AccessLogin", "TasksProfile");
+
             CM.Member memberProfile = Members.GetById(loggedMember.MemberId) as CM.Member;
             MemberProfileModel model = GetMemberModel(memberProfile);
 
@@ -1422,6 +1457,11 @@ namespace Appintern.Web.Controllers
         }
 
         #endregion
+
+        public ActionResult AccessLogin()
+        {
+            return PartialView(GetTasksViewPath("_AccessLogin"));
+        }
 
         [HttpPost]
         public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
