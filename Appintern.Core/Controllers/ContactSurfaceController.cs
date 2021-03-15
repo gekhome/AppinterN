@@ -24,7 +24,7 @@ namespace Appintern.Core.Controllers
 
         public string GetViewPath(string name)
         {
-            return string.Format("/Views/Partials/Contact/{0}.cshtml", name);
+            return string.Format("~/Views/Partials/Contact/{0}.cshtml", name);
         }
 
         [HttpGet]
