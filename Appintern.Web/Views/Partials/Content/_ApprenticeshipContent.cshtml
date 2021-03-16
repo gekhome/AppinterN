@@ -3,8 +3,8 @@
 @using CM = Umbraco.Web.PublishedModels
 @using Umbraco.Web.Models
 @{
-    string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? "";
-    string branches = "";
+    string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? Url.Content("~/img/apprenticeship.jpg");
+    //string branches = "";
     string employerName = "";
     string duration = Model.Duration;
     string commitment = Model.Commitment;
