@@ -13,11 +13,11 @@
 
     @if (string.IsNullOrEmpty(memberType))
     {
-        Response.Redirect("/login");
+        Response.Redirect("~/login");
     }
     else if (memberType == "student")
     {
-        Response.Redirect("/access-error");
+        Response.Redirect("~/access-error");
     }
     else
     {
