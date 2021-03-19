@@ -523,10 +523,9 @@
       <DependentUpon>AppinternEntitiesModel.edmx</DependentUpon>
       <LastGenOutput>AppinternEntitiesModel.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoon\icomoon.svg" />
     <Content Include="fonts\icomoon\index.html" />
-    <Content Include="fonts\index.html" />
     <Content Include="fonts\simple-line-icons\Simple-Line-Icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\developers-women.jpg" />
@@ -1959,10 +1958,10 @@
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\style.css.map" />
     <Content Include="fonts\.DS_Store" />
-    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\icomoon\.DS_Store" />
     <Content Include="fonts\icomoon\icomoon.eot" />
     <Content Include="fonts\icomoon\icomoon.ttf" />
