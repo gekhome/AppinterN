@@ -36,13 +36,14 @@
         .ButtonCount(5))
         .Filterable()
         .Groupable()
+        .ToolBar(t => t.Search())
         .HtmlAttributes(new { style = "display: block;font-size:14px" })
         .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
         .Scrollable(scr => scr.Height(540))
         .DataSource(dataSource => dataSource
         .Ajax()
         .PageSize(20)
-        .ServerOperation(true)
+        .ServerOperation(false)
         .Model(model =>
         {
             model.Id(p => p.ArticleId);
